@@ -1,0 +1,74 @@
+// Prisma-Schema — Stufe 2 (Datenbank-Fundament).
+// Die Modelle spiegeln 1:1 die Typen aus types/index.ts, damit die
+// Content-Fassade (lib/content.ts) ohne Änderung an den Aufrufern von den
+// statischen Arrays auf Prisma umgestellt werden konnte.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Gericht {
+  id             String   @id @default(cuid())
+  name           String
+  beschreibung   String?
+  preis          Float
+  kategorie      String // z. B. "Vorspeise", "Hauptgang", "Snack", "Dessert", "Getränk"
+  bereich        String // "restaurant" | "imbiss"
+  verfuegbar     Boolean  @default(true)
+  bild           String?
+  reihenfolge    Int      @default(0)
+  erstelltAm     DateTime @default(now())
+  aktualisiertAm DateTime @updatedAt
+
+  @@index([bereich, verfuegbar])
+}
+
+model Event {
+  id             String   @id @default(cuid())
+  slug           String   @unique
+  titel          String
+  beschreibung   String?
+  datum          DateTime
+  uhrzeit        String // z. B. "20:00 Uhr"
+  eintritt       String? // z. B. "8,00 €" oder "Eintritt frei"
+  bild           String?
+  veroeffentlicht Boolean  @default(false)
+  erstelltAm     DateTime @default(now())
+  aktualisiertAm DateTime @updatedAt
+
+  @@index([veroeffentlicht, datum])
+}
+
+model Bild {
+  id           String   @id @default(cuid())
+  url          String
+  alt          String?
+  beschreibung String?
+  bereich      String // "restaurant" | "kotten" | "imbiss" | "aussen" | "essen" | "events"
+  reihenfolge  Int      @default(0)
+  erstelltAm   DateTime @default(now())
+
+  @@index([bereich])
+}
+
+model Einstellung {
+  key   String @id
+  value String
+}
+
+// Admin-Benutzer (i.d.R. genau einer: der Betreiber). Passwort wird als
+// bcrypt-Hash gespeichert; der erste Benutzer wird per Seed aus ADMIN_EMAIL /
+// ADMIN_PASSWORD angelegt.
+model Benutzer {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwortHash String
+  name         String?
+  rolle        String   @default("admin")
+  erstelltAm   DateTime @default(now())
+}

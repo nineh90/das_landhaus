@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+/*
+  Das Landhaus Tecklenburg — Farbwelt
+  Warm, natürlich, einladend: Erdtöne, Waldgrün, Beige/Creme.
+  Tailwind v4: Theme-Tokens werden hier definiert und erzeugen Utilities
+  (bg-wald, text-creme, border-erde, font-display, ...).
+*/
+@theme {
+  --color-creme: #f3ece1;
+  --color-creme-dark: #e6dac8;
+  --color-wald: #2f4a3c;
+  --color-wald-dark: #1f3328;
+  --color-wald-light: #4a6b58;
+  --color-erde: #7a5c43;
+  --color-erde-dark: #5c4431;
+  --color-akzent: #c17a3f;
+  --color-akzent-dark: #a5642f;
+  --color-tinte: #2b2620;
+
+  --color-background: var(--color-creme);
+  --color-foreground: var(--color-tinte);
+
+  /* Schriften aus next/font (siehe app/layout.tsx) */
+  --font-sans: var(--font-body), system-ui, sans-serif;
+  --font-display: var(--font-display-face), Georgia, serif;
+  --font-script: var(--font-script-face), "Segoe Script", cursive;
+}
+
+body {
+  background: var(--color-creme);
+  color: var(--color-tinte);
+  font-family: var(--font-sans);
+}
+
+/* Überschriften standardmäßig in der Display-Schrift.
+   In @layer base, damit Utility-Klassen (z. B. font-script) sie überschreiben können. */
+@layer base {
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+  }
+}
+
+/* Weiches Scroll-Verhalten für Anker-Links (z. B. Speisekarten-Sprungmarken) */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ---------------- Animationen (schlank, ohne Library) ---------------- */
+
+@keyframes lh-fade-up {
+  from { opacity: 0; transform: translateY(1.5rem); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes lh-hero-zoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.08); }
+}
+
+@keyframes lh-nudge {
+  0%, 100% { transform: translateY(0);   opacity: 0.7; }
+  50%      { transform: translateY(6px); opacity: 1; }
+}
+
+/* Warmer Schimmer im Hero: atmet sehr langsam für einen lebendigen Eindruck */
+@keyframes lh-warmth {
+  from { opacity: 0.5; }
+  to   { opacity: 0.9; }
+}
+
+/* Scroll-Reveal: startet unsichtbar, wird per IntersectionObserver eingeblendet */
+.reveal {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  will-change: opacity, transform;
+}
+.reveal[data-shown="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Einmalige Einblend-Animation für Inhalte „above the fold" (z. B. Hero) */
+.fade-in-up {
+  animation: lh-fade-up 0.8s ease-out both;
+}
+
+/* Langsamer Ken-Burns-Zoom fürs Hero-Bild */
+.hero-zoom {
+  animation: lh-hero-zoom 20s ease-out forwards;
+  transform-origin: center;
+}
+
+/* Sanfter Scroll-Indikator im Hero */
+.scroll-nudge {
+  animation: lh-nudge 1.8s ease-in-out infinite;
+}
+
+/*
+  Warmer Sonnenlicht-Schimmer über dem Hero-Foto.
+  Zwei Radial-Verläufe in Akzent-Tönen (warmes Abendlicht von unten +
+  Sonne von oben rechts), per `screen` additiv über das Bild geblendet.
+  Liegt hinter den Abdunklungs-Ebenen, damit der Text lesbar bleibt.
+*/
+.hero-warmth {
+  background:
+    radial-gradient(
+      130% 90% at 50% 120%,
+      color-mix(in srgb, var(--color-akzent) 55%, transparent) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      70% 55% at 82% 6%,
+      color-mix(in srgb, var(--color-akzent) 30%, transparent) 0%,
+      transparent 60%
+    );
+  mix-blend-mode: screen;
+  animation: lh-warmth 9s ease-in-out infinite alternate;
+}
+
+/* Barrierefreiheit: Nutzer mit „Bewegung reduzieren" bekommen keine Animationen */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .fade-in-up,
+  .hero-zoom,
+  .scroll-nudge,
+  .hero-warmth {
+    animation: none !important;
+  }
+}
