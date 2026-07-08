@@ -1,6 +1,13 @@
 <svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Das Landhaus">
-  <!-- Übergangs-Favicon (Platzhalter) in Projektfarben – Waldgrün + Creme.
-       Wird später durch finales Logo/Schriftzug ersetzt. -->
-  <rect width="64" height="64" rx="14" fill="#3E4E34"/>
-  <path d="M20 16 H28 V40 H44 V48 H20 Z" fill="#EFE6D3"/>
+  <!-- Favicon: vereinfachtes Giebelhaus (Logo-Motiv), Projektfarben Waldgrün + Creme.
+       Bewusst reduziert, damit es bei 16/32 px klar erkennbar bleibt. -->
+  <rect width="64" height="64" rx="14" fill="#1f3328"/>
+  <!-- Schornstein -->
+  <rect x="40" y="15" width="5" height="12" fill="#f3ece1"/>
+  <!-- Dach -->
+  <path d="M32 12 L54 31 H10 Z" fill="#f3ece1"/>
+  <!-- Hauskörper -->
+  <rect x="16" y="29" width="32" height="23" fill="#f3ece1"/>
+  <!-- Tür (Aussparung) -->
+  <rect x="28" y="40" width="8" height="12" fill="#1f3328"/>
 </svg>
