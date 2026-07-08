@@ -33,7 +33,7 @@ export default async function ImbissSeite({ params }: { params: Promise<{ locale
   const platzhalter: Bild[] = [
     {
       id: "imbiss-platzhalter",
-      url: "/images/galerie/imbiss-theke.jpg",
+      url: "/images/galerie/imbiss-stand.jpg",
       alt: t.platzhalterAlt,
       beschreibung: null,
       bereich: "imbiss",
@@ -43,7 +43,7 @@ export default async function ImbissSeite({ params }: { params: Promise<{ locale
 
   return (
     <>
-      <PageHero titel={t.hero.titel} text={t.hero.text} bild="/images/galerie/imbiss-theke.jpg" />
+      <PageHero titel={t.hero.titel} text={t.hero.text} bild="/images/galerie/imbiss-stand.jpg" />
 
       <Section>
         <div className="mx-auto max-w-3xl">

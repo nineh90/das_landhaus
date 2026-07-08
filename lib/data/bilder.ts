@@ -8,8 +8,8 @@ import type { Bild } from "@/types";
  * `alt`  → Barrierefreiheit (Screenreader), möglichst beschreibend.
  * `beschreibung` → kurze, sichtbare Bildunterschrift in Galerie/Lightbox.
  *
- * `bereich` bestimmt die Galerie-Gruppe (siehe app/(public)/galerie/page.tsx):
- * aussen/restaurant/imbiss → "Das Landhaus", kotten → "Der Kotten",
+ * `bereich` bestimmt die Galerie-Gruppe (siehe GALERIE_GRUPPEN in lib/content.ts):
+ * aussen/restaurant → "Das Landhaus", imbiss → "Imbiss", kotten → "Der Kotten",
  * essen → "Essen", events → "Events".
  *
  * Weitere Fotos werden laufend ergänzt: hier einfach neue Einträge hinzufügen
@@ -64,5 +64,19 @@ export const bilder: Bild[] = [
     alt: "Bunter Blattsalat mit gegrillten, marinierten Hähnchenstreifen, Gurke, Tomate, roten Zwiebeln und zweierlei Dressing",
     beschreibung: "Gegrillter Hähnchensalat mit frischem Gemüse",
     bereich: "essen",
+  },
+  {
+    id: "b-8",
+    url: "/images/galerie/imbiss-stand.jpg",
+    alt: "Imbiss-Theke unter überdachter Terrasse mit Tageskarte, Zapfanlage und Blick in die Küche",
+    beschreibung: "Unser Imbiss — frisch vom Grill, direkt am Platz",
+    bereich: "imbiss",
+  },
+  {
+    id: "b-9",
+    url: "/images/galerie/imbiss-ausschank.jpg",
+    alt: "Ausschank und Bestellfenster des Imbisses mit Getränkekarte und Blick in die Küche",
+    beschreibung: "Ausschank und Bestellfenster am Imbiss",
+    bereich: "imbiss",
   },
 ];

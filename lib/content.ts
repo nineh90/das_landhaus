@@ -199,7 +199,8 @@ export interface GalerieGruppe {
 }
 
 const GALERIE_GRUPPEN: { label: string; bereiche: BildBereich[] }[] = [
-  { label: "Das Landhaus", bereiche: ["aussen", "restaurant", "imbiss"] },
+  { label: "Das Landhaus", bereiche: ["aussen", "restaurant"] },
+  { label: "Imbiss", bereiche: ["imbiss"] },
   { label: "Der Kotten", bereiche: ["kotten"] },
   { label: "Essen", bereiche: ["essen"] },
   { label: "Events", bereiche: ["events"] },

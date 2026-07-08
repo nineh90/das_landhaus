@@ -10,7 +10,7 @@ export default function BereicheTeaser({ locale, dict }: { locale: Locale; dict:
   const b = dict.home.bereiche;
   const bereiche = [
     { href: "/restaurant", ...b.restaurant, bild: "/images/galerie/restaurant-speisesaal.jpeg" },
-    { href: "/imbiss", ...b.imbiss, bild: "/images/galerie/imbiss-theke.jpg" },
+    { href: "/imbiss", ...b.imbiss, bild: "/images/galerie/imbiss-stand.jpg" },
     { href: "/der-kotten", ...b.kotten, bild: "/images/galerie/kotten-aussen.jpeg" },
   ];
 
