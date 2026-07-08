@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Container from "./Container";
 import { buildNavItems } from "./nav-links";
 import { localizedHref } from "@/lib/i18n/href";
@@ -15,11 +16,23 @@ export default async function Footer({ locale, dict }: { locale: Locale; dict: D
 
   return (
     <footer className="bg-wald-dark text-creme/85">
-      <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
+      <Container className="grid gap-10 py-14 text-center sm:grid-cols-2 sm:text-left lg:grid-cols-4">
         <div>
-          <p className="font-display text-xl font-semibold text-creme">Das Landhaus</p>
-          <p className="text-sm uppercase tracking-widest text-creme/60">Tecklenburg-Leeden</p>
-          <p className="mt-4 text-sm leading-relaxed">{f.beschreibung}</p>
+          {/* Logo auf cremefarbener Karte — ein helles Logo braucht auf dem dunklen Grund eine helle Fläche */}
+          <div className="inline-block rounded-2xl bg-creme p-4 shadow-lg ring-1 ring-black/5">
+            <Image
+              src="/images/logo/logo-freigestellt.png"
+              alt="Das Landhaus in Tecklenburg-Leeden – Restaurant, Imbiss und Der Kotten"
+              width={260}
+              height={260}
+              className="h-auto w-40"
+            />
+          </div>
+          {/* Bereiche wie in der Hero-Eyebrow */}
+          <p className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-creme/70">
+            Restaurant · Imbiss · Der Kotten
+          </p>
+          <p className="mt-3 text-sm leading-relaxed">{f.beschreibung}</p>
         </div>
 
         <div>
