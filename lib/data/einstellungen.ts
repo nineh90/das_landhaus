@@ -17,16 +17,15 @@ export const einstellungen: Einstellung[] = [
   },
   {
     key: "oeffnungszeiten_restaurant",
-    value:
-      "Mi–Fr 17:00–22:00 Uhr\nSa 12:00–22:00 Uhr\nSo 12:00–21:00 Uhr\nMo & Di Ruhetag",
+    value: "Di–Do 17:00–21:00 Uhr\nFr–So 17:00–22:00 Uhr\nMo Ruhetag",
   },
   {
     key: "oeffnungszeiten_imbiss",
-    value: "Täglich 11:30–20:00 Uhr (in der Saison)",
+    value: "Täglich 12:00–17:00 Uhr (in der Saison)",
   },
   {
     key: "oeffnungszeiten_kotten",
-    value: "Bei Veranstaltungen — siehe Termine",
+    value: "Bei Veranstaltungen — siehe Events",
   },
   // Google-Maps-Embed für den echten Standort: Restaurant „Das Landhaus", Tecklenburg-Leeden
   // (offizielle Embed-URL aus Google Maps → Teilen → Karte einbetten).

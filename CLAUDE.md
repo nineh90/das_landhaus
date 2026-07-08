@@ -198,6 +198,7 @@ model Einstellung {
 - [ ] Erstes Foto-Shooting organisieren (Pflicht vor Launch)
 - [ ] Restauranterweiterung: Pläne noch offen → Website muss das später abbilden können
 - [ ] Reservierungssystem: Erstmal per Telefon/WhatsApp, später ggf. eigene Lösung
+- [ ] Kontaktformular (später): eigenes Formular auf der Website (z. B. Anfahrt-/Kontaktseite), inkl. Versand + Spam-Schutz
 - [ ] Domain klären und registrieren
 - [ ] Angebot / Vertrag mit Betreiber finalisieren
 

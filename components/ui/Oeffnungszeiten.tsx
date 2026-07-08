@@ -1,5 +1,7 @@
+import Link from "next/link";
 import { getEinstellung } from "@/lib/content";
 import { getDictionary } from "@/lib/i18n/dictionary";
+import { localizedHref } from "@/lib/i18n/href";
 import type { Locale } from "@/lib/i18n/config";
 import { cn } from "@/lib/utils";
 
@@ -64,6 +66,31 @@ export default async function Oeffnungszeiten({
           >
             {b.zeiten}
           </p>
+          {/* Kotten öffnet nur zu Veranstaltungen → zu den Events; zusätzlich Miet-Teaser */}
+          {b.key === "kotten" && (
+            <div className="mt-3 flex flex-col gap-1.5">
+              <Link
+                href={localizedHref(locale, "/events")}
+                className={cn(
+                  "inline-flex items-center gap-1 text-sm font-semibold transition-colors",
+                  hell ? "text-creme hover:text-akzent" : "text-akzent-dark hover:text-akzent",
+                )}
+              >
+                {dict.common.kommendeEvents}
+                <span aria-hidden="true">→</span>
+              </Link>
+              <Link
+                href={localizedHref(locale, "/der-kotten")}
+                className={cn(
+                  "inline-flex items-center gap-1 text-sm font-semibold transition-colors",
+                  hell ? "text-creme hover:text-akzent" : "text-akzent-dark hover:text-akzent",
+                )}
+              >
+                {dict.common.kottenMieten}
+                <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          )}
         </div>
       ))}
     </div>

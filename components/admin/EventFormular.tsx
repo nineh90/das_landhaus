@@ -116,7 +116,7 @@ export default function EventFormular({
         label="Bildpfad (optional)"
         htmlFor="bild"
         error={errors.bild?.message}
-        hint="z. B. /images/kotten/event-schlager.jpg"
+        hint="z. B. /images/kotten/event-amerikanischer-abend.jpg"
       >
         <input id="bild" className={inputKlasse} {...register("bild")} />
       </Feld>
