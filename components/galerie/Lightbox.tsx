@@ -4,14 +4,17 @@ import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import type { GalerieGruppe } from "@/lib/content";
 
+export type LightboxLabels = { schliessen: string; vorheriges: string; naechstes: string };
+
 /**
  * Nach Bereichen gruppiertes Bild-Raster mit Vollbild-Lightbox.
  * Einzige Interaktivität der Galerie → bewusst als Client Component isoliert.
+ * Als Client-Komponente bekommt sie die (localisierten) Beschriftungen als Prop.
  *
  * Die Gruppen werden zu einer flachen Liste zusammengeführt, damit sich die
  * Lightbox gruppenübergreifend durchblättern lässt (Pfeile / ← →).
  */
-export default function Lightbox({ gruppen }: { gruppen: GalerieGruppe[] }) {
+export default function Lightbox({ gruppen, labels }: { gruppen: GalerieGruppe[]; labels: LightboxLabels }) {
   const flach = gruppen.flatMap((g) => g.bilder);
   const [index, setIndex] = useState<number | null>(null);
 
@@ -85,7 +88,7 @@ export default function Lightbox({ gruppen }: { gruppen: GalerieGruppe[] }) {
         >
           <button
             type="button"
-            aria-label="Schließen"
+            aria-label={labels.schliessen}
             onClick={schliessen}
             className="absolute right-4 top-4 text-3xl text-creme"
           >
@@ -93,7 +96,7 @@ export default function Lightbox({ gruppen }: { gruppen: GalerieGruppe[] }) {
           </button>
           <button
             type="button"
-            aria-label="Vorheriges Bild"
+            aria-label={labels.vorheriges}
             onClick={(e) => {
               e.stopPropagation();
               zurueck();
@@ -123,7 +126,7 @@ export default function Lightbox({ gruppen }: { gruppen: GalerieGruppe[] }) {
           </div>
           <button
             type="button"
-            aria-label="Nächstes Bild"
+            aria-label={labels.naechstes}
             onClick={(e) => {
               e.stopPropagation();
               weiter();

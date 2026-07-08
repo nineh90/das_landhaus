@@ -2,7 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import type { FormErgebnis } from "@/app/admin/(app)/speisekarte/actions";
+import type { FormErgebnis } from "@/app/(admin)/admin/(app)/speisekarte/actions";
 
 /**
  * Kleiner Inline-Umbenenner für eine Kategorie-Überschrift. Öffnet auf Klick ein

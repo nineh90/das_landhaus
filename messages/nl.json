@@ -1,0 +1,245 @@
+{
+  "nav": {
+    "start": "Home",
+    "imbiss": "Snackbar",
+    "galerie": "Galerij",
+    "anfahrt": "Route"
+  },
+  "languageSwitcher": {
+    "label": "Kies taal"
+  },
+  "common": {
+    "menuOpen": "Menu openen",
+    "menuClose": "Menu sluiten",
+    "menu": "Menu",
+    "mehrErfahren": "Meer weten",
+    "alleVeranstaltungen": "Alle evenementen",
+    "kommendeEvents": "Komende evenementen",
+    "speisekarteAnsehen": "Bekijk de menukaart",
+    "weiterZumInhalt": "Naar de inhoud"
+  },
+  "footer": {
+    "beschreibung": "Restaurant, snackbar & Der Kotten midden in de natuur — bij de camping in Tecklenburg-Leeden.",
+    "kontakt": "Contact",
+    "oeffnungszeitenRestaurant": "Openingstijden restaurant",
+    "seiten": "Pagina's",
+    "impressum": "Colofon & Privacy",
+    "realisiertVon": "Gemaakt door Nils-Digital"
+  },
+  "kontakt": {
+    "reservierenTitel": "Een tafel reserveren",
+    "reservierenText": "We nemen je reservering graag telefonisch of via WhatsApp aan.",
+    "anrufen": "Bellen",
+    "whatsapp": "Stuur ons een WhatsApp"
+  },
+  "events": {
+    "leer": "Er staan momenteel geen data gepland. Kom snel weer kijken!",
+    "eintrittLeer": "—"
+  },
+  "lightbox": {
+    "schliessen": "Sluiten",
+    "vorheriges": "Vorige afbeelding",
+    "naechstes": "Volgende afbeelding",
+    "leer": "Binnenkort zijn hier foto's te zien."
+  },
+  "maps": {
+    "titel": "Kaart: Das Landhaus Tecklenburg-Leeden"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Restaurant · Snackbar · Der Kotten",
+      "subtitle": "In vakantiepark Capfun Tecklenburg-Leeden",
+      "text": "Goed eten, een gezellige sfeer en avonden vol muziek — midden in de natuur. Of het nu een fijn diner in het restaurant is, een snelle hap bij de snackbar of een avond in de Kotten: gasten uit de regio en van de camping zijn van harte welkom.",
+      "kottenChip": "De Kotten kun je ook huren voor je eigen feest"
+    },
+    "bereiche": {
+      "mehrErfahren": "Meer weten",
+      "restaurant": {
+        "titel": "Restaurant",
+        "text": "Verfijnde, seizoensgebonden keuken in een gezellige landhuissfeer — voor externe gasten en besloten gezelschappen.",
+        "alt": "Gezellig gedekte eetzaal in het restaurant van Das Landhaus"
+      },
+      "imbiss": {
+        "titel": "Snackbar",
+        "text": "Snel, vers en eenvoudig — friet, curryworst & meer voor tussendoor.",
+        "alt": "Toonbank van de snackbar bij Das Landhaus met verse snacks"
+      },
+      "kotten": {
+        "titel": "Der Kotten",
+        "text": "Onze evenementenschuur: dj-avonden, karaoke en thema-avonden — en te huren voor eigen feesten.",
+        "alt": "Der Kotten van buiten — de evenementenschuur van Das Landhaus in de natuur"
+      }
+    },
+    "entdecken": {
+      "kicker": "Welkom",
+      "titel": "Drie werelden, één Landhaus",
+      "text": "Of het nu een fijn diner, een snelle snack of een uitbundige dansavond is — bij ons vindt iedereen zijn plek."
+    },
+    "demnaechst": {
+      "kicker": "Data",
+      "titel": "Binnenkort bij ons"
+    },
+    "oeffnungszeiten": {
+      "kicker": "Wanneer we er zijn",
+      "titel": "Openingstijden"
+    },
+    "anfahrt": {
+      "kicker": "Zo vind je ons",
+      "titel": "In vakantiepark Capfun Tecklenburg-Leeden",
+      "text": "Ingebed in de natuur, goed bereikbaar vanuit Osnabrück, Münster en Bielefeld."
+    }
+  },
+  "restaurant": {
+    "hero": {
+      "titel": "Ons Restaurant",
+      "text": "Seizoensgebonden keuken, regionale producten en een plek om je thuis te voelen — bij ons wordt eten een beleving.",
+      "ctaReservieren": "Een tafel reserveren",
+      "ctaSpeisekarte": "Bekijk de menukaart"
+    },
+    "willkommen": {
+      "kicker": "Welkom",
+      "titel": "Landhuiskeuken met karakter",
+      "text": "In Das Landhaus koken we met oog voor detail: verse, seizoensgebonden ingrediënten, eerlijke gerechten en een warme sfeer waarin je graag wat langer blijft zitten. Of het nu voor een familiediner, een romantische avond of met vrienden is — ook gasten van buiten zijn van harte welkom.",
+      "bildAlt": "Eetzaal met toonbank in het restaurant van Das Landhaus"
+    },
+    "highlights": {
+      "kicker": "Onze keuken",
+      "titel": "Dit kenmerkt ons",
+      "items": [
+        {
+          "titel": "Seizoensgebonden & regionaal",
+          "text": "We koken met wat het seizoen biedt — verse producten uit de regio, korte lijnen, eerlijke smaak."
+        },
+        {
+          "titel": "Huisgemaakt",
+          "text": "Van voorgerecht tot dessert maken we zo veel mogelijk zelf — met tijd en liefde voor detail."
+        },
+        {
+          "titel": "Voor iedereen",
+          "text": "Of je nu gast bent van het vakantiepark of bezoeker uit de regio — je bent van harte welkom."
+        }
+      ]
+    },
+    "speisekarte": {
+      "kicker": "Menukaart",
+      "titel": "Wat er bij ons op tafel komt"
+    },
+    "oeffnung": {
+      "kicker": "Wanneer we er zijn",
+      "titel": "Openingstijden restaurant"
+    },
+    "gesellschaft": {
+      "kicker": "Besloten gezelschap",
+      "titel": "Het restaurant huren",
+      "text": "Op sluitingsdagen richten we het hele restaurant privé voor je in — van familiefeest tot bedrijfsdiner of een viering in kleine kring. Vraag ons naar menu, aantal personen en datum.",
+      "anlaesse": ["Familiefeesten", "Bedrijfsdiners", "Verjaardagen", "Jubilea", "Rouwbijeenkomsten"],
+      "ctaTitel": "Feest aanvragen",
+      "ctaText": "Vertel ons over je gelegenheid — we komen bij je terug met menu-ideeën, beschikbaarheid en mogelijkheden. Het snelst telefonisch of via WhatsApp."
+    }
+  },
+  "imbiss": {
+    "hero": {
+      "titel": "Onze Snackbar",
+      "text": "Snel, vers en lekker — voor de kleine honger tussendoor of direct om mee te nemen."
+    },
+    "intro": "Geen tijd voor een lang menu? Onze snackbar voorziet campinggasten en bezoekers van klassiekers vers van de grill en uit de friteuse — eenvoudig en tegen eerlijke prijzen.",
+    "oeffnungLabel": "Openingstijden snackbar:",
+    "impressionen": {
+      "kicker": "Impressies",
+      "titel": "Bij onze snackbar"
+    },
+    "platzhalterAlt": "Snackbar (plaatshouderfoto — wordt vervangen door een echte foto)"
+  },
+  "derKotten": {
+    "hero": {
+      "titel": "Der Kotten",
+      "text": "Onze evenementenschuur met een podium buiten: dj-avonden, karaoke, live muziek en thema-avonden — en op rustige dagen de perfecte plek voor je eigen feest.",
+      "ctaMieten": "De Kotten boeken",
+      "ctaEvents": "Komende evenementen"
+    },
+    "intro": {
+      "p1": "De Kotten is het gezellige hart van Das Landhaus — onze evenementenschuur midden in de natuur. Hier draaien dj's, wordt er meegezongen bij karaoke en gevierd op thema-avonden. Gasten uit de hele regio komen samen om te dansen, te lachen en een onvergetelijke avond te beleven.",
+      "p2": "Bij goed weer verhuist de muziek naar buiten: op ons podium buiten wordt gespeeld en gevierd — live muziek onder de open hemel, midden in de natuur.",
+      "p3": "En als er geen openbaar evenement is, kun je de Kotten huren voor je eigen feest — van verjaardagsfeest tot bedrijfsfeest.",
+      "bildAlt": "Der Kotten van buiten — de evenementenschuur van Das Landhaus"
+    },
+    "formate": {
+      "kicker": "Wat er te doen is",
+      "titel": "Avonden in de Kotten",
+      "text": "Regelmatig, luid en gezellig — en op rustige dagen helemaal voor je eigen feest.",
+      "items": [
+        {
+          "titel": "Dj-avonden",
+          "text": "Als de installatie opendraait, wordt de schuur een dansvloer — van chart-hits tot feestklassiekers."
+        },
+        {
+          "titel": "Karaoke",
+          "text": "Pak de microfoon, wees moedig: karaoke-avonden waarbij iedereen een ster wordt."
+        },
+        {
+          "titel": "Thema-avonden",
+          "text": "Van Schlager tot Oktoberfest — sfeervolle avonden met bijpassende muziek en decoratie."
+        }
+      ]
+    },
+    "mietenKarte": {
+      "eyebrow": "Privé vieren",
+      "titel": "De Kotten huren",
+      "textVorPersonen": "Op sluitingsdagen is de Kotten helemaal van jou — verjaardag, bedrijfs- of familiefeest. Plaats voor maximaal ",
+      "personen": "XX personen",
+      "cta": "Feest aanvragen"
+    },
+    "termine": {
+      "kicker": "Data",
+      "titel": "Komende evenementen"
+    },
+    "mieten": {
+      "kicker": "Privé vieren",
+      "titel": "De Kotten huren",
+      "text": "Op sluitingsdagen wordt de Kotten helemaal jouw ruimte. Of het nu een mijlpaalverjaardag, bedrijfsfeest, vereniging- of familiefeest is — wij zorgen voor het juiste kader voor besloten gezelschappen.",
+      "anlaesse": ["Verjaardagen", "Bedrijfsfeesten", "Verenigingsfeesten", "Familiefeesten", "Jubilea"],
+      "ctaTitel": "Feest aanvragen",
+      "ctaText": "Vertel ons over je gelegenheid — we komen bij je terug met beschikbaarheid en mogelijkheden. Het snelst telefonisch of via WhatsApp."
+    },
+    "impressionen": {
+      "kicker": "Impressies",
+      "titel": "Sfeer in de Kotten"
+    }
+  },
+  "eventsSeite": {
+    "hero": {
+      "titel": "Evenementen",
+      "text": "Live muziek, Schlager-avonden, thema-avonden en meer — hier vind je alle data bij Das Landhaus."
+    },
+    "kommende": "Komende data",
+    "vergangene": "Al geweest"
+  },
+  "eventDetail": {
+    "eintritt": "Entree",
+    "eintrittAnfrage": "op aanvraag",
+    "zurueck": "← Alle evenementen",
+    "ctaTitel": "Plaatsen reserveren",
+    "ctaText": "Voor veel evenementen is reserveren aan te raden. Neem gerust contact op telefonisch of via WhatsApp."
+  },
+  "galerie": {
+    "hero": {
+      "titel": "Galerij",
+      "text": "Een paar impressies van Das Landhaus, de Kotten en de natuur eromheen."
+    },
+    "leer": "Binnenkort zijn hier foto's te zien."
+  },
+  "anfahrt": {
+    "hero": {
+      "titel": "Route & Contact",
+      "text": "In vakantiepark Capfun Tecklenburg-Leeden, ingebed in de natuur — goed bereikbaar vanuit de omgeving. We verheugen ons op je bezoek."
+    },
+    "kontaktTitel": "Contact",
+    "adresse": "Adres",
+    "telefon": "Telefoon",
+    "email": "E-mail",
+    "anfahrtTitel": "Route",
+    "anfahrtText": "Das Landhaus ligt in vakantiepark Capfun in Tecklenburg-Leeden, goed bereikbaar vanuit de hele omgeving — vanuit Osnabrück, Münster en Bielefeld elk ongeveer een uur. Er is parkeergelegenheid direct ter plaatse.",
+    "mapsLink": "Openen in Google Maps & route plannen →",
+    "oeffnungszeitenTitel": "Openingstijden"
+  }
+}

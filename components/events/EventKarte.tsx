@@ -2,12 +2,24 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Event } from "@/types";
 import { formatDatumKurz } from "@/lib/utils";
+import { localizedHref } from "@/lib/i18n/href";
+import type { Locale } from "@/lib/i18n/config";
+
+export type EventKarteLabels = { mehrErfahren: string; eintrittLeer: string };
 
 /** Karte für ein einzelnes Event — verlinkt auf die Detailseite. */
-export default function EventKarte({ event }: { event: Event }) {
+export default function EventKarte({
+  event,
+  locale,
+  labels,
+}: {
+  event: Event;
+  locale: Locale;
+  labels: EventKarteLabels;
+}) {
   return (
     <Link
-      href={`/events/${event.slug}`}
+      href={localizedHref(locale, `/events/${event.slug}`)}
       className="group flex w-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-creme-dark transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
     >
       <div className="relative aspect-[3/2] overflow-hidden bg-creme-dark">
@@ -30,9 +42,9 @@ export default function EventKarte({ event }: { event: Event }) {
           <p className="mt-2 line-clamp-3 text-sm text-tinte/75">{event.beschreibung}</p>
         )}
         <div className="mt-4 flex items-center justify-between pt-1">
-          <span className="text-sm font-semibold text-wald">{event.eintritt ?? "—"}</span>
+          <span className="text-sm font-semibold text-wald">{event.eintritt ?? labels.eintrittLeer}</span>
           <span className="text-sm font-semibold text-akzent-dark group-hover:underline">
-            Mehr erfahren →
+            {labels.mehrErfahren} →
           </span>
         </div>
       </div>

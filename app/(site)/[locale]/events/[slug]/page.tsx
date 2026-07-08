@@ -6,6 +6,9 @@ import LinkButton from "@/components/ui/Button";
 import KontaktCTA from "@/components/ui/KontaktCTA";
 import { getEvents, getEventBySlug } from "@/lib/content";
 import { formatDatum } from "@/lib/utils";
+import { getDictionary } from "@/lib/i18n/dictionary";
+import { localizedHref } from "@/lib/i18n/href";
+import type { Locale } from "@/lib/i18n/config";
 
 /** Erzeugt zur Build-Zeit eine statische Seite je veröffentlichtem Event (SSG). */
 export async function generateStaticParams() {
@@ -16,7 +19,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
   const event = await getEventBySlug(slug);
@@ -36,11 +39,13 @@ export async function generateMetadata({
 export default async function EventDetailSeite({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
-  const event = await getEventBySlug(slug);
+  const { locale: raw, slug } = await params;
+  const locale = raw as Locale;
+  const [event, dict] = await Promise.all([getEventBySlug(slug), getDictionary(locale)]);
   if (!event) notFound();
+  const t = dict.eventDetail;
 
   return (
     <>
@@ -69,8 +74,8 @@ export default async function EventDetailSeite({
 
           <div className="mt-4 flex flex-wrap gap-x-8 gap-y-2 text-tinte/80">
             <span>
-              <span className="font-semibold text-wald-dark">Eintritt:</span>{" "}
-              {event.eintritt ?? "auf Anfrage"}
+              <span className="font-semibold text-wald-dark">{t.eintritt}:</span>{" "}
+              {event.eintritt ?? t.eintrittAnfrage}
             </span>
           </div>
 
@@ -79,18 +84,15 @@ export default async function EventDetailSeite({
           )}
 
           <div className="mt-10">
-            <LinkButton href="/events" variante="secondary">
-              ← Alle Veranstaltungen
+            <LinkButton href={localizedHref(locale, "/events")} variante="secondary">
+              {t.zurueck}
             </LinkButton>
           </div>
         </div>
       </Section>
 
       <Section className="bg-creme-dark/40">
-        <KontaktCTA
-          titel="Plätze sichern"
-          text="Für viele Veranstaltungen empfiehlt sich eine Reservierung. Melde dich gern telefonisch oder per WhatsApp."
-        />
+        <KontaktCTA locale={locale} titel={t.ctaTitel} text={t.ctaText} />
       </Section>
     </>
   );

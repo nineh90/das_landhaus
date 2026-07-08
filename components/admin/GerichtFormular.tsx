@@ -15,7 +15,7 @@ import {
   selectKlasse,
   textareaKlasse,
 } from "@/components/admin/ui";
-import type { FormErgebnis } from "@/app/admin/(app)/speisekarte/actions";
+import type { FormErgebnis } from "@/app/(admin)/admin/(app)/speisekarte/actions";
 
 // Eingabe = Formularwerte (Felder mit Default sind optional),
 // Ausgabe = validierte Werte nach dem Resolver (alle Felder gesetzt).

@@ -13,7 +13,7 @@ import {
   sekundaerBtn,
   selectKlasse,
 } from "@/components/admin/ui";
-import type { FormErgebnis } from "@/app/admin/(app)/galerie/actions";
+import type { FormErgebnis } from "@/app/(admin)/admin/(app)/galerie/actions";
 
 // Eingabe = Formularwerte (Felder mit Default sind optional),
 // Ausgabe = validierte Werte nach dem Resolver (alle Felder gesetzt).

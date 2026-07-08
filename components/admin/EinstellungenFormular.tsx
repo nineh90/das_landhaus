@@ -7,7 +7,7 @@ import { z } from "zod";
 import { einstellungenSchema, EINSTELLUNG_FELDER } from "@/lib/schemas";
 import { Feld, inputKlasse, textareaKlasse, primaerBtn } from "@/components/admin/ui";
 import { useAdminToast } from "@/components/admin/Toast";
-import type { SpeicherErgebnis } from "@/app/admin/(app)/einstellungen/actions";
+import type { SpeicherErgebnis } from "@/app/(admin)/admin/(app)/einstellungen/actions";
 
 // Eingabe = Formularwerte (Felder mit Default sind optional),
 // Ausgabe = validierte Werte nach dem Resolver (alle Felder gesetzt).

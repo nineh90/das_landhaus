@@ -1,0 +1,245 @@
+{
+  "nav": {
+    "start": "Home",
+    "imbiss": "Snack Bar",
+    "galerie": "Gallery",
+    "anfahrt": "Directions"
+  },
+  "languageSwitcher": {
+    "label": "Choose language"
+  },
+  "common": {
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "menu": "Menu",
+    "mehrErfahren": "Learn more",
+    "alleVeranstaltungen": "All events",
+    "kommendeEvents": "Upcoming events",
+    "speisekarteAnsehen": "View the menu",
+    "weiterZumInhalt": "Skip to content"
+  },
+  "footer": {
+    "beschreibung": "Restaurant, snack bar & Der Kotten in the heart of nature — at the campsite in Tecklenburg-Leeden.",
+    "kontakt": "Contact",
+    "oeffnungszeitenRestaurant": "Restaurant opening hours",
+    "seiten": "Pages",
+    "impressum": "Imprint & Privacy",
+    "realisiertVon": "Made by Nils-Digital"
+  },
+  "kontakt": {
+    "reservierenTitel": "Reserve a table",
+    "reservierenText": "We're happy to take your reservation by phone or WhatsApp.",
+    "anrufen": "Call",
+    "whatsapp": "Message us on WhatsApp"
+  },
+  "events": {
+    "leer": "No dates are planned at the moment. Check back soon!",
+    "eintrittLeer": "—"
+  },
+  "lightbox": {
+    "schliessen": "Close",
+    "vorheriges": "Previous image",
+    "naechstes": "Next image",
+    "leer": "Photos coming soon."
+  },
+  "maps": {
+    "titel": "Map: Das Landhaus Tecklenburg-Leeden"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Restaurant · Snack Bar · Der Kotten",
+      "subtitle": "At Capfun holiday park Tecklenburg-Leeden",
+      "text": "Great food, a cosy atmosphere and evenings full of music — in the heart of nature. Whether it's a fine dinner at the restaurant, a quick bite at the snack bar or an event night at the Kotten: guests from the region and the park are warmly welcome.",
+      "kottenChip": "You can also rent the Kotten for your own celebration"
+    },
+    "bereiche": {
+      "mehrErfahren": "Learn more",
+      "restaurant": {
+        "titel": "Restaurant",
+        "text": "Refined, seasonal cuisine in a cosy country-house atmosphere — for external guests and private parties.",
+        "alt": "Cosily set dining room in the restaurant of Das Landhaus"
+      },
+      "imbiss": {
+        "titel": "Snack Bar",
+        "text": "Quick, fresh and easy — fries, currywurst & more for in between.",
+        "alt": "Counter of the snack bar at Das Landhaus with fresh snacks"
+      },
+      "kotten": {
+        "titel": "Der Kotten",
+        "text": "Our event barn: DJ nights, karaoke and themed evenings — and available to rent for private celebrations.",
+        "alt": "Der Kotten from outside — the event barn of Das Landhaus in nature"
+      }
+    },
+    "entdecken": {
+      "kicker": "Welcome",
+      "titel": "Three worlds, one Landhaus",
+      "text": "Whether a fine dinner, a quick snack or an exuberant night of dancing — everyone finds their place here."
+    },
+    "demnaechst": {
+      "kicker": "Dates",
+      "titel": "Coming up"
+    },
+    "oeffnungszeiten": {
+      "kicker": "When we're open",
+      "titel": "Opening hours"
+    },
+    "anfahrt": {
+      "kicker": "How to find us",
+      "titel": "At Capfun holiday park Tecklenburg-Leeden",
+      "text": "Nestled in nature, easy to reach from Osnabrück, Münster and Bielefeld."
+    }
+  },
+  "restaurant": {
+    "hero": {
+      "titel": "Our Restaurant",
+      "text": "Seasonal cuisine, regional produce and a place to feel at home — with us, dining becomes an experience.",
+      "ctaReservieren": "Reserve a table",
+      "ctaSpeisekarte": "View the menu"
+    },
+    "willkommen": {
+      "kicker": "Welcome",
+      "titel": "Country cuisine with character",
+      "text": "At Das Landhaus we cook with attention to detail: fresh, seasonal ingredients, honest dishes and a warm atmosphere where you'll happily linger. Whether for a family meal, a romantic evening or with friends — guests from further afield are warmly welcome too.",
+      "bildAlt": "Dining room with counter in the restaurant of Das Landhaus"
+    },
+    "highlights": {
+      "kicker": "Our kitchen",
+      "titel": "What sets us apart",
+      "items": [
+        {
+          "titel": "Seasonal & regional",
+          "text": "We cook with what the season offers — fresh produce from the region, short distances, honest flavour."
+        },
+        {
+          "titel": "Homemade",
+          "text": "From starter to dessert, we make as much as possible ourselves — with time and love for detail."
+        },
+        {
+          "titel": "Open to all",
+          "text": "Whether a guest from the holiday park or a visitor from the region — you're warmly welcome."
+        }
+      ]
+    },
+    "speisekarte": {
+      "kicker": "Menu",
+      "titel": "What we serve"
+    },
+    "oeffnung": {
+      "kicker": "When we're open",
+      "titel": "Restaurant opening hours"
+    },
+    "gesellschaft": {
+      "kicker": "Private events",
+      "titel": "Hire the restaurant",
+      "text": "On closing days we host the whole restaurant privately for you — from a family celebration to a company dinner or an intimate gathering. Talk to us about menu, number of guests and date.",
+      "anlaesse": ["Family celebrations", "Company dinners", "Birthdays", "Anniversaries", "Memorials"],
+      "ctaTitel": "Enquire about your event",
+      "ctaText": "Tell us about your occasion — we'll get back to you with menu ideas, availability and options. Quickest by phone or WhatsApp."
+    }
+  },
+  "imbiss": {
+    "hero": {
+      "titel": "Our Snack Bar",
+      "text": "Quick, fresh and tasty — for a little hunger in between or straight to take away."
+    },
+    "intro": "No time for a long menu? Our snack bar serves campers and visitors with classics fresh off the grill and out of the fryer — easy-going and at fair prices.",
+    "oeffnungLabel": "Snack bar opening hours:",
+    "impressionen": {
+      "kicker": "Impressions",
+      "titel": "At our snack bar"
+    },
+    "platzhalterAlt": "Snack bar (placeholder photo — will be replaced by a real one)"
+  },
+  "derKotten": {
+    "hero": {
+      "titel": "Der Kotten",
+      "text": "Our event barn with an outdoor stage: DJ nights, karaoke, live music and themed evenings — and on quiet days the perfect spot for your own celebration.",
+      "ctaMieten": "Book the Kotten",
+      "ctaEvents": "Upcoming events"
+    },
+    "intro": {
+      "p1": "The Kotten is the sociable heart of Das Landhaus — our event barn in the heart of nature. DJs spin here, people sing along at karaoke and celebrate at themed nights. Guests from across the region come together to dance, laugh and enjoy an unforgettable evening.",
+      "p2": "In good weather the music moves outside: our outdoor stage hosts live music under the open sky, right in the middle of nature.",
+      "p3": "And when there's no public event, you can rent the Kotten for your own celebration — from a birthday party to a company event.",
+      "bildAlt": "Der Kotten from outside — the event barn of Das Landhaus"
+    },
+    "formate": {
+      "kicker": "What's on",
+      "titel": "Evenings at the Kotten",
+      "text": "Regular, loud and sociable — and on quiet days entirely yours for your own celebration.",
+      "items": [
+        {
+          "titel": "DJ nights",
+          "text": "When the sound system cranks up, the barn becomes a dance floor — from chart hits to party classics."
+        },
+        {
+          "titel": "Karaoke",
+          "text": "Grab the mic, be brave: karaoke nights where everyone becomes a star."
+        },
+        {
+          "titel": "Themed evenings",
+          "text": "From Schlager to Oktoberfest — themed nights with matching music and decoration."
+        }
+      ]
+    },
+    "mietenKarte": {
+      "eyebrow": "Celebrate privately",
+      "titel": "Rent the Kotten",
+      "textVorPersonen": "On closing days the Kotten is all yours — birthday, company or family celebration. Room for up to ",
+      "personen": "XX people",
+      "cta": "Enquire about your event"
+    },
+    "termine": {
+      "kicker": "Dates",
+      "titel": "Upcoming events"
+    },
+    "mieten": {
+      "kicker": "Celebrate privately",
+      "titel": "Rent the Kotten",
+      "text": "On closing days the Kotten becomes entirely your space. Whether a milestone birthday, company party, club or family celebration — we create the right setting for private events.",
+      "anlaesse": ["Birthdays", "Company parties", "Club celebrations", "Family gatherings", "Anniversaries"],
+      "ctaTitel": "Enquire about your event",
+      "ctaText": "Tell us about your occasion — we'll get back to you with availability and options. Quickest by phone or WhatsApp."
+    },
+    "impressionen": {
+      "kicker": "Impressions",
+      "titel": "Atmosphere at the Kotten"
+    }
+  },
+  "eventsSeite": {
+    "hero": {
+      "titel": "Events",
+      "text": "Live music, Schlager nights, themed evenings and more — find all the dates at Das Landhaus here."
+    },
+    "kommende": "Upcoming dates",
+    "vergangene": "Past events"
+  },
+  "eventDetail": {
+    "eintritt": "Admission",
+    "eintrittAnfrage": "on request",
+    "zurueck": "← All events",
+    "ctaTitel": "Secure your spot",
+    "ctaText": "For many events a reservation is recommended. Get in touch by phone or WhatsApp."
+  },
+  "galerie": {
+    "hero": {
+      "titel": "Gallery",
+      "text": "A few impressions of Das Landhaus, the Kotten and the surrounding nature."
+    },
+    "leer": "Photos coming soon."
+  },
+  "anfahrt": {
+    "hero": {
+      "titel": "Directions & Contact",
+      "text": "At Capfun holiday park Tecklenburg-Leeden, nestled in nature — easy to reach from the surrounding area. We look forward to your visit."
+    },
+    "kontaktTitel": "Contact",
+    "adresse": "Address",
+    "telefon": "Phone",
+    "email": "Email",
+    "anfahrtTitel": "Directions",
+    "anfahrtText": "Das Landhaus is located in the Capfun holiday park in Tecklenburg-Leeden, easy to reach from the whole surrounding area — around an hour each from Osnabrück, Münster and Bielefeld. Parking is available right on site.",
+    "mapsLink": "Open in Google Maps & plan your route →",
+    "oeffnungszeitenTitel": "Opening hours"
+  }
+}

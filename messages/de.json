@@ -1,0 +1,276 @@
+{
+  "nav": {
+    "start": "Start",
+    "restaurant": "Restaurant",
+    "imbiss": "Imbiss",
+    "derKotten": "Der Kotten",
+    "events": "Events",
+    "galerie": "Galerie",
+    "anfahrt": "Anfahrt"
+  },
+  "languageSwitcher": {
+    "label": "Sprache wählen"
+  },
+  "common": {
+    "menuOpen": "Menü öffnen",
+    "menuClose": "Menü schließen",
+    "menu": "Menü",
+    "mehrErfahren": "Mehr erfahren",
+    "alleVeranstaltungen": "Alle Veranstaltungen",
+    "kommendeEvents": "Kommende Events",
+    "speisekarteAnsehen": "Speisekarte ansehen",
+    "weiterZumInhalt": "Weiter zum Inhalt"
+  },
+  "footer": {
+    "beschreibung": "Restaurant, Imbiss & Der Kotten mitten in der Natur — am Campingplatz in Tecklenburg-Leeden.",
+    "kontakt": "Kontakt",
+    "oeffnungszeitenRestaurant": "Öffnungszeiten Restaurant",
+    "seiten": "Seiten",
+    "impressum": "Impressum & Datenschutz",
+    "realisiertVon": "Realisiert von Nils-Digital"
+  },
+  "kontakt": {
+    "reservierenTitel": "Tisch reservieren",
+    "reservierenText": "Reservierungen nehmen wir gern telefonisch oder per WhatsApp entgegen.",
+    "anrufen": "Anrufen",
+    "whatsapp": "Per WhatsApp schreiben"
+  },
+  "events": {
+    "leer": "Aktuell sind keine Termine geplant. Schau bald wieder vorbei!",
+    "eintrittLeer": "—"
+  },
+  "lightbox": {
+    "schliessen": "Schließen",
+    "vorheriges": "Vorheriges Bild",
+    "naechstes": "Nächstes Bild",
+    "leer": "Bald gibt es hier Bilder zu sehen."
+  },
+  "maps": {
+    "titel": "Karte: Das Landhaus Tecklenburg-Leeden"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Restaurant · Imbiss · Der Kotten",
+      "subtitle": "Im Ferienpark Capfun Tecklenburg-Leeden",
+      "text": "Gute Küche, gemütliche Atmosphäre und Abende voller Musik — mitten in der Natur. Ob feines Essen im Restaurant, ein schneller Imbiss zwischendurch oder ein Veranstaltungsabend im Kotten: Bei uns sind Gäste aus der Region und vom Platz herzlich willkommen.",
+      "kottenChip": "Den Kotten kannst du auch für deine eigene Feier mieten"
+    },
+    "bereiche": {
+      "mehrErfahren": "Mehr erfahren",
+      "restaurant": {
+        "titel": "Restaurant",
+        "text": "Gehobene, saisonale Küche in gemütlicher Landhaus-Atmosphäre — für externe Gäste und geschlossene Gesellschaften.",
+        "alt": "Gemütlich eingedeckter Speisesaal im Restaurant des Landhauses"
+      },
+      "imbiss": {
+        "titel": "Imbiss",
+        "text": "Schnell, frisch und unkompliziert — Pommes, Currywurst & Co. für zwischendurch.",
+        "alt": "Theke des Imbiss im Landhaus mit frischen Snacks für zwischendurch"
+      },
+      "kotten": {
+        "titel": "Der Kotten",
+        "text": "Unsere Event-Diele: DJ-Nächte, Karaoke und Mottoabende — und privat mietbar für eigene Feiern.",
+        "alt": "Der Kotten von außen — die Event-Diele des Landhauses in der Natur"
+      }
+    },
+    "entdecken": {
+      "kicker": "Willkommen",
+      "titel": "Drei Bereiche, das Landhaus",
+      "text": "Ob feines Abendessen, schneller Snack oder ausgelassener Tanzabend — bei uns findet jeder seinen Platz."
+    },
+    "demnaechst": {
+      "kicker": "Termine",
+      "titel": "Demnächst bei uns"
+    },
+    "oeffnungszeiten": {
+      "kicker": "Wann wir da sind",
+      "titel": "Öffnungszeiten"
+    },
+    "anfahrt": {
+      "kicker": "So findest du uns",
+      "titel": "Im Ferienpark Capfun Tecklenburg-Leeden",
+      "text": "Eingebettet in die Natur, gut erreichbar aus Osnabrück, Münster und Bielefeld."
+    }
+  },
+  "restaurant": {
+    "hero": {
+      "titel": "Unser Restaurant",
+      "text": "Saisonale Küche, regionale Produkte und ein Platz zum Wohlfühlen — bei uns wird Essen zum Erlebnis.",
+      "ctaReservieren": "Tisch reservieren",
+      "ctaSpeisekarte": "Speisekarte ansehen"
+    },
+    "willkommen": {
+      "kicker": "Willkommen",
+      "titel": "Landhaus-Küche mit Charakter",
+      "text": "Im Landhaus kochen wir mit Liebe zum Detail: frische, saisonale Zutaten, ehrliche Gerichte und eine warme Atmosphäre, in der man gern länger sitzen bleibt. Ob zum Familienessen, romantischen Abend oder mit Freunden — bei uns sind auch Gäste von außerhalb herzlich willkommen.",
+      "bildAlt": "Gastraum mit Theke im Restaurant des Landhauses"
+    },
+    "highlights": {
+      "kicker": "Unsere Küche",
+      "titel": "Das zeichnet uns aus",
+      "items": [
+        {
+          "titel": "Saisonal & regional",
+          "text": "Wir kochen mit dem, was die Jahreszeit hergibt — frische Produkte aus der Region, kurze Wege, ehrlicher Geschmack."
+        },
+        {
+          "titel": "Hausgemacht",
+          "text": "Von der Vorspeise bis zum Dessert entsteht bei uns möglichst vieles selbst — mit Zeit und Liebe zum Detail."
+        },
+        {
+          "titel": "Für alle offen",
+          "text": "Ob Gast aus dem Ferienpark oder Besuch aus der Region — bei uns bist du herzlich willkommen."
+        }
+      ]
+    },
+    "speisekarte": {
+      "kicker": "Speisekarte",
+      "titel": "Was bei uns auf den Tisch kommt"
+    },
+    "oeffnung": {
+      "kicker": "Wann wir da sind",
+      "titel": "Öffnungszeiten Restaurant"
+    },
+    "gesellschaft": {
+      "kicker": "Geschlossene Gesellschaft",
+      "titel": "Das Restaurant mieten",
+      "text": "An geschlossenen Tagen richten wir dir das ganze Restaurant privat aus — vom Familienfest über das Firmenessen bis zur Feier im kleinen Kreis. Sprich uns auf Menü, Personenzahl und Termin an.",
+      "anlaesse": ["Familienfeiern", "Firmenessen", "Geburtstage", "Jubiläen", "Trauerfeiern"],
+      "ctaTitel": "Feier anfragen",
+      "ctaText": "Erzähl uns von deinem Anlass — wir melden uns mit Menü-Ideen, Verfügbarkeit und Möglichkeiten. Am schnellsten telefonisch oder per WhatsApp."
+    }
+  },
+  "imbiss": {
+    "hero": {
+      "titel": "Unser Imbiss",
+      "text": "Schnell, frisch und lecker — für den kleinen Hunger zwischendurch oder direkt zum Mitnehmen."
+    },
+    "intro": "Keine Zeit für ein langes Menü? Unser Imbiss versorgt Campinggäste und Besucher mit Klassikern frisch vom Grill und aus der Fritteuse — unkompliziert und zu fairen Preisen.",
+    "oeffnungLabel": "Öffnungszeiten Imbiss:",
+    "impressionen": {
+      "kicker": "Impressionen",
+      "titel": "Bei uns am Imbiss"
+    },
+    "platzhalterAlt": "Imbiss (Platzhalterfoto — wird durch ein echtes Foto ersetzt)"
+  },
+  "derKotten": {
+    "hero": {
+      "titel": "Der Kotten",
+      "text": "Unsere Event-Diele mit Bühne im Außenbereich: DJ-Nächte, Karaoke, Live-Musik und Mottoabende — und an ruhigen Tagen der perfekte Ort für deine eigene Feier.",
+      "ctaMieten": "Kotten reservieren",
+      "ctaEvents": "Kommende Events"
+    },
+    "intro": {
+      "p1": "Der Kotten ist das gesellige Herz des Landhauses — unsere Event-Diele mitten in der Natur. Hier legen DJs auf, wird bei Karaoke mitgesungen und zu Mottoabenden gefeiert. Gäste aus der ganzen Region kommen zusammen, um zu tanzen, zu lachen und einen unvergesslichen Abend zu erleben.",
+      "p2": "Bei gutem Wetter zieht die Musik nach draußen: Auf unserer Bühne im Außenbereich wird gespielt und gefeiert — Live-Musik unter freiem Himmel, mitten in der Natur.",
+      "p3": "Und wenn kein öffentliches Event ansteht, kannst du den Kotten für deine eigene Feier mieten — von der Geburtstagsparty bis zur Firmenfeier.",
+      "bildAlt": "Der Kotten von außen — die Event-Diele des Landhauses"
+    },
+    "formate": {
+      "kicker": "Was los ist",
+      "titel": "Abende im Kotten",
+      "text": "Regelmäßig, laut und gesellig — und an ruhigen Tagen ganz für deine eigene Feier.",
+      "items": [
+        {
+          "titel": "DJ-Nächte",
+          "text": "Wenn die Anlage aufdreht, wird die Diele zur Tanzfläche — von Charts bis Party-Klassiker."
+        },
+        {
+          "titel": "Karaoke",
+          "text": "Mikro schnappen, mutig sein: Karaoke-Abende, bei denen jeder zum Star wird."
+        },
+        {
+          "titel": "Mottoabende",
+          "text": "Von Schlager bis Oktoberfest — themenstarke Abende mit passender Musik und Deko."
+        }
+      ]
+    },
+    "mietenKarte": {
+      "eyebrow": "Privat feiern",
+      "titel": "Den Kotten mieten",
+      "textVorPersonen": "An geschlossenen Tagen gehört der Kotten ganz dir — ob Geburtstag, Firmen- oder Familienfeier. Platz für bis zu ",
+      "personen": "XX Personen",
+      "cta": "Feier anfragen"
+    },
+    "termine": {
+      "kicker": "Termine",
+      "titel": "Nächste Veranstaltungen"
+    },
+    "mieten": {
+      "kicker": "Privat feiern",
+      "titel": "Den Kotten mieten",
+      "text": "An geschlossenen Tagen wird der Kotten ganz zu deinem Raum. Ob runder Geburtstag, Firmenfeier, Vereins- oder Familienfest — wir schaffen den passenden Rahmen für geschlossene Gesellschaften.",
+      "anlaesse": ["Geburtstage", "Firmenfeiern", "Vereinsfeiern", "Familienfeste", "Jubiläen"],
+      "ctaTitel": "Feier anfragen",
+      "ctaText": "Erzähl uns von deinem Anlass — wir melden uns mit Verfügbarkeit und Möglichkeiten. Am schnellsten telefonisch oder per WhatsApp."
+    },
+    "impressionen": {
+      "kicker": "Impressionen",
+      "titel": "Stimmung im Kotten"
+    }
+  },
+  "eventsSeite": {
+    "hero": {
+      "titel": "Veranstaltungen",
+      "text": "Live-Musik, Schlagernächte, Themenabende und mehr — hier findest du alle Termine im Landhaus."
+    },
+    "kommende": "Kommende Termine",
+    "vergangene": "Bereits gewesen"
+  },
+  "eventDetail": {
+    "eintritt": "Eintritt",
+    "eintrittAnfrage": "auf Anfrage",
+    "zurueck": "← Alle Veranstaltungen",
+    "ctaTitel": "Plätze sichern",
+    "ctaText": "Für viele Veranstaltungen empfiehlt sich eine Reservierung. Melde dich gern telefonisch oder per WhatsApp."
+  },
+  "galerie": {
+    "hero": {
+      "titel": "Galerie",
+      "text": "Ein paar Eindrücke vom Landhaus, dem Kotten und der Natur ringsherum."
+    },
+    "leer": "Bald gibt es hier Bilder zu sehen."
+  },
+  "anfahrt": {
+    "hero": {
+      "titel": "Anfahrt & Kontakt",
+      "text": "Im Ferienpark Capfun Tecklenburg-Leeden, eingebettet in die Natur — gut erreichbar aus dem Umland. Wir freuen uns auf deinen Besuch."
+    },
+    "kontaktTitel": "Kontakt",
+    "adresse": "Adresse",
+    "telefon": "Telefon",
+    "email": "E-Mail",
+    "anfahrtTitel": "Anfahrt",
+    "anfahrtText": "Das Landhaus liegt im Ferienpark Capfun in Tecklenburg-Leeden, gut erreichbar aus dem gesamten Umland — von Osnabrück, Münster und Bielefeld jeweils in rund einer Stunde. Parkplätze sind direkt vor Ort vorhanden.",
+    "mapsLink": "In Google Maps öffnen & Route planen →",
+    "oeffnungszeitenTitel": "Öffnungszeiten"
+  },
+  "impressum": {
+    "hero": "Impressum & Datenschutz",
+    "hinweisLabel": "Hinweis (Demo):",
+    "hinweisText": "Dieser Text ist ein Platzhalter und ersetzt keine Rechtsberatung. Vor dem Launch werden hier die echten, geprüften Pflichtangaben des Betreibers eingesetzt.",
+    "impressumTitel": "Impressum",
+    "angabenGemaess": "Angaben gemäß § 5 DDG (Digitale-Dienste-Gesetz):",
+    "inhaberPlatzhalter": "[Inhaber: Vor- und Nachname]",
+    "kontaktLabel": "Kontakt:",
+    "telefonPlatzhalter": "Telefon: [Telefonnummer]",
+    "emailPlatzhalter": "E-Mail: [E-Mail-Adresse]",
+    "ustLabel": "Umsatzsteuer-ID:",
+    "ustPlatzhalter": "[falls vorhanden]",
+    "verantwortlichLabel": "Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV:",
+    "verantwortlichPlatzhalter": "[Name]",
+    "datenschutzTitel": "Datenschutzerklärung",
+    "datenschutzIntro": "Der Schutz deiner persönlichen Daten ist uns wichtig. Diese Website verarbeitet personenbezogene Daten nur im technisch notwendigen Rahmen.",
+    "hostingTitel": "Hosting",
+    "hostingText": "Diese Website wird bei einem externen Dienstleister gehostet. Beim Aufruf werden technisch notwendige Server-Logdaten (z. B. IP-Adresse, Zeitpunkt, abgerufene Seite) verarbeitet. [Anbieter konkret benennen, z. B. Vercel Inc.]",
+    "schriftenTitel": "Schriftarten",
+    "schriftenTextVor": "Die verwendeten Schriftarten werden lokal vom eigenen Server ausgeliefert (Self-Hosting via ",
+    "schriftenTextNach": "). Es besteht dabei keine Verbindung zu Servern Dritter (z. B. Google Fonts).",
+    "mapsTitel": "Google Maps",
+    "mapsTextVor": "Zur Darstellung des Anfahrtswegs binden wir Kartenmaterial von Google Maps ein. Dabei kann eine Verbindung zu Servern von Google aufgebaut und deine IP-Adresse übertragen werden. ",
+    "mapsHinweisLabel": "Hinweis für die Produktion:",
+    "mapsTextNach": " Vor dem Launch wird die Karte mit einer Einwilligungs-/Klicklösung (Consent) versehen, sodass die Verbindung erst nach ausdrücklicher Zustimmung erfolgt.",
+    "rechteTitel": "Deine Rechte",
+    "rechteText": "Du hast jederzeit das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung deiner personenbezogenen Daten sowie ein Beschwerderecht bei der zuständigen Aufsichtsbehörde. Wende dich dazu an die oben genannten Kontaktdaten."
+  }
+}

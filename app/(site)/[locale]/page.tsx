@@ -9,44 +9,46 @@ import EventGrid from "@/components/events/EventGrid";
 import LinkButton from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
 import { getKommendeEvents } from "@/lib/content";
+import { getDictionary } from "@/lib/i18n/dictionary";
+import { localizedHref } from "@/lib/i18n/href";
+import type { Locale } from "@/lib/i18n/config";
 
-export default async function StartSeite() {
-  const events = await getKommendeEvents(3);
+export default async function StartSeite({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: raw } = await params;
+  const locale = raw as Locale;
+  const [events, dict] = await Promise.all([getKommendeEvents(3), getDictionary(locale)]);
+  const t = dict.home;
 
   return (
     <>
-      <Hero />
+      <Hero locale={locale} dict={dict} />
 
       {/* Die drei Bereiche */}
       <Section id="entdecken">
-        <SectionHeading
-          kicker="Willkommen"
-          titel="Drei Bereiche, das Landhaus"
-          text="Ob feines Abendessen, schneller Snack oder ausgelassener Tanzabend — bei uns findet jeder seinen Platz."
-        />
+        <SectionHeading kicker={t.entdecken.kicker} titel={t.entdecken.titel} text={t.entdecken.text} />
         <div className="mt-12">
-          <BereicheTeaser />
+          <BereicheTeaser locale={locale} dict={dict} />
         </div>
       </Section>
 
       {/* Kommende Events */}
       <Section className="bg-creme-dark/40">
-        <SectionHeading kicker="Termine" titel="Demnächst bei uns" />
+        <SectionHeading kicker={t.demnaechst.kicker} titel={t.demnaechst.titel} />
         <div className="mt-12">
-          <EventGrid events={events} />
+          <EventGrid events={events} locale={locale} />
         </div>
         <div className="mt-10 text-center">
-          <LinkButton href="/events" variante="secondary">
-            Alle Veranstaltungen
+          <LinkButton href={localizedHref(locale, "/events")} variante="secondary">
+            {dict.common.alleVeranstaltungen}
           </LinkButton>
         </div>
       </Section>
 
       {/* Öffnungszeiten */}
       <Section>
-        <SectionHeading kicker="Wann wir da sind" titel="Öffnungszeiten" />
+        <SectionHeading kicker={t.oeffnungszeiten.kicker} titel={t.oeffnungszeiten.titel} />
         <Reveal className="mt-12">
-          <Oeffnungszeiten />
+          <Oeffnungszeiten locale={locale} />
         </Reveal>
       </Section>
 
@@ -54,18 +56,18 @@ export default async function StartSeite() {
       <Section className="bg-wald" containerClassName="grid items-center gap-10 lg:grid-cols-2">
         <div>
           <SectionHeading
-            kicker="So findest du uns"
-            titel="Im Ferienpark Capfun Tecklenburg-Leeden"
-            text="Eingebettet in die Natur, gut erreichbar aus Osnabrück, Münster und Bielefeld."
+            kicker={t.anfahrt.kicker}
+            titel={t.anfahrt.titel}
+            text={t.anfahrt.text}
             zentriert={false}
             hell
           />
           <div className="mt-8">
-            <KontaktCTA hell />
+            <KontaktCTA locale={locale} hell />
           </div>
         </div>
         <Reveal delay={120}>
-          <MapsEmbed className="h-80 lg:h-96" />
+          <MapsEmbed locale={locale} className="h-80 lg:h-96" />
         </Reveal>
       </Section>
     </>

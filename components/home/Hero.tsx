@@ -3,9 +3,14 @@ import Container from "@/components/ui/Container";
 import LinkButton from "@/components/ui/Button";
 import Ornament from "@/components/ui/Ornament";
 import HeroBackground from "@/components/home/HeroBackground";
+import { localizedHref } from "@/lib/i18n/href";
+import type { Locale } from "@/lib/i18n/config";
+import type { Dictionary } from "@/lib/i18n/dictionary";
 
 /** Vollflächiger Hero mit stimmungsvollem Bild, Claim und Haupt-CTAs. */
-export default function Hero() {
+export default function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
+  const h = dict.home.hero;
+
   return (
     <section className="relative isolate flex min-h-[88vh] items-center overflow-hidden">
       {/* Hintergrundbild mit Ken-Burns-Zoom + Scroll-Parallax */}
@@ -23,7 +28,7 @@ export default function Hero() {
           className="fade-in-up text-base font-semibold uppercase tracking-[0.2em] text-creme drop-shadow-sm sm:text-lg"
           style={{ animationDelay: "80ms" }}
         >
-          Restaurant · Imbiss · Der Kotten
+          {h.eyebrow}
         </p>
         <div
           className="fade-in-up mx-auto mt-6 w-fit max-w-full lg:mx-0"
@@ -35,7 +40,7 @@ export default function Hero() {
             </span>
             <Ornament className="mt-4 text-creme/70 drop-shadow-sm" />
             <span className="mt-4 block font-display text-2xl font-medium text-creme drop-shadow-sm sm:text-3xl">
-              Im Ferienpark Capfun Tecklenburg-Leeden
+              {h.subtitle}
             </span>
           </h1>
         </div>
@@ -43,15 +48,12 @@ export default function Hero() {
           className="fade-in-up mx-auto mt-6 max-w-xl text-lg text-creme drop-shadow-sm lg:mx-0"
           style={{ animationDelay: "340ms" }}
         >
-          Gute Küche, gemütliche Atmosphäre und Abende voller Musik — mitten in der Natur.
-          Ob feines Essen im Restaurant, ein schneller Imbiss zwischendurch oder ein
-          Veranstaltungsabend im Kotten: Bei uns sind Gäste aus der Region und vom Platz
-          herzlich willkommen.
+          {h.text}
         </p>
 
         {/* Teaser: Kotten mieten — warmer Akzent-Chip, führt zur Kotten-Seite */}
         <Link
-          href="/der-kotten"
+          href={localizedHref(locale, "/der-kotten")}
           className="fade-in-up mt-6 inline-flex items-center gap-2.5 rounded-full bg-creme px-5 py-2.5 text-sm font-semibold text-wald-dark shadow-md ring-1 ring-wald-dark/10 transition-colors hover:bg-creme-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-creme sm:text-base"
           style={{ animationDelay: "420ms" }}
         >
@@ -61,18 +63,18 @@ export default function Hero() {
           >
             !
           </span>
-          Den Kotten kannst du auch für deine eigene Feier mieten
+          {h.kottenChip}
         </Link>
 
         <div
           className="fade-in-up mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:items-start lg:justify-start"
           style={{ animationDelay: "560ms" }}
         >
-          <LinkButton href="/restaurant" variante="primary">
-            Speisekarte ansehen
+          <LinkButton href={localizedHref(locale, "/restaurant")} variante="primary">
+            {dict.common.speisekarteAnsehen}
           </LinkButton>
-          <LinkButton href="/events" variante="ghost">
-            Kommende Events
+          <LinkButton href={localizedHref(locale, "/events")} variante="ghost">
+            {dict.common.kommendeEvents}
           </LinkButton>
         </div>
       </Container>
@@ -80,7 +82,7 @@ export default function Hero() {
       {/* Funktionsfähiger Scroll-Indikator: springt sanft zur ersten Sektion */}
       <a
         href="#entdecken"
-        aria-label="Weiter zum Inhalt"
+        aria-label={dict.common.weiterZumInhalt}
         className="absolute inset-x-0 bottom-6 mx-auto flex w-12 justify-center rounded-full py-1 text-creme/80 transition-colors hover:text-creme focus:outline-none focus-visible:ring-2 focus-visible:ring-creme"
       >
         <svg

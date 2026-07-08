@@ -1,30 +1,36 @@
 import { getEinstellung } from "@/lib/content";
+import { getDictionary } from "@/lib/i18n/dictionary";
+import type { Locale } from "@/lib/i18n/config";
 import { cn } from "@/lib/utils";
 
 /**
  * Öffnungszeiten-Übersicht für alle drei Bereiche.
  * Werte kommen aus den Einstellungen (Key-Value) → in Stufe 2 über Admin pflegbar.
+ * Die Bereichs-Titel werden aus dem Wörterbuch (nav) localisiert.
  */
 type BereichKey = "restaurant" | "imbiss" | "kotten";
 
 export default async function Oeffnungszeiten({
+  locale,
   hell = false,
   nur,
 }: {
+  locale: Locale;
   hell?: boolean;
   /** Auf bestimmte Bereiche einschränken (z. B. nur "restaurant"). Standard: alle drei. */
   nur?: BereichKey[];
 }) {
-  const [restaurant, imbiss, kotten] = await Promise.all([
+  const [restaurant, imbiss, kotten, dict] = await Promise.all([
     getEinstellung("oeffnungszeiten_restaurant"),
     getEinstellung("oeffnungszeiten_imbiss"),
     getEinstellung("oeffnungszeiten_kotten"),
+    getDictionary(locale),
   ]);
 
   const alle = [
-    { key: "restaurant" as const, titel: "Restaurant", zeiten: restaurant },
-    { key: "imbiss" as const, titel: "Imbiss", zeiten: imbiss },
-    { key: "kotten" as const, titel: "Der Kotten", zeiten: kotten },
+    { key: "restaurant" as const, titel: dict.nav.restaurant, zeiten: restaurant },
+    { key: "imbiss" as const, titel: dict.nav.imbiss, zeiten: imbiss },
+    { key: "kotten" as const, titel: dict.nav.derKotten, zeiten: kotten },
   ];
 
   const bereiche = alle
@@ -41,7 +47,7 @@ export default async function Oeffnungszeiten({
     <div className={layout}>
       {bereiche.map((b) => (
         <div
-          key={b.titel}
+          key={b.key}
           className={cn(
             "rounded-2xl p-6",
             hell ? "bg-creme/10" : "bg-creme-dark/60",

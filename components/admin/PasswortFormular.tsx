@@ -7,7 +7,7 @@ import { z } from "zod";
 import { passwortAendernSchema } from "@/lib/schemas";
 import { Feld, inputKlasse, primaerBtn } from "@/components/admin/ui";
 import { useAdminToast } from "@/components/admin/Toast";
-import type { PasswortErgebnis } from "@/app/admin/(app)/passwort/actions";
+import type { PasswortErgebnis } from "@/app/(admin)/admin/(app)/passwort/actions";
 
 type Eingabe = z.input<typeof passwortAendernSchema>;
 type Ausgabe = z.output<typeof passwortAendernSchema>;
