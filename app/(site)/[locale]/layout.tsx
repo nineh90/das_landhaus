@@ -24,7 +24,15 @@ export const metadata: Metadata = {
   },
 };
 
-/** Baut je Sprache eine statische Variante der öffentlichen Seiten vor. */
+/**
+ * Öffentliche Seiten immer zur Laufzeit serverseitig aus der DB rendern.
+ * Ohne dies backt Next die Seiten statisch zur Build-Zeit — dann erscheinen im
+ * Admin gepflegte Inhalte (Events, Speisekarte, Galerie …) erst beim nächsten
+ * Deploy. Diese Angabe im Layout gilt für alle darunterliegenden Routen.
+ */
+export const dynamic = "force-dynamic";
+
+/** Sprachen für die statische Vorerzeugung der Route-Parameter. */
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
