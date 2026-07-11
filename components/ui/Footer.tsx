@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Container from "./Container";
+import OeffnungszeitenListe from "./OeffnungszeitenListe";
 import { buildNavItems } from "./nav-links";
 import { localizedHref } from "@/lib/i18n/href";
 import { getKontakt, getEinstellung } from "@/lib/content";
@@ -16,7 +17,7 @@ export default async function Footer({ locale, dict }: { locale: Locale; dict: D
 
   return (
     <footer className="bg-wald-dark text-creme/85">
-      <Container className="grid gap-10 py-14 text-center sm:grid-cols-2 sm:text-left lg:grid-cols-4">
+      <Container className="grid items-center gap-10 py-14 text-center sm:grid-cols-2 sm:text-left lg:grid-cols-4">
         <div>
           {/* Logo auf cremefarbener Karte — ein helles Logo braucht auf dem dunklen Grund eine helle Fläche */}
           <div className="inline-block rounded-2xl bg-creme p-4 shadow-lg ring-1 ring-black/5">
@@ -59,16 +60,17 @@ export default async function Footer({ locale, dict }: { locale: Locale; dict: D
         <div>
           <h3 className="font-display text-lg text-creme">{f.oeffnungszeitenRestaurant}</h3>
           {oeffnungRestaurant && (
-            <p className="mt-3 whitespace-pre-line text-sm leading-relaxed">{oeffnungRestaurant}</p>
+            <OeffnungszeitenListe text={oeffnungRestaurant} hell className="mt-3" />
           )}
         </div>
 
         <div>
           <h3 className="font-display text-lg text-creme">{f.seiten}</h3>
-          <ul className="mt-3 space-y-1 text-sm">
+          {/* Auf Desktop zweispaltig, damit die 7 Links nicht als schmale, gequetschte Spalte stehen */}
+          <ul className="mt-3 space-y-2 text-sm lg:grid lg:grid-cols-2 lg:gap-x-6 lg:gap-y-2 lg:space-y-0">
             {items.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="hover:text-akzent">
+                <Link href={link.href} className="inline-block hover:text-akzent">
                   {link.label}
                 </Link>
               </li>

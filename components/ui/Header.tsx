@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Container from "./Container";
 import MobileNav from "./MobileNav";
+import NavLink from "./NavLink";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { buildNavItems } from "./nav-links";
 import { localizedHref } from "@/lib/i18n/href";
@@ -35,13 +36,15 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Diction
         <div className="hidden items-center gap-6 md:flex">
           <nav className="flex items-center gap-6">
             {items.map((link) => (
-              <Link
+              <NavLink
                 key={link.href}
                 href={link.href}
-                className="text-sm font-semibold text-tinte/80 transition-colors hover:text-akzent-dark"
+                className="text-sm font-semibold transition-colors"
+                inactiveClassName="text-tinte/80 hover:text-akzent-dark"
+                activeClassName="text-akzent-dark"
               >
                 {link.label}
-              </Link>
+              </NavLink>
             ))}
           </nav>
           <LanguageSwitcher current={locale} label={dict.languageSwitcher.label} />

@@ -25,3 +25,17 @@ export function buildNavItems(locale: Locale, nav: Dictionary["nav"]): NavItem[]
     label: nav[link.key],
   }));
 }
+
+/**
+ * Prüft, ob ein Nav-Link zum aktuellen Pfad gehört (für die Aktiv-Markierung).
+ * Die Startseite (`/de`) matcht nur exakt; alle anderen Seiten auch auf ihren
+ * Unterseiten (z. B. `/de/events` bleibt aktiv auf `/de/events/mein-event`).
+ */
+export function istAktiverPfad(pathname: string, href: string): boolean {
+  const normalisieren = (p: string) => p.replace(/\/+$/, "") || "/";
+  const aktuell = normalisieren(pathname);
+  const ziel = normalisieren(href);
+  // Nur das Locale-Segment (z. B. "/de") → Startseite: exakte Übereinstimmung.
+  const istStartseite = ziel.split("/").filter(Boolean).length <= 1;
+  return istStartseite ? aktuell === ziel : aktuell === ziel || aktuell.startsWith(`${ziel}/`);
+}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import NavLink from "./NavLink";
 import LanguageSwitcher from "./LanguageSwitcher";
 import type { NavItem } from "./nav-links";
 import type { Locale } from "@/lib/i18n/config";
@@ -51,14 +51,16 @@ export default function MobileNav({
         <div className="absolute inset-x-0 top-full z-40 border-t border-creme-dark bg-creme shadow-lg">
           <nav className="flex flex-col px-4 py-2">
             {items.map((link) => (
-              <Link
+              <NavLink
                 key={link.href}
                 href={link.href}
                 onClick={() => setOffen(false)}
-                className="border-b border-creme-dark/60 py-3 text-lg font-semibold text-wald-dark last:border-0"
+                className="border-b border-creme-dark/60 py-3 text-lg font-semibold transition-colors last:border-0"
+                inactiveClassName="text-wald-dark"
+                activeClassName="text-akzent-dark"
               >
                 {link.label}
-              </Link>
+              </NavLink>
             ))}
             <div className="py-4">
               <LanguageSwitcher current={locale} label={switcherLabel} />

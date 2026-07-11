@@ -1,4 +1,5 @@
 import Link from "next/link";
+import OeffnungszeitenListe from "@/components/ui/OeffnungszeitenListe";
 import { getEinstellung } from "@/lib/content";
 import { getDictionary } from "@/lib/i18n/dictionary";
 import { localizedHref } from "@/lib/i18n/href";
@@ -58,14 +59,7 @@ export default async function Oeffnungszeiten({
           <h3 className={cn("font-display text-xl", hell ? "text-creme" : "text-wald-dark")}>
             {b.titel}
           </h3>
-          <p
-            className={cn(
-              "mt-2 whitespace-pre-line text-sm leading-relaxed",
-              hell ? "text-creme/80" : "text-tinte/75",
-            )}
-          >
-            {b.zeiten}
-          </p>
+          <OeffnungszeitenListe text={b.zeiten!} hell={hell} className="mt-2" />
           {/* Kotten öffnet nur zu Veranstaltungen → zu den Events; zusätzlich Miet-Teaser */}
           {b.key === "kotten" && (
             <div className="mt-3 flex flex-col gap-1.5">
