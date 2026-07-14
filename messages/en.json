@@ -30,7 +30,8 @@
     "reservierenTitel": "Reserve a table",
     "reservierenText": "We're happy to take your reservation by phone or WhatsApp.",
     "anrufen": "Call",
-    "whatsapp": "Message us on WhatsApp"
+    "whatsapp": "Message us on WhatsApp",
+    "email": "Send us an email"
   },
   "events": {
     "leer": "No dates are planned at the moment. Check back soon!",

@@ -34,7 +34,8 @@
     "reservierenTitel": "Tisch reservieren",
     "reservierenText": "Reservierungen nehmen wir gern telefonisch oder per WhatsApp entgegen.",
     "anrufen": "Anrufen",
-    "whatsapp": "Per WhatsApp schreiben"
+    "whatsapp": "Per WhatsApp schreiben",
+    "email": "E-Mail schreiben"
   },
   "events": {
     "leer": "Aktuell sind keine Termine geplant. Schau bald wieder vorbei!",

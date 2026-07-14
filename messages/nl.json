@@ -30,7 +30,8 @@
     "reservierenTitel": "Een tafel reserveren",
     "reservierenText": "We nemen je reservering graag telefonisch of via WhatsApp aan.",
     "anrufen": "Bellen",
-    "whatsapp": "Stuur ons een WhatsApp"
+    "whatsapp": "Stuur ons een WhatsApp",
+    "email": "Stuur ons een e-mail"
   },
   "events": {
     "leer": "Er staan momenteel geen data gepland. Kom snel weer kijken!",

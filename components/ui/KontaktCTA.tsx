@@ -22,7 +22,7 @@ export default async function KontaktCTA({
   text?: string;
   hell?: boolean;
 }) {
-  const [{ telefon, whatsapp }, dict] = await Promise.all([getKontakt(), getDictionary(locale)]);
+  const [{ telefon, whatsapp, email }, dict] = await Promise.all([getKontakt(), getDictionary(locale)]);
   const k = dict.kontakt;
 
   return (
@@ -42,6 +42,11 @@ export default async function KontaktCTA({
         {whatsapp && (
           <LinkButton href={`https://wa.me/${whatsapp}`} variante="secondary">
             {k.whatsapp}
+          </LinkButton>
+        )}
+        {email && (
+          <LinkButton href={`mailto:${email}`} variante="secondary">
+            {k.email}
           </LinkButton>
         )}
       </div>
