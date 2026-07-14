@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default async function AnfahrtSeite({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: raw } = await params;
   const locale = raw as Locale;
-  const [{ telefon, email, adresse }, dict] = await Promise.all([getKontakt(), getDictionary(locale)]);
+  const [{ telefon, whatsapp, email, adresse }, dict] = await Promise.all([getKontakt(), getDictionary(locale)]);
   const t = dict.anfahrt;
 
   return (
@@ -38,6 +38,19 @@ export default async function AnfahrtSeite({ params }: { params: Promise<{ local
                 <span className="font-semibold text-wald-dark">{t.telefon}:</span>{" "}
                 <a href={`tel:${telefon.replace(/\s/g, "")}`} className="hover:text-akzent-dark">
                   {telefon}
+                </a>
+              </li>
+            )}
+            {whatsapp && (
+              <li>
+                <span className="font-semibold text-wald-dark">{t.whatsapp}:</span>{" "}
+                <a
+                  href={`https://wa.me/${whatsapp}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-akzent-dark"
+                >
+                  {dict.kontakt.whatsapp}
                 </a>
               </li>
             )}

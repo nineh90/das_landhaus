@@ -6,9 +6,20 @@ import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
 import { locales, isLocale, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionary";
+import { SITE_URL, OG_IMAGE } from "@/lib/site";
+
+/** Sharing-Vorschaubild (WhatsApp, Facebook, Instagram-DMs …) — 1200×630. */
+const ogImages = [
+  {
+    url: OG_IMAGE,
+    width: 1200,
+    height: 630,
+    alt: "Das Landhaus Tecklenburg-Leeden — Restaurant, Imbiss & Der Kotten",
+  },
+];
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://das-landhaus-tecklenburg.de"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Das Landhaus Tecklenburg-Leeden — Restaurant, Imbiss & Der Kotten",
     template: "%s | Das Landhaus Tecklenburg-Leeden",
@@ -16,11 +27,21 @@ export const metadata: Metadata = {
   description:
     "Restaurant, Imbiss und die Event-Diele »Der Kotten« in Tecklenburg-Leeden — gehobene Küche, gemütliche Atmosphäre und Veranstaltungen mitten in der Natur. Auch für Gäste aus Osnabrück, Münster und Bielefeld.",
   openGraph: {
+    siteName: "Das Landhaus Tecklenburg-Leeden",
     title: "Das Landhaus Tecklenburg-Leeden",
     description:
       "Restaurant, Imbiss und die Event-Diele »Der Kotten« in Tecklenburg-Leeden — gute Küche, gute Stimmung, mitten in der Natur.",
+    url: "/",
     locale: "de_DE",
     type: "website",
+    images: ogImages,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Das Landhaus Tecklenburg-Leeden",
+    description:
+      "Restaurant, Imbiss und die Event-Diele »Der Kotten« in Tecklenburg-Leeden — gute Küche, gute Stimmung, mitten in der Natur.",
+    images: [OG_IMAGE],
   },
 };
 
