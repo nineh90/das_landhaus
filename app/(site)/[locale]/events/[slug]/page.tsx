@@ -4,7 +4,9 @@ import { notFound } from "next/navigation";
 import Section from "@/components/ui/Section";
 import LinkButton from "@/components/ui/Button";
 import KontaktCTA from "@/components/ui/KontaktCTA";
+import JsonLd from "@/components/ui/JsonLd";
 import { getEvents, getEventBySlug } from "@/lib/content";
+import { buildEventJsonLd } from "@/lib/jsonld";
 import { formatDatum } from "@/lib/utils";
 import { getDictionary } from "@/lib/i18n/dictionary";
 import { localizedHref } from "@/lib/i18n/href";
@@ -46,9 +48,11 @@ export default async function EventDetailSeite({
   const [event, dict] = await Promise.all([getEventBySlug(slug), getDictionary(locale)]);
   if (!event) notFound();
   const t = dict.eventDetail;
+  const eventLd = await buildEventJsonLd(event, locale);
 
   return (
     <>
+      <JsonLd data={eventLd} />
       {event.bild && (
         <div className="relative h-72 w-full sm:h-96">
           <Image

@@ -8,7 +8,9 @@ import KontaktCTA from "@/components/ui/KontaktCTA";
 import EventGrid from "@/components/events/EventGrid";
 import LinkButton from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
+import JsonLd from "@/components/ui/JsonLd";
 import { getKommendeEvents } from "@/lib/content";
+import { buildLocalBusinessJsonLd } from "@/lib/jsonld";
 import { getDictionary } from "@/lib/i18n/dictionary";
 import { localizedHref } from "@/lib/i18n/href";
 import type { Locale } from "@/lib/i18n/config";
@@ -16,11 +18,16 @@ import type { Locale } from "@/lib/i18n/config";
 export default async function StartSeite({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: raw } = await params;
   const locale = raw as Locale;
-  const [events, dict] = await Promise.all([getKommendeEvents(3), getDictionary(locale)]);
+  const [events, dict, localBusiness] = await Promise.all([
+    getKommendeEvents(3),
+    getDictionary(locale),
+    buildLocalBusinessJsonLd(),
+  ]);
   const t = dict.home;
 
   return (
     <>
+      <JsonLd data={localBusiness} />
       <Hero locale={locale} dict={dict} />
 
       {/* Die drei Bereiche */}
