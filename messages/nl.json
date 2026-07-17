@@ -1,4 +1,10 @@
 {
+  "speisekarteHinweise": {
+    "titel": "Allergenen",
+    "allergene": "Allergenen",
+    "zusatzstoffe": "Toevoegingen",
+    "hinweis": "Informatie over allergenen en toevoegingen krijgt u ook persoonlijk van ons personeel."
+  },
   "nav": {
     "start": "Home",
     "imbiss": "Snackbar",

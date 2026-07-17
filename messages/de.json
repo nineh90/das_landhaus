@@ -1,4 +1,10 @@
 {
+  "speisekarteHinweise": {
+    "titel": "Kennzeichnung",
+    "allergene": "Allergene",
+    "zusatzstoffe": "Zusatzstoffe",
+    "hinweis": "Informationen zu Allergenen und Zusatzstoffen erhalten Sie auch persönlich bei unserem Personal."
+  },
   "nav": {
     "start": "Start",
     "restaurant": "Restaurant",

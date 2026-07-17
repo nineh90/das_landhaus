@@ -5,6 +5,7 @@ import Section from "@/components/ui/Section";
 import SectionHeading from "@/components/ui/SectionHeading";
 import LinkButton from "@/components/ui/Button";
 import SpeisekartenAkkordeon from "@/components/restaurant/SpeisekartenAkkordeon";
+import SpeisekartenHinweise from "@/components/restaurant/SpeisekartenHinweise";
 import KontaktCTA from "@/components/ui/KontaktCTA";
 import Oeffnungszeiten from "@/components/ui/Oeffnungszeiten";
 import Reveal from "@/components/ui/Reveal";
@@ -81,8 +82,9 @@ export default async function RestaurantSeite({ params }: { params: Promise<{ lo
       <Section id="speisekarte" className="scroll-mt-24">
         <SectionHeading kicker={t.speisekarte.kicker} titel={t.speisekarte.titel} />
         <div className="mx-auto mt-10 max-w-3xl">
-          <SpeisekartenAkkordeon karte={karte} />
+          <SpeisekartenAkkordeon karte={karte} labels={dict.speisekarteHinweise} />
         </div>
+        <SpeisekartenHinweise karte={karte} labels={dict.speisekarteHinweise} />
       </Section>
 
       {/* Praktische Info: Öffnungszeiten (nur Restaurant) */}

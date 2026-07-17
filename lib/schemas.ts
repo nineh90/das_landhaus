@@ -77,6 +77,17 @@ export type ZusatzstoffCode = (typeof ZUSATZSTOFFE)[number]["code"];
 const ALLERGEN_CODES = ALLERGENE.map((a) => a.code) as [AllergenCode, ...AllergenCode[]];
 const ZUSATZSTOFF_CODES = ZUSATZSTOFFE.map((z) => z.code) as [ZusatzstoffCode, ...ZusatzstoffCode[]];
 
+/**
+ * Löst die auf einem Gericht gesetzten Codes in ihre Kürzel/Labels auf — in
+ * fachlicher Reihenfolge (Allergene A–N, dann Zusatzstoffe 1–13). Unbekannte
+ * Codes werden ignoriert. Genutzt für die öffentliche Speisekarten-Anzeige.
+ */
+export function gerichtKennzeichnung(g: { allergene: string[]; zusatzstoffe: string[] }) {
+  const allergene = ALLERGENE.filter((a) => g.allergene.includes(a.code));
+  const zusatzstoffe = ZUSATZSTOFFE.filter((z) => g.zusatzstoffe.includes(z.code));
+  return { allergene, zusatzstoffe, alle: [...allergene, ...zusatzstoffe] };
+}
+
 // Kategorien sind bewusst FREI wählbar (keine feste Liste): Die Speisekarte
 // entwickelt sich, und der Betreiber soll Kategorien selbst anlegen und
 // umbenennen können. Das Formular schlägt die bereits vorhandenen Kategorien

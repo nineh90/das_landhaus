@@ -1,4 +1,10 @@
 {
+  "speisekarteHinweise": {
+    "titel": "Allergen information",
+    "allergene": "Allergens",
+    "zusatzstoffe": "Additives",
+    "hinweis": "Information on allergens and additives is also available in person from our staff."
+  },
   "nav": {
     "start": "Home",
     "imbiss": "Snack Bar",

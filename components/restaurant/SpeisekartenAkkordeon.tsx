@@ -1,4 +1,5 @@
 import type { Gericht } from "@/types";
+import type { Dictionary } from "@/lib/i18n/dictionary";
 import GerichtZeile from "./GerichtZeile";
 
 /**
@@ -16,9 +17,12 @@ import GerichtZeile from "./GerichtZeile";
  */
 export default function SpeisekartenAkkordeon({
   karte,
+  labels,
   name = "speisekarte",
 }: {
   karte: { kategorie: string; gerichte: Gericht[] }[];
+  /** Labels für die Kennzeichnungszeile je Gericht (aus dem Wörterbuch). */
+  labels: Pick<Dictionary["speisekarteHinweise"], "allergene" | "zusatzstoffe">;
   /** Gruppenname für den exklusiven Auf-/Zuklapp-Verbund (je Seite eindeutig). */
   name?: string;
 }) {
@@ -49,7 +53,7 @@ export default function SpeisekartenAkkordeon({
           </summary>
           <div className="px-5 pb-4">
             {block.gerichte.map((g) => (
-              <GerichtZeile key={g.id} gericht={g} />
+              <GerichtZeile key={g.id} gericht={g} labels={labels} />
             ))}
           </div>
         </details>

@@ -4,6 +4,7 @@ import PageHero from "@/components/ui/PageHero";
 import Section from "@/components/ui/Section";
 import SectionHeading from "@/components/ui/SectionHeading";
 import SpeisekartenAkkordeon from "@/components/restaurant/SpeisekartenAkkordeon";
+import SpeisekartenHinweise from "@/components/restaurant/SpeisekartenHinweise";
 import Lightbox from "@/components/galerie/Lightbox";
 import Oeffnungszeiten from "@/components/ui/Oeffnungszeiten";
 import { getGerichteNachKategorie, getEinstellung, getBilder } from "@/lib/content";
@@ -56,7 +57,8 @@ export default async function ImbissSeite({ params }: { params: Promise<{ locale
         </div>
 
         <div className="mx-auto mt-12 max-w-3xl">
-          <SpeisekartenAkkordeon karte={karte} name="imbiss-karte" />
+          <SpeisekartenAkkordeon karte={karte} name="imbiss-karte" labels={dict.speisekarteHinweise} />
+          <SpeisekartenHinweise karte={karte} labels={dict.speisekarteHinweise} />
         </div>
       </Section>
 
