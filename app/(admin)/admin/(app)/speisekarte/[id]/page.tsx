@@ -35,6 +35,8 @@ export default async function GerichtBearbeitenSeite({
             verfuegbar: gericht.verfuegbar,
             bild: gericht.bild ?? "",
             reihenfolge: gericht.reihenfolge,
+            allergene: gericht.allergene as never,
+            zusatzstoffe: gericht.zusatzstoffe as never,
           }}
         />
       </Karte>

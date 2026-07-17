@@ -32,6 +32,51 @@ export type PasswortAendernFormular = z.input<typeof passwortAendernSchema>;
 
 export const GERICHT_BEREICHE = ["restaurant", "imbiss"] as const;
 
+/**
+ * Die 14 Hauptallergene (LMIV/EU 1169/2011, Anhang II) und die
+ * kennzeichnungspflichtigen Zusatzstoffe. `code` wird sprachneutral in der DB
+ * gespeichert; `label` ist der deutsche Anzeigename (später via Wörterbuch
+ * übersetzbar), `kuerzel` das Karten-Kürzel (A–N bzw. 1–13).
+ */
+export const ALLERGENE = [
+  { code: "glutenhaltiges_getreide", kuerzel: "A", label: "Glutenhaltiges Getreide" },
+  { code: "krebstiere", kuerzel: "B", label: "Krebstiere" },
+  { code: "eier", kuerzel: "C", label: "Eier" },
+  { code: "fisch", kuerzel: "D", label: "Fisch" },
+  { code: "erdnuesse", kuerzel: "E", label: "Erdnüsse" },
+  { code: "soja", kuerzel: "F", label: "Soja(bohnen)" },
+  { code: "milch", kuerzel: "G", label: "Milch / Laktose" },
+  { code: "schalenfruechte", kuerzel: "H", label: "Schalenfrüchte (Nüsse)" },
+  { code: "sellerie", kuerzel: "I", label: "Sellerie" },
+  { code: "senf", kuerzel: "J", label: "Senf" },
+  { code: "sesam", kuerzel: "K", label: "Sesam" },
+  { code: "schwefeldioxid_sulfite", kuerzel: "L", label: "Schwefeldioxid / Sulfite" },
+  { code: "lupinen", kuerzel: "M", label: "Lupinen" },
+  { code: "weichtiere", kuerzel: "N", label: "Weichtiere" },
+] as const;
+
+export const ZUSATZSTOFFE = [
+  { code: "farbstoff", kuerzel: "1", label: "mit Farbstoff" },
+  { code: "konservierungsstoff", kuerzel: "2", label: "mit Konservierungsstoff" },
+  { code: "antioxidationsmittel", kuerzel: "3", label: "mit Antioxidationsmittel" },
+  { code: "geschmacksverstaerker", kuerzel: "4", label: "mit Geschmacksverstärker" },
+  { code: "geschwefelt", kuerzel: "5", label: "geschwefelt" },
+  { code: "geschwaerzt", kuerzel: "6", label: "geschwärzt" },
+  { code: "gewachst", kuerzel: "7", label: "gewachst" },
+  { code: "phosphat", kuerzel: "8", label: "mit Phosphat" },
+  { code: "suessungsmittel", kuerzel: "9", label: "mit Süßungsmittel(n)" },
+  { code: "phenylalaninquelle", kuerzel: "10", label: "enthält eine Phenylalaninquelle" },
+  { code: "koffeinhaltig", kuerzel: "11", label: "koffeinhaltig" },
+  { code: "chininhaltig", kuerzel: "12", label: "chininhaltig" },
+  { code: "nitritpoekelsalz", kuerzel: "13", label: "mit Nitritpökelsalz" },
+] as const;
+
+export type AllergenCode = (typeof ALLERGENE)[number]["code"];
+export type ZusatzstoffCode = (typeof ZUSATZSTOFFE)[number]["code"];
+
+const ALLERGEN_CODES = ALLERGENE.map((a) => a.code) as [AllergenCode, ...AllergenCode[]];
+const ZUSATZSTOFF_CODES = ZUSATZSTOFFE.map((z) => z.code) as [ZusatzstoffCode, ...ZusatzstoffCode[]];
+
 // Kategorien sind bewusst FREI wählbar (keine feste Liste): Die Speisekarte
 // entwickelt sich, und der Betreiber soll Kategorien selbst anlegen und
 // umbenennen können. Das Formular schlägt die bereits vorhandenen Kategorien
@@ -48,6 +93,8 @@ export const gerichtSchema = z.object({
   verfuegbar: z.boolean().default(true),
   bild: z.string().trim().max(500).optional().default(""),
   reihenfolge: z.number().int("Ganze Zahl erwartet.").min(0).max(9999).default(0),
+  allergene: z.array(z.enum(ALLERGEN_CODES)).default([]),
+  zusatzstoffe: z.array(z.enum(ZUSATZSTOFF_CODES)).default([]),
 });
 export type GerichtFormular = z.input<typeof gerichtSchema>;
 

@@ -13,7 +13,10 @@ import type { Gericht } from "@/types";
  * `kategorie` steuert die Gruppierung, `reihenfolge` die Sortierung innerhalb
  * einer Kategorie. Die Kategorie-Reihenfolge ist in lib/content.ts hinterlegt.
  */
-export const gerichte: Gericht[] = [
+// Allergene/Zusatzstoffe sind hier bewusst NICHT erfasst (Erhebung erfolgt im
+// Admin). Beim Seed greifen die DB-Defaults (leere Arrays), daher aus dem Typ
+// ausgeklammert statt in jedem Eintrag mitzuführen.
+export const gerichte: Omit<Gericht, "allergene" | "zusatzstoffe">[] = [
   // ======================= RESTAURANT =======================
 
   // ---------- Antipasti ----------

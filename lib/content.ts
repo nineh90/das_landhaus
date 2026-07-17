@@ -32,6 +32,8 @@ function zuGericht(g: PrismaGericht): Gericht {
     verfuegbar: g.verfuegbar,
     bild: g.bild,
     reihenfolge: g.reihenfolge,
+    allergene: g.allergene,
+    zusatzstoffe: g.zusatzstoffe,
   };
 }
 

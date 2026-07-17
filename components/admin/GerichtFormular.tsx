@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { gerichtSchema, GERICHT_BEREICHE } from "@/lib/schemas";
+import { gerichtSchema, GERICHT_BEREICHE, ALLERGENE, ZUSATZSTOFFE } from "@/lib/schemas";
 import {
   Feld,
   Schalter,
@@ -45,6 +45,8 @@ export default function GerichtFormular({
   const {
     register,
     handleSubmit,
+    watch,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<Eingabe, unknown, Ausgabe>({
     resolver: zodResolver(gerichtSchema),
@@ -57,9 +59,23 @@ export default function GerichtFormular({
       verfuegbar: true,
       bild: "",
       reihenfolge: 0,
+      allergene: [],
+      zusatzstoffe: [],
       ...standard,
     },
   });
+
+  // Allergene/Zusatzstoffe werden als String-Arrays gepflegt (Chip-Auswahl statt
+  // klassischem Input) — daher watch/setValue statt register.
+  const allergene = watch("allergene") ?? [];
+  const zusatzstoffe = watch("zusatzstoffe") ?? [];
+  const umschalten = (feld: "allergene" | "zusatzstoffe", code: string) => {
+    const aktuell = (feld === "allergene" ? allergene : zusatzstoffe) as string[];
+    const neu = aktuell.includes(code)
+      ? aktuell.filter((c) => c !== code)
+      : [...aktuell, code];
+    setValue(feld, neu as never, { shouldDirty: true });
+  };
 
   const onSubmit = handleSubmit(async (werte) => {
     setServerFehler(undefined);
@@ -147,6 +163,62 @@ export default function GerichtFormular({
         hint="z. B. /images/galerie/essen-burger.jpg"
       >
         <input id="bild" className={inputKlasse} {...register("bild")} />
+      </Feld>
+
+      <Feld
+        label="Allergene"
+        hint="Zutreffende Allergene antippen (die 14 Hauptallergene nach LMIV)."
+      >
+        <div className="flex flex-wrap gap-2">
+          {ALLERGENE.map((a) => {
+            const aktiv = allergene.includes(a.code);
+            return (
+              <button
+                key={a.code}
+                type="button"
+                onClick={() => umschalten("allergene", a.code)}
+                aria-pressed={aktiv}
+                title={a.label}
+                className={`inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-sm font-semibold transition-colors ${
+                  aktiv
+                    ? "border-akzent bg-akzent text-creme"
+                    : "border-tinte/15 bg-white text-tinte/70 hover:border-akzent"
+                }`}
+              >
+                <span className="opacity-70">{a.kuerzel}</span>
+                <span>{a.label}</span>
+              </button>
+            );
+          })}
+        </div>
+      </Feld>
+
+      <Feld
+        label="Zusatzstoffe"
+        hint="Kennzeichnungspflichtige Zusatzstoffe — nur antippen, was tatsächlich zutrifft."
+      >
+        <div className="flex flex-wrap gap-2">
+          {ZUSATZSTOFFE.map((z) => {
+            const aktiv = zusatzstoffe.includes(z.code);
+            return (
+              <button
+                key={z.code}
+                type="button"
+                onClick={() => umschalten("zusatzstoffe", z.code)}
+                aria-pressed={aktiv}
+                title={z.label}
+                className={`inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-sm font-semibold transition-colors ${
+                  aktiv
+                    ? "border-akzent bg-akzent text-creme"
+                    : "border-tinte/15 bg-white text-tinte/70 hover:border-akzent"
+                }`}
+              >
+                <span className="opacity-70">{z.kuerzel}</span>
+                <span>{z.label}</span>
+              </button>
+            );
+          })}
+        </div>
       </Feld>
 
       <Schalter

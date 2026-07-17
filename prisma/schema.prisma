@@ -22,6 +22,11 @@ model Gericht {
   verfuegbar     Boolean  @default(true)
   bild           String?
   reihenfolge    Int      @default(0)
+  // Kennzeichnungspflichtige Angaben (LMIV) — sprachneutrale Codes, z. B.
+  // ["glutenhaltiges_getreide", "milch"] bzw. ["farbstoff"]. Labels/Legende
+  // kommen aus lib/schemas.ts + den Wörterbüchern (i18n-neutral).
+  allergene      String[] @default([])
+  zusatzstoffe   String[] @default([])
   erstelltAm     DateTime @default(now())
   aktualisiertAm DateTime @updatedAt
 

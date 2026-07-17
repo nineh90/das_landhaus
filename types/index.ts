@@ -21,6 +21,8 @@ export interface Gericht {
   verfuegbar: boolean;
   bild: string | null;
   reihenfolge: number;
+  allergene: string[]; // sprachneutrale Codes, siehe ALLERGENE in lib/schemas.ts
+  zusatzstoffe: string[]; // sprachneutrale Codes, siehe ZUSATZSTOFFE in lib/schemas.ts
 }
 
 export interface Event {

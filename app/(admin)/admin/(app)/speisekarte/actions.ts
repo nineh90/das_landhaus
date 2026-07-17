@@ -43,6 +43,8 @@ function aufbereiten(d: ReturnType<typeof gerichtSchema.parse>) {
     verfuegbar: d.verfuegbar,
     bild: d.bild?.trim() || null,
     reihenfolge: d.reihenfolge,
+    allergene: d.allergene,
+    zusatzstoffe: d.zusatzstoffe,
   };
 }
 

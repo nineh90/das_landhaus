@@ -1,0 +1,348 @@
+<title>Allergen-Erhebung — Das Landhaus</title>
+<style>
+  :root {
+    --paper:#f4efe2; --paper-2:#efe8d7; --card:#fbf8f0; --ink:#20281e; --ink-soft:#4c5546;
+    --line:#cec4a9; --line-soft:#e0d8c2; --green:#2f5d3a; --green-deep:#223f2a; --green-tint:#e5ecdf;
+    --ochre:#9a6b1f; --ochre-tint:#f0e6cf; --danger:#a23b2c;
+    --shadow:0 1px 2px rgba(32,40,30,.06), 0 6px 20px rgba(32,40,30,.05);
+    --serif:Georgia,"Iowan Old Style","Palatino Linotype",Palatino,serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:#181c15; --paper-2:#20261d; --card:#20261d; --ink:#eef1e6; --ink-soft:#a9b39c;
+      --line:#3c4636; --line-soft:#2c3426; --green:#8cc091; --green-deep:#b6d6b3; --green-tint:#25321f;
+      --ochre:#d6a441; --ochre-tint:#33291a; --danger:#e58270;
+      --shadow:0 1px 2px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:#181c15; --paper-2:#20261d; --card:#20261d; --ink:#eef1e6; --ink-soft:#a9b39c;
+    --line:#3c4636; --line-soft:#2c3426; --green:#8cc091; --green-deep:#b6d6b3; --green-tint:#25321f;
+    --ochre:#d6a441; --ochre-tint:#33291a; --danger:#e58270; --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans); line-height:1.5; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:900px; margin:0 auto; padding:32px 20px 80px; }
+
+  header.head { border-bottom:2px solid var(--green); padding-bottom:16px; }
+  .eyebrow { font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:var(--green); font-weight:700; margin:0 0 6px; }
+  h1 { font-family:var(--serif); font-size:clamp(24px,4vw,34px); line-height:1.08; margin:0; letter-spacing:-.01em; text-wrap:balance; }
+  .head .sub { color:var(--ink-soft); font-size:14px; margin:8px 0 0; max-width:56ch; }
+
+  /* Werkzeugleiste */
+  .toolbar { position:sticky; top:0; z-index:20; margin:18px 0 8px; padding:12px; background:color-mix(in srgb,var(--paper) 88%,transparent); backdrop-filter:blur(8px); border:1px solid var(--line-soft); border-radius:12px; box-shadow:var(--shadow); display:flex; flex-wrap:wrap; align-items:center; gap:10px; }
+  .progress { flex:1 1 200px; min-width:180px; }
+  .progress .bar { height:8px; background:var(--paper-2); border-radius:99px; overflow:hidden; }
+  .progress .bar i { display:block; height:100%; width:0; background:var(--green); border-radius:99px; transition:width .3s ease; }
+  .progress .label { font-size:12px; color:var(--ink-soft); margin-top:5px; font-variant-numeric:tabular-nums; }
+  .progress .label b { color:var(--ink); }
+  .actions { display:flex; flex-wrap:wrap; gap:8px; }
+  button { -webkit-appearance:none; appearance:none; cursor:pointer; font-family:var(--sans); font-size:13px; }
+  .btn { border:1px solid var(--line); background:var(--card); color:var(--ink); font-weight:600; padding:8px 12px; border-radius:9px; }
+  .btn:hover { border-color:var(--green); color:var(--green); }
+  .btn.primary { background:var(--green); border-color:var(--green); color:#fbf8f0; }
+  .btn.primary:hover { background:var(--green-deep); border-color:var(--green-deep); color:#fbf8f0; }
+  .btn:focus-visible, .chip:focus-visible, .add-cat:focus-visible, [contenteditable]:focus-visible { outline:2px solid var(--ochre); outline-offset:2px; }
+  .save-hint { font-size:11.5px; color:var(--ink-soft); flex-basis:100%; }
+  .save-hint b { color:var(--green); }
+
+  details.ref { margin:14px 0 6px; background:var(--card); border:1px solid var(--line-soft); border-radius:12px; box-shadow:var(--shadow); }
+  details.ref > summary { cursor:pointer; padding:12px 16px; font-family:var(--serif); font-size:15px; list-style:none; }
+  details.ref > summary::-webkit-details-marker { display:none; }
+  details.ref > summary::after { content:"▸"; float:right; color:var(--ink-soft); }
+  details.ref[open] > summary::after { content:"▾"; }
+  .ref-body { padding:0 16px 16px; display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .ref-body h4 { margin:6px 0 8px; font-size:12px; letter-spacing:.05em; text-transform:uppercase; }
+  .ref-alg h4 { color:var(--green); } .ref-zus h4 { color:var(--ochre); }
+  .ref-body ul { list-style:none; margin:0; padding:0; display:grid; gap:3px; font-size:12.5px; }
+  .ref-body li { display:flex; gap:8px; }
+  .ref-body .c { flex:none; width:22px; text-align:center; font-weight:700; border-radius:5px; font-size:11px; font-variant-numeric:tabular-nums; }
+  .ref-alg .c { background:var(--green-tint); color:var(--green); }
+  .ref-zus .c { background:var(--ochre-tint); color:var(--ochre); }
+  .ref-body em { font-style:normal; color:var(--ink-soft); font-size:11px; }
+
+  /* Gericht-Karten */
+  #liste { display:grid; gap:14px; margin-top:16px; }
+  .dish { background:var(--card); border:1px solid var(--line-soft); border-radius:12px; box-shadow:var(--shadow); padding:16px; border-left:4px solid var(--line); transition:border-color .2s; }
+  .dish.done { border-left-color:var(--green); }
+  .dish-top { display:flex; flex-wrap:wrap; gap:10px 12px; align-items:center; }
+  .dish-name { flex:1 1 220px; font-family:var(--serif); font-size:19px; font-weight:700; color:var(--ink); border:none; border-bottom:1px dashed var(--line); background:transparent; padding:2px 2px 4px; min-width:0; }
+  .dish-name:focus { outline:none; border-bottom-color:var(--green); }
+  .dish-meta { display:flex; gap:8px; }
+  select.bereich, input.kat { border:1px solid var(--line); background:var(--paper); color:var(--ink); border-radius:8px; padding:5px 8px; font-size:12.5px; font-family:var(--sans); }
+  input.kat { width:120px; }
+  .del { border:none; background:transparent; color:var(--ink-soft); font-size:18px; line-height:1; padding:4px 6px; border-radius:6px; }
+  .del:hover { color:var(--danger); background:color-mix(in srgb,var(--danger) 12%,transparent); }
+
+  .grp-label { font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); margin:14px 0 7px; font-weight:600; }
+  .chips { display:flex; flex-wrap:wrap; gap:6px; }
+  .chip { border:1px solid var(--line); background:var(--paper); color:var(--ink-soft); border-radius:8px; padding:5px 9px; font-size:12.5px; font-weight:600; display:inline-flex; align-items:center; gap:6px; transition:.12s; }
+  .chip .k { font-weight:800; font-variant-numeric:tabular-nums; opacity:.7; }
+  .chip:hover { border-color:var(--green); }
+  .chip[aria-pressed="true"] { background:var(--green); border-color:var(--green); color:#fbf8f0; }
+  .chip[aria-pressed="true"] .k { opacity:.85; }
+  .chips.zus .chip:hover { border-color:var(--ochre); }
+  .chips.zus .chip[aria-pressed="true"] { background:var(--ochre); border-color:var(--ochre); color:#fff; }
+
+  .dish-foot { display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px; margin-top:14px; padding-top:12px; border-top:1px solid var(--line-soft); }
+  .notiz { flex:1 1 200px; border:1px solid var(--line); background:var(--paper); color:var(--ink); border-radius:8px; padding:6px 9px; font-size:12.5px; font-family:var(--sans); }
+  .check { display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:var(--ink-soft); cursor:pointer; user-select:none; }
+  .check input { width:18px; height:18px; accent-color:var(--green); cursor:pointer; }
+  .check.on { color:var(--green); }
+
+  .add-cat { display:block; width:100%; margin-top:14px; border:1.5px dashed var(--line); background:transparent; color:var(--ink-soft); font-weight:600; padding:12px; border-radius:12px; }
+  .add-cat:hover { border-color:var(--green); color:var(--green); }
+
+  footer { margin-top:30px; border-top:1px solid var(--line); padding-top:14px; font-size:11.5px; color:var(--ink-soft); }
+  footer b { color:var(--ink); }
+  .disc { margin-top:7px; font-size:10.5px; }
+  input[type=file] { display:none; }
+
+  @media (max-width:640px) { .ref-body { grid-template-columns:1fr; } .toolbar { position:static; } }
+  @media (prefers-reduced-motion:reduce) { * { transition:none !important; } }
+
+  @media print {
+    :root { --paper:#fff; --paper-2:#eee; --card:#fff; --ink:#000; --ink-soft:#333; --shadow:none; }
+    .toolbar, .add-cat, .del, .save-hint { display:none !important; }
+    .wrap { max-width:none; padding:0; }
+    details.ref[open] .ref-body, details.ref { break-inside:avoid; }
+    .dish { break-inside:avoid; border:1px solid #999; }
+    .chip { border-color:#999; }
+    .chip[aria-pressed="false"] { opacity:.35; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="head">
+    <p class="eyebrow">Das Landhaus · Tecklenburg-Leeden</p>
+    <h1>Allergen- &amp; Zusatzstoff-Erhebung</h1>
+    <p class="sub">Digital ausfüllbar: je Gericht die zutreffenden Allergene und Zusatzstoffe antippen. Eingaben werden automatisch im Browser gespeichert.</p>
+  </header>
+
+  <div class="toolbar">
+    <div class="progress">
+      <div class="bar"><i id="bar"></i></div>
+      <div class="label"><b id="pDone">0</b> von <b id="pTotal">0</b> Gerichten geprüft</div>
+    </div>
+    <div class="actions">
+      <button class="btn primary" id="addDish">+ Gericht</button>
+      <button class="btn" id="expJson">Export JSON</button>
+      <button class="btn" id="expCsv">Export CSV</button>
+      <button class="btn" id="impBtn">Import</button>
+      <button class="btn" id="printBtn">Drucken</button>
+      <button class="btn" id="resetBtn">Zurücksetzen</button>
+      <input type="file" id="impFile" accept="application/json,.json">
+    </div>
+    <div class="save-hint" id="saveHint">Automatisch gespeichert.</div>
+  </div>
+
+  <details class="ref">
+    <summary>Referenz: 14 Hauptallergene (A–N) &amp; Zusatzstoffe (1–13)</summary>
+    <div class="ref-body">
+      <div class="ref-alg"><h4>Allergene · LMIV Anhang II</h4><ul id="refAlg"></ul></div>
+      <div class="ref-zus"><h4>Kennzeichnungspflichtige Zusatzstoffe</h4><ul id="refZus"></ul></div>
+    </div>
+  </details>
+
+  <div id="liste"></div>
+  <button class="add-cat" id="addDish2">+ Weiteres Gericht hinzufügen</button>
+
+  <footer>
+    <div><b>Das Landhaus</b> · Allergen-Erhebung · Werkzeug von <b>Nils-Digital</b>. „Geprüft" bedeutet: bewusst kontrolliert — auch wenn kein Allergen zutrifft.</div>
+    <p class="disc">Grundlage: VO (EU) Nr. 1169/2011 (LMIV), Anhang II. Zusatzstoffe nach Zusatzstoff-Zulassungsverordnung. Arbeitshilfe, keine Rechtsberatung — im Zweifel Lebensmittelüberwachung (Kreis Steinfurt) oder Fachanwalt.</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var ALG = [
+    ["A","glutenhaltiges_getreide","Glutenhaltiges Getreide","Weizen, Roggen, Gerste, Hafer, Dinkel"],
+    ["B","krebstiere","Krebstiere",""],["C","eier","Eier",""],["D","fisch","Fisch",""],
+    ["E","erdnuesse","Erdnüsse",""],["F","soja","Soja(bohnen)",""],["G","milch","Milch / Laktose",""],
+    ["H","schalenfruechte","Schalenfrüchte","Mandel, Haselnuss, Walnuss, Cashew, Pistazie …"],
+    ["I","sellerie","Sellerie",""],["J","senf","Senf",""],["K","sesam","Sesam",""],
+    ["L","schwefeldioxid_sulfite","Schwefeldioxid / Sulfite",""],["M","lupinen","Lupinen",""],
+    ["N","weichtiere","Weichtiere","Muscheln, Tintenfisch …"]
+  ];
+  var ZUS = [
+    ["1","farbstoff","mit Farbstoff"],["2","konservierungsstoff","mit Konservierungsstoff"],
+    ["3","antioxidationsmittel","mit Antioxidationsmittel"],["4","geschmacksverstaerker","mit Geschmacksverstärker"],
+    ["5","geschwefelt","geschwefelt"],["6","geschwaerzt","geschwärzt"],["7","gewachst","gewachst"],
+    ["8","phosphat","mit Phosphat"],["9","suessungsmittel","mit Süßungsmittel(n)"],
+    ["10","phenylalaninquelle","enthält eine Phenylalaninquelle"],["11","koffeinhaltig","koffeinhaltig"],
+    ["12","chininhaltig","chininhaltig"],["13","nitritpoekelsalz","mit Nitritpökelsalz"]
+  ];
+  var ALG_BY = {}; ALG.forEach(function(a){ALG_BY[a[0]]=a;});
+  var ZUS_BY = {}; ZUS.forEach(function(z){ZUS_BY[z[0]]=z;});
+
+  var SEED = [
+    ["Bruschetta Italiana","restaurant","Antipasti"],["Antipasto Misto","restaurant","Antipasti"],
+    ["Caprese","restaurant","Antipasti"],["Schnitzel Wiener Art","restaurant","Schnitzel"],
+    ["Jägerschnitzel","restaurant","Schnitzel"],["Balkan Schnitzel","restaurant","Schnitzel"],
+    ["Classic Burger","restaurant","Burger"],["Cheeseburger","restaurant","Burger"],
+    ["Bacon Burger","restaurant","Burger"],["Schnitzel mit Pommes","imbiss","Imbiss"],
+    ["Hähnchennuggets mit Pommes","imbiss","Imbiss"],["5 Fischstäbchen mit Pommes","imbiss","Imbiss"]
+  ];
+  var KEY = "landhaus_allergene_v1";
+  var uid = function(){ return "d"+Date.now().toString(36)+Math.random().toString(36).slice(2,6); };
+
+  function seedState(){
+    return SEED.map(function(s){ return {id:uid(), name:s[0], bereich:s[1], kategorie:s[2], allergene:[], zusatzstoffe:[], geprueft:false, notiz:""}; });
+  }
+  var state = load() || seedState();
+
+  function load(){ try { var r=localStorage.getItem(KEY); return r?JSON.parse(r):null; } catch(e){ return null; } }
+  var hint = document.getElementById("saveHint");
+  function save(){
+    try { localStorage.setItem(KEY, JSON.stringify(state)); hint.innerHTML="<b>✓</b> Automatisch gespeichert · "+new Date().toLocaleTimeString("de-DE",{hour:"2-digit",minute:"2-digit"}); }
+    catch(e){ hint.textContent="Speichern im Browser nicht möglich — bitte per Export sichern."; }
+  }
+
+  // Referenz-Listen füllen
+  var refAlg = document.getElementById("refAlg");
+  ALG.forEach(function(a){ var li=document.createElement("li"); li.innerHTML='<span class="c">'+a[0]+'</span><span>'+a[2]+(a[3]?' <em>'+a[3]+'</em>':'')+'</span>'; refAlg.appendChild(li); });
+  var refZus = document.getElementById("refZus");
+  ZUS.forEach(function(z){ var li=document.createElement("li"); li.innerHTML='<span class="c">'+z[0]+'</span><span>'+z[2]+'</span>'; refZus.appendChild(li); });
+
+  var liste = document.getElementById("liste");
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+  function chip(kind, code, label, hintTxt, pressed){
+    return '<button type="button" class="chip" role="button" aria-pressed="'+(pressed?"true":"false")+'" data-kind="'+kind+'" data-code="'+code+'" title="'+esc(hintTxt||label)+'" aria-label="'+esc(label)+'"><span class="k">'+code+'</span></button>';
+  }
+
+  function render(){
+    liste.innerHTML = "";
+    state.forEach(function(d){
+      var el = document.createElement("div");
+      el.className = "dish"+(d.geprueft?" done":"");
+      el.dataset.id = d.id;
+      var algChips = ALG.map(function(a){ return chip("alg", a[0], a[2], a[3], d.allergene.indexOf(a[0])>-1); }).join("");
+      var zusChips = ZUS.map(function(z){ return chip("zus", z[0], z[2], z[2], d.zusatzstoffe.indexOf(z[0])>-1); }).join("");
+      el.innerHTML =
+        '<div class="dish-top">'
+        + '<input class="dish-name" value="'+esc(d.name)+'" placeholder="Name des Gerichts" aria-label="Name des Gerichts">'
+        + '<div class="dish-meta">'
+        +   '<select class="bereich" aria-label="Bereich">'
+        +     '<option value="restaurant"'+(d.bereich==="restaurant"?" selected":"")+'>Restaurant</option>'
+        +     '<option value="imbiss"'+(d.bereich==="imbiss"?" selected":"")+'>Imbiss</option>'
+        +     '<option value="kotten"'+(d.bereich==="kotten"?" selected":"")+'>Der Kotten</option>'
+        +   '</select>'
+        +   '<input class="kat" value="'+esc(d.kategorie)+'" placeholder="Kategorie" aria-label="Kategorie">'
+        + '</div>'
+        + '<button class="del" title="Gericht löschen" aria-label="Gericht löschen">✕</button>'
+        + '</div>'
+        + '<div class="grp-label">Allergene</div><div class="chips alg">'+algChips+'</div>'
+        + '<div class="grp-label">Zusatzstoffe</div><div class="chips zus">'+zusChips+'</div>'
+        + '<div class="dish-foot">'
+        +   '<input class="notiz" value="'+esc(d.notiz)+'" placeholder="Bemerkung (optional)" aria-label="Bemerkung">'
+        +   '<label class="check'+(d.geprueft?" on":"")+'"><input type="checkbox" '+(d.geprueft?"checked":"")+'> Geprüft</label>'
+        + '</div>';
+      liste.appendChild(el);
+    });
+    updateProgress();
+  }
+
+  function updateProgress(){
+    var total = state.length, done = state.filter(function(d){return d.geprueft;}).length;
+    document.getElementById("pDone").textContent = done;
+    document.getElementById("pTotal").textContent = total;
+    document.getElementById("bar").style.width = total ? Math.round(done/total*100)+"%" : "0%";
+  }
+  function find(id){ for (var i=0;i<state.length;i++) if(state[i].id===id) return state[i]; return null; }
+  function toggleArr(arr, v){ var i=arr.indexOf(v); if(i>-1) arr.splice(i,1); else arr.push(v); return arr; }
+
+  // Ereignisse (delegiert)
+  liste.addEventListener("click", function(e){
+    var card = e.target.closest(".dish"); if(!card) return;
+    var d = find(card.dataset.id); if(!d) return;
+    var c = e.target.closest(".chip");
+    if (c){ var arr = c.dataset.kind==="alg"?d.allergene:d.zusatzstoffe; toggleArr(arr, c.dataset.code);
+      c.setAttribute("aria-pressed", arr.indexOf(c.dataset.code)>-1?"true":"false"); save(); return; }
+    if (e.target.closest(".del")){
+      if (confirm("Gericht „"+(d.name||"ohne Namen")+"“ wirklich löschen?")){
+        state = state.filter(function(x){return x.id!==d.id;}); render(); save(); }
+      return;
+    }
+  });
+  liste.addEventListener("change", function(e){
+    var card = e.target.closest(".dish"); if(!card) return;
+    var d = find(card.dataset.id); if(!d) return;
+    if (e.target.matches(".check input")){ d.geprueft = e.target.checked;
+      card.classList.toggle("done", d.geprueft); card.querySelector(".check").classList.toggle("on", d.geprueft);
+      updateProgress(); save(); }
+    if (e.target.matches(".bereich")){ d.bereich = e.target.value; save(); }
+  });
+  liste.addEventListener("input", function(e){
+    var card = e.target.closest(".dish"); if(!card) return;
+    var d = find(card.dataset.id); if(!d) return;
+    if (e.target.matches(".dish-name")){ d.name = e.target.value; save(); }
+    else if (e.target.matches(".kat")){ d.kategorie = e.target.value; save(); }
+    else if (e.target.matches(".notiz")){ d.notiz = e.target.value; save(); }
+  });
+
+  function addDish(){
+    var d = {id:uid(), name:"", bereich:"restaurant", kategorie:"", allergene:[], zusatzstoffe:[], geprueft:false, notiz:""};
+    state.push(d); render(); save();
+    var last = liste.lastChild; if(last){ last.scrollIntoView({behavior:"smooth",block:"center"}); last.querySelector(".dish-name").focus(); }
+  }
+  document.getElementById("addDish").addEventListener("click", addDish);
+  document.getElementById("addDish2").addEventListener("click", addDish);
+
+  // Export
+  function download(name, text, type){
+    try { var b=new Blob([text],{type:type}); var u=URL.createObjectURL(b); var a=document.createElement("a");
+      a.href=u; a.download=name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function(){URL.revokeObjectURL(u);},1000); }
+    catch(e){ alert("Download nicht möglich."); }
+  }
+  var stamp = function(){ return new Date().toISOString().slice(0,10); };
+  document.getElementById("expJson").addEventListener("click", function(){
+    var out = state.map(function(d){ return { name:d.name, bereich:d.bereich, kategorie:d.kategorie,
+      allergene:d.allergene.map(function(c){return ALG_BY[c]?ALG_BY[c][1]:c;}),
+      zusatzstoffe:d.zusatzstoffe.map(function(n){return ZUS_BY[n]?ZUS_BY[n][1]:n;}),
+      geprueft:d.geprueft, notiz:d.notiz }; });
+    download("landhaus-allergene-"+stamp()+".json", JSON.stringify(out,null,2), "application/json");
+  });
+  document.getElementById("expCsv").addEventListener("click", function(){
+    var q = function(s){ return '"'+String(s==null?"":s).replace(/"/g,'""')+'"'; };
+    var rows = [["Gericht","Bereich","Kategorie","Allergene","Zusatzstoffe","Geprüft","Bemerkung"].join(";")];
+    state.forEach(function(d){
+      rows.push([q(d.name), q(d.bereich), q(d.kategorie),
+        q(d.allergene.sort().join(", ")), q(d.zusatzstoffe.slice().sort(function(a,b){return a-b;}).join(", ")),
+        q(d.geprueft?"ja":"nein"), q(d.notiz)].join(";"));
+    });
+    download("landhaus-allergene-"+stamp()+".csv", "﻿"+rows.join("\r\n"), "text/csv");
+  });
+
+  // Import
+  document.getElementById("impBtn").addEventListener("click", function(){ document.getElementById("impFile").click(); });
+  document.getElementById("impFile").addEventListener("change", function(e){
+    var f = e.target.files[0]; if(!f) return; var r = new FileReader();
+    r.onload = function(){
+      try {
+        var data = JSON.parse(r.result);
+        if(!Array.isArray(data)) throw new Error("Format");
+        var codeByKeyA = {}; ALG.forEach(function(a){codeByKeyA[a[1]]=a[0];});
+        var codeByKeyZ = {}; ZUS.forEach(function(z){codeByKeyZ[z[1]]=z[0];});
+        state = data.map(function(d){ return { id:uid(), name:d.name||"", bereich:d.bereich||"restaurant",
+          kategorie:d.kategorie||"", geprueft:!!d.geprueft, notiz:d.notiz||"",
+          allergene:(d.allergene||[]).map(function(x){return codeByKeyA[x]||x;}).filter(function(x){return ALG_BY[x];}),
+          zusatzstoffe:(d.zusatzstoffe||[]).map(function(x){return codeByKeyZ[x]||x;}).filter(function(x){return ZUS_BY[x];}) }; });
+        render(); save();
+      } catch(err){ alert("Import fehlgeschlagen: keine gültige JSON-Datei aus diesem Bogen."); }
+      e.target.value = "";
+    };
+    r.readAsText(f);
+  });
+
+  document.getElementById("printBtn").addEventListener("click", function(){ window.print(); });
+  document.getElementById("resetBtn").addEventListener("click", function(){
+    if(confirm("Alle Eingaben verwerfen und zur Beispiel-Liste zurückkehren?")){ state = seedState(); render(); save(); }
+  });
+
+  render(); save();
+})();
+</script>
