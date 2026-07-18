@@ -97,6 +97,9 @@ export async function ladeNachR2Hoch({
     body: daten,
     headers: {
       "Content-Type": contentType,
+      // R2 verlangt eine bekannte Länge: ohne Content-Length streamt Next/undici
+      // größere Bodys chunked → R2 lehnt mit 411 („Length Required") ab.
+      "Content-Length": String(daten.byteLength),
       // Ein Jahr cachebar — die URL ist durch den Zufallsteil unveränderlich
       "Cache-Control": "public, max-age=31536000, immutable",
     },
