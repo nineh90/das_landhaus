@@ -14,6 +14,7 @@ import {
   sekundaerBtn,
   textareaKlasse,
 } from "@/components/admin/ui";
+import BildUploadFeld from "@/components/admin/BildUploadFeld";
 import type { FormErgebnis } from "@/app/(admin)/admin/(app)/events/actions";
 
 // Eingabe = Formularwerte (Felder mit Default sind optional),
@@ -36,6 +37,7 @@ export default function EventFormular({
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<Eingabe, unknown, Ausgabe>({
     resolver: zodResolver(eventSchema),
@@ -112,11 +114,17 @@ export default function EventFormular({
         <input id="eintritt" className={inputKlasse} {...register("eintritt")} />
       </Feld>
 
+      <BildUploadFeld
+        ordner="events"
+        initialeUrl={standard?.bild}
+        onHochgeladen={(url) => setValue("bild", url, { shouldValidate: true, shouldDirty: true })}
+      />
+
       <Feld
         label="Bildpfad (optional)"
         htmlFor="bild"
         error={errors.bild?.message}
-        hint="z. B. /images/kotten/event-amerikanischer-abend.jpg"
+        hint="Wird beim Hochladen automatisch gesetzt. Alternativ manuell: z. B. /images/kotten/event-amerikanischer-abend.jpg oder eine vollständige https-Adresse."
       >
         <input id="bild" className={inputKlasse} {...register("bild")} />
       </Feld>

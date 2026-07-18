@@ -13,6 +13,7 @@ import {
   sekundaerBtn,
   selectKlasse,
 } from "@/components/admin/ui";
+import BildUploadFeld from "@/components/admin/BildUploadFeld";
 import type { FormErgebnis } from "@/app/(admin)/admin/(app)/galerie/actions";
 
 // Eingabe = Formularwerte (Felder mit Default sind optional),
@@ -35,6 +36,7 @@ export default function BildFormular({
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<Eingabe, unknown, Ausgabe>({
     resolver: zodResolver(bildSchema),
@@ -65,12 +67,18 @@ export default function BildFormular({
         </p>
       )}
 
+      <BildUploadFeld
+        ordner="galerie"
+        initialeUrl={standard?.url}
+        onHochgeladen={(url) => setValue("url", url, { shouldValidate: true, shouldDirty: true })}
+      />
+
       <Feld
         label="Bildpfad / URL"
         htmlFor="url"
         pflicht
         error={errors.url?.message}
-        hint="Pfad zum Bild, z. B. /images/galerie/essen-burger.jpg (Datei muss unter /public liegen)"
+        hint="Wird beim Hochladen automatisch gesetzt. Alternativ manuell: z. B. /images/galerie/essen-burger.jpg (Datei unter /public) oder eine vollständige https-Adresse."
       >
         <input id="url" className={inputKlasse} {...register("url")} />
       </Feld>
