@@ -3,6 +3,7 @@
 import { useState } from "react";
 import NavLink from "./NavLink";
 import LanguageSwitcher from "./LanguageSwitcher";
+import SocialLinks from "./SocialLinks";
 import type { NavItem } from "./nav-links";
 import type { Locale } from "@/lib/i18n/config";
 import type { Dictionary } from "@/lib/i18n/dictionary";
@@ -62,8 +63,9 @@ export default function MobileNav({
                 {link.label}
               </NavLink>
             ))}
-            <div className="py-4">
+            <div className="flex items-center justify-between py-4">
               <LanguageSwitcher current={locale} label={switcherLabel} />
+              <SocialLinks tone="onLight" />
             </div>
           </nav>
         </div>

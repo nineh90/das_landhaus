@@ -4,6 +4,7 @@ import "../../globals.css";
 import { fontVariables } from "@/lib/fonts";
 import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
+import SocialCta from "@/components/ui/SocialCta";
 import { locales, isLocale, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionary";
 import { SITE_URL, OG_IMAGE } from "@/lib/site";
@@ -84,6 +85,7 @@ export default async function SiteLayout({
         </noscript>
         <Header locale={locale as Locale} dict={dict} />
         <main className="flex-1">{children}</main>
+        <SocialCta dict={dict} />
         <Footer locale={locale as Locale} dict={dict} />
       </body>
     </html>

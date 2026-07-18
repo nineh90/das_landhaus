@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Container from "./Container";
 import OeffnungszeitenListe from "./OeffnungszeitenListe";
+import SocialLinks from "./SocialLinks";
 import { buildNavItems } from "./nav-links";
 import { localizedHref } from "@/lib/i18n/href";
 import { getKontakt, getEinstellung } from "@/lib/content";
@@ -34,6 +35,12 @@ export default async function Footer({ locale, dict }: { locale: Locale; dict: D
             Restaurant · Imbiss · Der Kotten
           </p>
           <p className="mt-3 text-sm leading-relaxed">{f.beschreibung}</p>
+          <SocialLinks
+            tone="onDark"
+            heading={f.social}
+            className="mt-5 flex flex-col items-center sm:items-start"
+            headingClassName="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-creme/70"
+          />
         </div>
 
         <div>

@@ -30,7 +30,12 @@
     "oeffnungszeitenRestaurant": "Openingstijden restaurant",
     "seiten": "Pagina's",
     "impressum": "Colofon & Privacy",
-    "realisiertVon": "Gemaakt door Nils-Digital"
+    "realisiertVon": "Gemaakt door Nils-Digital",
+    "social": "Volg ons"
+  },
+  "socialCta": {
+    "titel": "Blijf met ons in contact",
+    "text": "Nieuwe evenementen, gerechten en impressies van Das Landhaus — volg ons en mis niets."
   },
   "kontakt": {
     "reservierenTitel": "Een tafel reserveren",
@@ -139,7 +144,13 @@
       "kicker": "Besloten gezelschap",
       "titel": "Het restaurant huren",
       "text": "Op sluitingsdagen richten we het hele restaurant privé voor je in — van familiefeest tot bedrijfsdiner of een viering in kleine kring. Vraag ons naar menu, aantal personen en datum.",
-      "anlaesse": ["Familiefeesten", "Bedrijfsdiners", "Verjaardagen", "Jubilea", "Rouwbijeenkomsten"],
+      "anlaesse": [
+        "Familiefeesten",
+        "Bedrijfsdiners",
+        "Verjaardagen",
+        "Jubilea",
+        "Rouwbijeenkomsten"
+      ],
       "ctaTitel": "Feest aanvragen",
       "ctaText": "Vertel ons over je gelegenheid — we komen bij je terug met menu-ideeën, beschikbaarheid en mogelijkheden. Het snelst telefonisch of via WhatsApp."
     }
@@ -204,7 +215,13 @@
       "kicker": "Privé vieren",
       "titel": "De Kotten huren",
       "text": "Op sluitingsdagen wordt de Kotten helemaal jouw ruimte. Of het nu een mijlpaalverjaardag, bedrijfsfeest, vereniging- of familiefeest is — wij zorgen voor het juiste kader voor besloten gezelschappen.",
-      "anlaesse": ["Verjaardagen", "Bedrijfsfeesten", "Verenigingsfeesten", "Familiefeesten", "Jubilea"],
+      "anlaesse": [
+        "Verjaardagen",
+        "Bedrijfsfeesten",
+        "Verenigingsfeesten",
+        "Familiefeesten",
+        "Jubilea"
+      ],
       "ctaTitel": "Feest aanvragen",
       "ctaText": "Vertel ons over je gelegenheid — we komen bij je terug met beschikbaarheid en mogelijkheden. Het snelst telefonisch of via WhatsApp."
     },

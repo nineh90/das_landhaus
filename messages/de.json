@@ -34,7 +34,12 @@
     "oeffnungszeitenRestaurant": "Öffnungszeiten Restaurant",
     "seiten": "Seiten",
     "impressum": "Impressum & Datenschutz",
-    "realisiertVon": "Realisiert von Nils-Digital"
+    "realisiertVon": "Realisiert von Nils-Digital",
+    "social": "Folge uns"
+  },
+  "socialCta": {
+    "titel": "Bleib mit uns in Verbindung",
+    "text": "Neue Events, Gerichte und Eindrücke aus dem Landhaus — folge uns und verpasse nichts."
   },
   "kontakt": {
     "reservierenTitel": "Tisch reservieren",
@@ -143,7 +148,13 @@
       "kicker": "Geschlossene Gesellschaft",
       "titel": "Das Restaurant mieten",
       "text": "An geschlossenen Tagen richten wir dir das ganze Restaurant privat aus — vom Familienfest über das Firmenessen bis zur Feier im kleinen Kreis. Sprich uns auf Menü, Personenzahl und Termin an.",
-      "anlaesse": ["Familienfeiern", "Firmenessen", "Geburtstage", "Jubiläen", "Trauerfeiern"],
+      "anlaesse": [
+        "Familienfeiern",
+        "Firmenessen",
+        "Geburtstage",
+        "Jubiläen",
+        "Trauerfeiern"
+      ],
       "ctaTitel": "Feier anfragen",
       "ctaText": "Erzähl uns von deinem Anlass — wir melden uns mit Menü-Ideen, Verfügbarkeit und Möglichkeiten. Am schnellsten telefonisch oder per WhatsApp."
     }
@@ -208,7 +219,13 @@
       "kicker": "Privat feiern",
       "titel": "Den Kotten mieten",
       "text": "An geschlossenen Tagen wird der Kotten ganz zu deinem Raum. Ob runder Geburtstag, Firmenfeier, Vereins- oder Familienfest — wir schaffen den passenden Rahmen für geschlossene Gesellschaften.",
-      "anlaesse": ["Geburtstage", "Firmenfeiern", "Vereinsfeiern", "Familienfeste", "Jubiläen"],
+      "anlaesse": [
+        "Geburtstage",
+        "Firmenfeiern",
+        "Vereinsfeiern",
+        "Familienfeste",
+        "Jubiläen"
+      ],
       "ctaTitel": "Feier anfragen",
       "ctaText": "Erzähl uns von deinem Anlass — wir melden uns mit Verfügbarkeit und Möglichkeiten. Am schnellsten telefonisch oder per WhatsApp."
     },

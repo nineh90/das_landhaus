@@ -30,7 +30,12 @@
     "oeffnungszeitenRestaurant": "Restaurant opening hours",
     "seiten": "Pages",
     "impressum": "Imprint & Privacy",
-    "realisiertVon": "Made by Nils-Digital"
+    "realisiertVon": "Made by Nils-Digital",
+    "social": "Follow us"
+  },
+  "socialCta": {
+    "titel": "Stay connected with us",
+    "text": "New events, dishes and impressions from Das Landhaus — follow us and never miss a thing."
   },
   "kontakt": {
     "reservierenTitel": "Reserve a table",
@@ -139,7 +144,13 @@
       "kicker": "Private events",
       "titel": "Hire the restaurant",
       "text": "On closing days we host the whole restaurant privately for you — from a family celebration to a company dinner or an intimate gathering. Talk to us about menu, number of guests and date.",
-      "anlaesse": ["Family celebrations", "Company dinners", "Birthdays", "Anniversaries", "Memorials"],
+      "anlaesse": [
+        "Family celebrations",
+        "Company dinners",
+        "Birthdays",
+        "Anniversaries",
+        "Memorials"
+      ],
       "ctaTitel": "Enquire about your event",
       "ctaText": "Tell us about your occasion — we'll get back to you with menu ideas, availability and options. Quickest by phone or WhatsApp."
     }
@@ -204,7 +215,13 @@
       "kicker": "Celebrate privately",
       "titel": "Rent the Kotten",
       "text": "On closing days the Kotten becomes entirely your space. Whether a milestone birthday, company party, club or family celebration — we create the right setting for private events.",
-      "anlaesse": ["Birthdays", "Company parties", "Club celebrations", "Family gatherings", "Anniversaries"],
+      "anlaesse": [
+        "Birthdays",
+        "Company parties",
+        "Club celebrations",
+        "Family gatherings",
+        "Anniversaries"
+      ],
       "ctaTitel": "Enquire about your event",
       "ctaText": "Tell us about your occasion — we'll get back to you with availability and options. Quickest by phone or WhatsApp."
     },

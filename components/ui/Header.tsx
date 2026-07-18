@@ -4,6 +4,7 @@ import Container from "./Container";
 import MobileNav from "./MobileNav";
 import NavLink from "./NavLink";
 import LanguageSwitcher from "./LanguageSwitcher";
+import SocialLinks from "./SocialLinks";
 import { buildNavItems } from "./nav-links";
 import { localizedHref } from "@/lib/i18n/href";
 import type { Locale } from "@/lib/i18n/config";
@@ -48,6 +49,8 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Diction
             ))}
           </nav>
           <LanguageSwitcher current={locale} label={dict.languageSwitcher.label} />
+          {/* Erst ab lg, damit die Navigation bei mittlerer Breite nicht überläuft */}
+          <SocialLinks tone="onLight" className="hidden lg:block" />
         </div>
 
         <MobileNav
