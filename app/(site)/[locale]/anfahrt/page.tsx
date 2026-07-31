@@ -5,6 +5,7 @@ import Oeffnungszeiten from "@/components/ui/Oeffnungszeiten";
 import MapsEmbed from "@/components/ui/MapsEmbed";
 import KontaktCTA from "@/components/ui/KontaktCTA";
 import { getKontakt } from "@/lib/content";
+import { MAPS_LINK } from "@/lib/site";
 import { getDictionary } from "@/lib/i18n/dictionary";
 import type { Locale } from "@/lib/i18n/config";
 
@@ -67,7 +68,7 @@ export default async function AnfahrtSeite({ params }: { params: Promise<{ local
           <h2 className="mt-10 font-display text-2xl text-wald-dark">{t.anfahrtTitel}</h2>
           <p className="mt-4 leading-relaxed text-tinte/80">{t.anfahrtText}</p>
           <a
-            href="https://maps.app.goo.gl/Cno5bSai4361xfQM6"
+            href={MAPS_LINK}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-6 inline-flex items-center gap-2 font-semibold text-akzent-dark hover:underline"

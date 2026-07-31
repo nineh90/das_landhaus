@@ -4,13 +4,16 @@ import type { Einstellung } from "@/types";
  * PLATZHALTER-Einstellungen (Öffnungszeiten, Kontakt) als Key-Value-Paare —
  * exakt das spätere Einstellung-Schema. In Stufe 2 über das Admin-Panel pflegbar.
  *
- * Hinweis: Telefon/WhatsApp sind Beispielwerte und müssen vor dem Pitch durch
- * die echten Daten von Ali ersetzt werden.
+ * Telefon/WhatsApp stehen bewusst LEER: Ali hat die echten Nummern noch nicht
+ * geliefert, und eine erfundene Nummer ist schlechter als gar keine (sie landet
+ * sonst auch im JSON-LD und damit bei Google). Alle Ausgabestellen — Footer,
+ * Anfahrt, KontaktCTA, JSON-LD — blenden leere Werte automatisch aus. Sobald die
+ * Nummern da sind: hier eintragen bzw. im Admin unter Einstellungen pflegen.
  */
 export const einstellungen: Einstellung[] = [
-  { key: "telefon", value: "+49 5482 000000" },
-  { key: "whatsapp", value: "4954820000000" }, // Format für wa.me-Link (ohne + und Leerzeichen)
-  { key: "email", value: "info@das-landhaus-tecklenburg.de" },
+  { key: "telefon", value: "" },
+  { key: "whatsapp", value: "" }, // Format für wa.me-Link (ohne + und Leerzeichen)
+  { key: "email", value: "info@das-landhaus-capfun.de" },
   {
     key: "adresse",
     value: "Das Landhaus, Grafenstraße 31, 49545 Tecklenburg-Leeden",

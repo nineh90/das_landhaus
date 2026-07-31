@@ -16,6 +16,13 @@ export const OG_IMAGE = "/images/og/og-standard.jpg";
 export const SITE_NAME = "Das Landhaus Tecklenburg-Leeden";
 
 /**
+ * Kurzlink zum Google-Maps-Eintrag (Google Maps → Teilen → Link kopieren).
+ * Wird auf der Anfahrt-Seite und als Alternative im Karten-Consent verlinkt —
+ * dort führt er erst beim bewussten Klick zu Google.
+ */
+export const MAPS_LINK = "https://maps.app.goo.gl/Cno5bSai4361xfQM6";
+
+/**
  * Social-Media-/Google-Profile für JSON-LD `sameAs` — verknüpft
  * Website ↔ Instagram/Facebook ↔ Google Business für die lokale Suche.
  *

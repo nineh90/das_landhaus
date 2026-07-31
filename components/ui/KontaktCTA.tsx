@@ -32,6 +32,9 @@ export default async function KontaktCTA({
       </h3>
       <p className={hell ? "mx-auto mt-2 max-w-xl text-creme/80" : "mx-auto mt-2 max-w-xl text-tinte/75"}>
         {text ?? k.reservierenText}
+        {/* Hinweis auf die schnellen Kanäle nur, solange sie auch wirklich gepflegt sind —
+            sonst verspricht der Text Telefon/WhatsApp, während nur der E-Mail-Button dasteht. */}
+        {(telefon || whatsapp) && <> {k.kanalHinweis}</>}
       </p>
       <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
         {telefon && (

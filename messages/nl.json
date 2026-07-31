@@ -42,7 +42,8 @@
     "reservierenText": "Reserveringen en aanvragen nemen we graag aan — stuur ons gerust een bericht.",
     "anrufen": "Bellen",
     "whatsapp": "Stuur ons een WhatsApp",
-    "email": "Stuur ons een e-mail"
+    "email": "Stuur ons een e-mail",
+    "kanalHinweis": "Het snelst telefonisch of via WhatsApp."
   },
   "events": {
     "leer": "Er staan momenteel geen data gepland. Kom snel weer kijken!",
@@ -55,7 +56,16 @@
     "leer": "Binnenkort zijn hier foto's te zien."
   },
   "maps": {
-    "titel": "Kaart: Das Landhaus Tecklenburg-Leeden"
+    "titel": "Kaart: Das Landhaus Tecklenburg-Leeden",
+    "consent": {
+      "titel": "Kaart van Google Maps",
+      "text": "Bij het laden van de kaart wordt verbinding gemaakt met Google. Daarbij worden je IP-adres en apparaatgegevens naar Google verstuurd — ook naar de VS. Meer daarover in de",
+      "datenschutz": "privacyverklaring",
+      "laden": "Kaart laden",
+      "merken": "Keuze onthouden in deze browser",
+      "extern": "Of direct openen in Google Maps",
+      "widerrufen": "Kaart weer blokkeren"
+    }
   },
   "home": {
     "hero": {
@@ -152,7 +162,7 @@
         "Rouwbijeenkomsten"
       ],
       "ctaTitel": "Feest aanvragen",
-      "ctaText": "Vertel ons over je gelegenheid — we komen bij je terug met menu-ideeën, beschikbaarheid en mogelijkheden. Het snelst telefonisch of via WhatsApp."
+      "ctaText": "Vertel ons over je gelegenheid — we komen bij je terug met menu-ideeën, beschikbaarheid en mogelijkheden."
     }
   },
   "imbiss": {
@@ -223,7 +233,7 @@
         "Jubilea"
       ],
       "ctaTitel": "Feest aanvragen",
-      "ctaText": "Vertel ons over je gelegenheid — we komen bij je terug met beschikbaarheid en mogelijkheden. Het snelst telefonisch of via WhatsApp."
+      "ctaText": "Vertel ons over je gelegenheid — we komen bij je terug met beschikbaarheid en mogelijkheden."
     },
     "impressionen": {
       "kicker": "Impressies",
@@ -243,7 +253,7 @@
     "eintrittAnfrage": "op aanvraag",
     "zurueck": "← Alle evenementen",
     "ctaTitel": "Plaatsen reserveren",
-    "ctaText": "Voor veel evenementen is reserveren aan te raden. Neem gerust contact op telefonisch of via WhatsApp."
+    "ctaText": "Voor veel evenementen is reserveren aan te raden. Neem gerust contact met ons op."
   },
   "galerie": {
     "hero": {

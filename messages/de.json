@@ -46,7 +46,8 @@
     "reservierenText": "Reservierungen und Anfragen nehmen wir gern entgegen — schreib uns einfach.",
     "anrufen": "Anrufen",
     "whatsapp": "Per WhatsApp schreiben",
-    "email": "E-Mail schreiben"
+    "email": "E-Mail schreiben",
+    "kanalHinweis": "Am schnellsten telefonisch oder per WhatsApp."
   },
   "events": {
     "leer": "Aktuell sind keine Termine geplant. Schau bald wieder vorbei!",
@@ -59,7 +60,16 @@
     "leer": "Bald gibt es hier Bilder zu sehen."
   },
   "maps": {
-    "titel": "Karte: Das Landhaus Tecklenburg-Leeden"
+    "titel": "Karte: Das Landhaus Tecklenburg-Leeden",
+    "consent": {
+      "titel": "Karte von Google Maps",
+      "text": "Beim Laden der Karte wird eine Verbindung zu Google hergestellt. Dabei werden deine IP-Adresse und Gerätedaten an Google übertragen — auch in die USA. Mehr dazu in der",
+      "datenschutz": "Datenschutzerklärung",
+      "laden": "Karte laden",
+      "merken": "Entscheidung in diesem Browser merken",
+      "extern": "Oder direkt bei Google Maps öffnen",
+      "widerrufen": "Karte wieder sperren"
+    }
   },
   "home": {
     "hero": {
@@ -156,7 +166,7 @@
         "Trauerfeiern"
       ],
       "ctaTitel": "Feier anfragen",
-      "ctaText": "Erzähl uns von deinem Anlass — wir melden uns mit Menü-Ideen, Verfügbarkeit und Möglichkeiten. Am schnellsten telefonisch oder per WhatsApp."
+      "ctaText": "Erzähl uns von deinem Anlass — wir melden uns mit Menü-Ideen, Verfügbarkeit und Möglichkeiten."
     }
   },
   "imbiss": {
@@ -227,7 +237,7 @@
         "Jubiläen"
       ],
       "ctaTitel": "Feier anfragen",
-      "ctaText": "Erzähl uns von deinem Anlass — wir melden uns mit Verfügbarkeit und Möglichkeiten. Am schnellsten telefonisch oder per WhatsApp."
+      "ctaText": "Erzähl uns von deinem Anlass — wir melden uns mit Verfügbarkeit und Möglichkeiten."
     },
     "impressionen": {
       "kicker": "Impressionen",
@@ -247,7 +257,7 @@
     "eintrittAnfrage": "auf Anfrage",
     "zurueck": "← Alle Veranstaltungen",
     "ctaTitel": "Plätze sichern",
-    "ctaText": "Für viele Veranstaltungen empfiehlt sich eine Reservierung. Melde dich gern telefonisch oder per WhatsApp."
+    "ctaText": "Für viele Veranstaltungen empfiehlt sich eine Reservierung. Melde dich gern bei uns."
   },
   "galerie": {
     "hero": {
@@ -273,30 +283,31 @@
   },
   "impressum": {
     "hero": "Impressum & Datenschutz",
-    "hinweisLabel": "Hinweis (Demo):",
-    "hinweisText": "Dieser Text ist ein Platzhalter und ersetzt keine Rechtsberatung. Vor dem Launch werden hier die echten, geprüften Pflichtangaben des Betreibers eingesetzt.",
+    "hinweisLabel": "Hinweis:",
+    "hinweisText": "Einzelne Pflichtangaben (u. a. Umsatzsteuer-Identifikationsnummer) werden derzeit ergänzt. Dieser Text ersetzt keine Rechtsberatung.",
     "impressumTitel": "Impressum",
     "angabenGemaess": "Angaben gemäß § 5 DDG (Digitale-Dienste-Gesetz):",
-    "inhaberPlatzhalter": "[Inhaber: Vor- und Nachname]",
+    "inhaberPlatzhalter": "Inhaber: Ali Caliskan",
     "kontaktLabel": "Kontakt:",
-    "telefonPlatzhalter": "Telefon: [Telefonnummer]",
-    "emailPlatzhalter": "E-Mail: [E-Mail-Adresse]",
-    "ustLabel": "Umsatzsteuer-ID:",
-    "ustPlatzhalter": "[falls vorhanden]",
     "verantwortlichLabel": "Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV:",
-    "verantwortlichPlatzhalter": "[Name]",
+    "verantwortlichPlatzhalter": "Ali Caliskan, Anschrift wie oben",
     "datenschutzTitel": "Datenschutzerklärung",
     "datenschutzIntro": "Der Schutz deiner persönlichen Daten ist uns wichtig. Diese Website verarbeitet personenbezogene Daten nur im technisch notwendigen Rahmen.",
     "hostingTitel": "Hosting",
-    "hostingText": "Diese Website wird bei einem externen Dienstleister gehostet. Beim Aufruf werden technisch notwendige Server-Logdaten (z. B. IP-Adresse, Zeitpunkt, abgerufene Seite) verarbeitet. [Anbieter konkret benennen, z. B. Vercel Inc.]",
+    "hostingText": "Diese Website wird von der Vercel Inc. (USA) gehostet, die Datenbank betreibt die Neon Inc. (USA). Beim Aufruf werden technisch notwendige Server-Logdaten (z. B. IP-Adresse, Zeitpunkt, abgerufene Seite) verarbeitet. Die Übermittlung in die USA erfolgt auf Grundlage der EU-Standardvertragsklauseln.",
     "schriftenTitel": "Schriftarten",
     "schriftenTextVor": "Die verwendeten Schriftarten werden lokal vom eigenen Server ausgeliefert (Self-Hosting via ",
     "schriftenTextNach": "). Es besteht dabei keine Verbindung zu Servern Dritter (z. B. Google Fonts).",
     "mapsTitel": "Google Maps",
-    "mapsTextVor": "Zur Darstellung des Anfahrtswegs binden wir Kartenmaterial von Google Maps ein. Dabei kann eine Verbindung zu Servern von Google aufgebaut und deine IP-Adresse übertragen werden. ",
-    "mapsHinweisLabel": "Hinweis für die Produktion:",
-    "mapsTextNach": " Vor dem Launch wird die Karte mit einer Einwilligungs-/Klicklösung (Consent) versehen, sodass die Verbindung erst nach ausdrücklicher Zustimmung erfolgt.",
+    "mapsText": "Zur Darstellung des Anfahrtswegs binden wir Kartenmaterial von Google Maps ein (Google Ireland Limited, Irland; Übermittlung auch an Google LLC, USA). Die Karte wird erst nach deiner ausdrücklichen Einwilligung geladen: Bis zum Klick auf „Karte laden“ wird keine Verbindung zu Google hergestellt und es werden keine Daten übertragen. Erst danach werden deine IP-Adresse und Gerätedaten an Google übermittelt. Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDG); die Übermittlung in die USA erfolgt auf Grundlage der EU-Standardvertragsklauseln.",
+    "mapsWiderrufText": "Wenn du die Einwilligung merken lässt, wird sie ausschließlich lokal in deinem Browser gespeichert (localStorage, kein Cookie, keine Übertragung an uns). Du kannst sie jederzeit mit einem Klick auf „Karte wieder sperren“ unter der Karte widerrufen oder durch Löschen der Browserdaten entfernen.",
+    "cookiesTitel": "Cookies & lokale Speicherung",
+    "cookiesText": "Diese Website verwendet keine Cookies zu Analyse-, Tracking- oder Werbezwecken und bindet keine Analyse-Dienste (z. B. Google Analytics) ein. Gesetzt wird lediglich ein technisch notwendiges Cookie für die gewählte Sprache (NEXT_LOCALE, Laufzeit 1 Jahr) sowie — bei Einwilligung in die Karte — ein Eintrag im lokalen Speicher deines Browsers. Beides ist für die von dir gewünschten Funktionen erforderlich (§ 25 Abs. 2 Nr. 2 TDDG) und wird nicht ausgewertet. Ein Cookie-Banner ist daher nicht nötig.",
     "rechteTitel": "Deine Rechte",
-    "rechteText": "Du hast jederzeit das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung deiner personenbezogenen Daten sowie ein Beschwerderecht bei der zuständigen Aufsichtsbehörde. Wende dich dazu an die oben genannten Kontaktdaten."
+    "rechteText": "Du hast jederzeit das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung deiner personenbezogenen Daten sowie ein Beschwerderecht bei der zuständigen Aufsichtsbehörde. Wende dich dazu an die oben genannten Kontaktdaten.",
+    "umsetzungLabel": "Technische Umsetzung:",
+    "umsetzungText": "Nils-Digital — Gestaltung, Entwicklung und Pflege dieser Website.",
+    "telefonLabel": "Telefon:",
+    "emailLabel": "E-Mail:"
   }
 }

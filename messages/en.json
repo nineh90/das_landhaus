@@ -42,7 +42,8 @@
     "reservierenText": "We're happy to take your reservations and enquiries — just drop us a line.",
     "anrufen": "Call",
     "whatsapp": "Message us on WhatsApp",
-    "email": "Send us an email"
+    "email": "Send us an email",
+    "kanalHinweis": "Quickest by phone or WhatsApp."
   },
   "events": {
     "leer": "No dates are planned at the moment. Check back soon!",
@@ -55,7 +56,16 @@
     "leer": "Photos coming soon."
   },
   "maps": {
-    "titel": "Map: Das Landhaus Tecklenburg-Leeden"
+    "titel": "Map: Das Landhaus Tecklenburg-Leeden",
+    "consent": {
+      "titel": "Map by Google Maps",
+      "text": "Loading the map connects to Google. This transfers your IP address and device data to Google — including to the USA. More on this in our",
+      "datenschutz": "privacy policy",
+      "laden": "Load map",
+      "merken": "Remember my choice in this browser",
+      "extern": "Or open directly in Google Maps",
+      "widerrufen": "Block map again"
+    }
   },
   "home": {
     "hero": {
@@ -152,7 +162,7 @@
         "Memorials"
       ],
       "ctaTitel": "Enquire about your event",
-      "ctaText": "Tell us about your occasion — we'll get back to you with menu ideas, availability and options. Quickest by phone or WhatsApp."
+      "ctaText": "Tell us about your occasion — we'll get back to you with menu ideas, availability and options."
     }
   },
   "imbiss": {
@@ -223,7 +233,7 @@
         "Anniversaries"
       ],
       "ctaTitel": "Enquire about your event",
-      "ctaText": "Tell us about your occasion — we'll get back to you with availability and options. Quickest by phone or WhatsApp."
+      "ctaText": "Tell us about your occasion — we'll get back to you with availability and options."
     },
     "impressionen": {
       "kicker": "Impressions",
@@ -243,7 +253,7 @@
     "eintrittAnfrage": "on request",
     "zurueck": "← All events",
     "ctaTitel": "Secure your spot",
-    "ctaText": "For many events a reservation is recommended. Get in touch by phone or WhatsApp."
+    "ctaText": "For many events a reservation is recommended. Get in touch with us."
   },
   "galerie": {
     "hero": {
