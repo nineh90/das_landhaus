@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import { NextResponse, type NextRequest } from "next/server";
 import { authConfig } from "@/lib/auth.config";
-import { defaultLocale, isLocale, type Locale } from "@/lib/i18n/config";
+import { defaultLocale, isLocale, LOCALE_HEADER, type Locale } from "@/lib/i18n/config";
 
 /**
  * Middleware (Next.js 16 „proxy"-Konvention, Nachfolger von middleware.ts).
@@ -54,7 +54,13 @@ export default auth((req) => {
 
   // --- 2. Öffentliche Website: Locale-Präfix erzwingen ---
   const ersteSegment = pathname.split("/")[1];
-  if (isLocale(ersteSegment)) return NextResponse.next();
+  if (isLocale(ersteSegment)) {
+    // Sprache zusätzlich als Request-Header durchreichen: die 404-Seite
+    // (not-found.tsx) bekommt keine `params` und liest die Sprache von hier.
+    const headers = new Headers(req.headers);
+    headers.set(LOCALE_HEADER, ersteSegment);
+    return NextResponse.next({ request: { headers } });
+  }
 
   const locale = ermittleLocale(req);
   const url = req.nextUrl.clone();

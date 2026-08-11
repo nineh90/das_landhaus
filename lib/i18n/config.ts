@@ -35,6 +35,13 @@ export const localeToIntl: Record<Locale, string> = {
   nl: "nl-NL",
 };
 
+/**
+ * Request-Header, in dem der Proxy die erkannte Sprache durchreicht.
+ * Nötig für Server-Komponenten ohne `params` — allen voran die 404-Seite
+ * (`not-found.tsx` bekommt vom Framework keine Route-Parameter).
+ */
+export const LOCALE_HEADER = "x-locale";
+
 /** Type-Guard: prüft, ob ein unbekannter String eine unterstützte Locale ist. */
 export function isLocale(value: string): value is Locale {
   return (locales as readonly string[]).includes(value);

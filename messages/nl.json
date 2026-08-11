@@ -275,5 +275,13 @@
     "anfahrtText": "Das Landhaus ligt in vakantiepark Capfun in Tecklenburg-Leeden, goed bereikbaar vanuit de hele omgeving — vanuit Osnabrück, Münster en Bielefeld elk ongeveer een uur. Er is parkeergelegenheid direct ter plaatse.",
     "mapsLink": "Openen in Google Maps & route plannen →",
     "oeffnungszeitenTitel": "Openingstijden"
+  },
+  "nichtGefunden": {
+    "kicker": "Fout 404",
+    "titel": "Hier houdt het pad op",
+    "text": "Deze pagina bestaat helaas niet (meer). Misschien staat er een typefout in het adres of is de link verouderd.",
+    "zurStartseite": "Naar de startpagina",
+    "linksTitel": "Zocht je misschien dit:",
+    "linksText": "Alle pagina's van Das Landhaus in één overzicht."
   }
 }

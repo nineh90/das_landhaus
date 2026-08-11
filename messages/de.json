@@ -309,5 +309,13 @@
     "umsetzungText": "Nils-Digital — Gestaltung, Entwicklung und Pflege dieser Website.",
     "telefonLabel": "Telefon:",
     "emailLabel": "E-Mail:"
+  },
+  "nichtGefunden": {
+    "kicker": "Fehler 404",
+    "titel": "Hier geht's nicht weiter",
+    "text": "Diese Seite gibt es leider nicht (mehr). Vielleicht hat sich ein Tippfehler eingeschlichen, oder der Link ist veraltet.",
+    "zurStartseite": "Zur Startseite",
+    "linksTitel": "Vielleicht suchst du das hier:",
+    "linksText": "Alle Seiten des Landhauses auf einen Blick."
   }
 }

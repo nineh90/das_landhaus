@@ -9,11 +9,14 @@ import Container from "./Container";
 export default function PageHero({
   titel,
   text,
+  kicker,
   bild = "/images/hero/landhaus-hero.jpeg",
   children,
 }: {
   titel: string;
   text?: string;
+  /** Optionale Zeile über dem Titel (z. B. „Fehler 404"). */
+  kicker?: string;
   bild?: string;
   /** Optionale Aktionen (z. B. CTA-Buttons), erscheinen unter dem Einleitungstext. */
   children?: React.ReactNode;
@@ -33,6 +36,11 @@ export default function PageHero({
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-wald-dark/90 via-wald-dark/70 to-wald-dark/55" />
 
       <Container className="py-14 sm:py-20">
+        {kicker && (
+          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-akzent">
+            {kicker}
+          </p>
+        )}
         <h1 className="font-script font-bold leading-[0.9] drop-shadow-md text-6xl sm:text-7xl lg:text-8xl">
           {titel}
         </h1>
