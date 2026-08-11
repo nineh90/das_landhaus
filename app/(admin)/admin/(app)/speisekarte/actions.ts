@@ -6,6 +6,12 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { getKategorieReihenfolge } from "@/lib/content";
 import { gerichtSchema } from "@/lib/schemas";
+import {
+  loescheUebersetzungen,
+  speichereUebersetzungen,
+  verschiebeUebersetzungen,
+} from "@/lib/i18n/uebersetzungen";
+import { zielLocales, type ZielLocale } from "@/lib/i18n/config";
 import type { Bereich } from "@/types";
 
 export type FormErgebnis = { fehler?: string };
@@ -54,7 +60,8 @@ export async function erstelleGericht(werte: unknown): Promise<FormErgebnis> {
   if (!parsed.success) return { fehler: "Bitte die Eingaben prüfen." };
 
   try {
-    await prisma.gericht.create({ data: aufbereiten(parsed.data) });
+    const gericht = await prisma.gericht.create({ data: aufbereiten(parsed.data) });
+    await speichereUebersetzungen("gericht", gericht.id, parsed.data.uebersetzungen ?? {});
   } catch (error) {
     console.error("erstelleGericht:", error);
     return { fehler: "Speichern fehlgeschlagen. Bitte erneut versuchen." };
@@ -71,6 +78,7 @@ export async function aktualisiereGericht(id: string, werte: unknown): Promise<F
 
   try {
     await prisma.gericht.update({ where: { id }, data: aufbereiten(parsed.data) });
+    await speichereUebersetzungen("gericht", id, parsed.data.uebersetzungen ?? {});
   } catch (error) {
     console.error("aktualisiereGericht:", error);
     return { fehler: "Speichern fehlgeschlagen. Bitte erneut versuchen." };
@@ -89,6 +97,8 @@ export async function toggleVerfuegbar(id: string, verfuegbar: boolean) {
 export async function loescheGericht(id: string) {
   await pruefeAuth();
   await prisma.gericht.delete({ where: { id } });
+  // Übersetzungen mit entfernen — sonst blieben verwaiste Zeilen zurück.
+  await loescheUebersetzungen("gericht", id);
   revalidiere();
 }
 
@@ -114,6 +124,9 @@ export async function benenneKategorieUm(
       data: { kategorie: neuName },
     });
 
+    // Schlüssel der Kategorie-Übersetzungen ist der deutsche Name → mitziehen.
+    await verschiebeUebersetzungen("kategorie", alt, neuName);
+
     // Reihenfolge mitziehen: neuer Name erbt die Position des alten. Bei
     // Verschmelzung (Zielname existierte schon) bleibt nur ein Eintrag.
     const vorhandene = (
@@ -138,6 +151,34 @@ export async function benenneKategorieUm(
   } catch (error) {
     console.error("benenneKategorieUm:", error);
     return { fehler: "Umbenennen fehlgeschlagen. Bitte erneut versuchen." };
+  }
+
+  revalidiere();
+  return {};
+}
+
+/**
+ * Übersetzungen eines Kategorienamens speichern (ein Feld je Sprache).
+ * Schlüssel ist der deutsche Name — Kategorien sind keine eigene Tabelle.
+ */
+export async function speichereKategorieUebersetzung(
+  kategorie: string,
+  werte: Partial<Record<ZielLocale, string>>,
+): Promise<FormErgebnis> {
+  await pruefeAuth();
+
+  const daten: Partial<Record<ZielLocale, Record<string, string>>> = {};
+  for (const locale of zielLocales) {
+    const wert = (werte[locale] ?? "").trim();
+    if (wert.length > 60) return { fehler: "Kategoriename ist zu lang (max. 60 Zeichen)." };
+    daten[locale] = { name: wert };
+  }
+
+  try {
+    await speichereUebersetzungen("kategorie", kategorie, daten);
+  } catch (error) {
+    console.error("speichereKategorieUebersetzung:", error);
+    return { fehler: "Speichern fehlgeschlagen. Bitte erneut versuchen." };
   }
 
   revalidiere();

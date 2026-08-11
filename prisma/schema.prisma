@@ -66,6 +66,32 @@ model Einstellung {
   value String
 }
 
+// Übersetzungen der redaktionellen Inhalte (EN/NL). Bewusst generisch statt je
+// Modell eigener Spalten: eine Tabelle bedient Gerichte, Kategorienamen, Events,
+// Bildtexte und Einstellungen — und ein neues übersetzbares Feld braucht keine
+// Migration mehr.
+//
+// Deutsch ist die Pflegesprache und steht weiterhin am Datensatz selbst; hier
+// liegen ausschließlich die Abweichungen. Fehlt eine Zeile (oder ist sie leer),
+// fällt die Website auf Deutsch zurück — dieselbe Logik wie beim Deep-Merge der
+// Wörterbücher in lib/i18n/dictionary.ts.
+//
+// `datensatzId` ist die cuid des übersetzten Datensatzes. Ausnahmen: bei
+// `modell = "kategorie"` der deutsche Kategoriename (Kategorien sind keine
+// eigene Tabelle) und bei `modell = "einstellung"` der Einstellungs-Key.
+model Uebersetzung {
+  id             String   @id @default(cuid())
+  modell         String // "gericht" | "kategorie" | "event" | "bild" | "einstellung"
+  datensatzId    String
+  locale         String // "en" | "nl"
+  feld           String // "name" | "beschreibung" | "titel" | …
+  wert           String
+  aktualisiertAm DateTime @updatedAt
+
+  @@unique([modell, datensatzId, locale, feld])
+  @@index([modell, locale])
+}
+
 // Admin-Benutzer (i.d.R. genau einer: der Betreiber). Passwort wird als
 // bcrypt-Hash gespeichert; der erste Benutzer wird per Seed aus ADMIN_EMAIL /
 // ADMIN_PASSWORD angelegt.

@@ -7,12 +7,16 @@ import ServerAktionButton from "@/components/admin/ServerAktionButton";
 import SortierbareListe from "@/components/admin/SortierbareListe";
 import SortierbareKategorien from "@/components/admin/SortierbareKategorien";
 import KategorieUmbenennen from "@/components/admin/KategorieUmbenennen";
+import KategorieUebersetzen from "@/components/admin/KategorieUebersetzen";
 import EinklappbareKategorie from "@/components/admin/EinklappbareKategorie";
+import { ladeUebersetzungenJeDatensatz } from "@/lib/i18n/uebersetzungen";
+import { zielLocales, type ZielLocale } from "@/lib/i18n/config";
 import {
   benenneKategorieUm,
   loescheGericht,
   speichereGerichtReihenfolge,
   speichereKategorieReihenfolge,
+  speichereKategorieUebersetzung,
   toggleVerfuegbar,
 } from "./actions";
 
@@ -68,9 +72,10 @@ function GerichtInhalt({ g }: { g: Gericht }) {
 
 export default async function SpeisekarteSeite() {
   const bereiche = ["restaurant", "imbiss"] as const;
-  const [gerichte, reihenfolgeEintraege] = await Promise.all([
+  const [gerichte, reihenfolgeEintraege, kategorieUebersetzungen] = await Promise.all([
     alleGerichte(),
     Promise.all(bereiche.map(async (b) => [b, await getKategorieReihenfolge(b)] as const)),
+    ladeUebersetzungenJeDatensatz("kategorie"),
   ]);
   const reihenfolgen = Object.fromEntries(reihenfolgeEintraege) as Record<
     (typeof bereiche)[number],
@@ -129,6 +134,17 @@ export default async function SpeisekarteSeite() {
                             <KategorieUmbenennen
                               aktuell={kategorie}
                               aktion={benenneKategorieUm.bind(null, bereich, kategorie)}
+                            />
+                          }
+                          uebersetzen={
+                            <KategorieUebersetzen
+                              vorhanden={Object.fromEntries(
+                                zielLocales.map((l) => [
+                                  l,
+                                  kategorieUebersetzungen[kategorie]?.[l]?.name ?? "",
+                                ]),
+                              ) as Partial<Record<ZielLocale, string>>}
+                              aktion={speichereKategorieUebersetzung.bind(null, kategorie)}
                             />
                           }
                         >

@@ -21,7 +21,7 @@ export default async function ImbissSeite({ params }: { params: Promise<{ locale
   const { locale: raw } = await params;
   const locale = raw as Locale;
   const [karte, oeffnung, imbissBilder, dict] = await Promise.all([
-    getGerichteNachKategorie("imbiss"),
+    getGerichteNachKategorie("imbiss", locale),
     getEinstellung("oeffnungszeiten_imbiss"),
     getBilder("imbiss"),
     getDictionary(locale),

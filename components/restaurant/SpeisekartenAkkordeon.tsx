@@ -1,4 +1,4 @@
-import type { Gericht } from "@/types";
+import type { KategorieBlock } from "@/lib/content";
 import type { Dictionary } from "@/lib/i18n/dictionary";
 import GerichtZeile from "./GerichtZeile";
 
@@ -20,7 +20,7 @@ export default function SpeisekartenAkkordeon({
   labels,
   name = "speisekarte",
 }: {
-  karte: { kategorie: string; gerichte: Gericht[] }[];
+  karte: KategorieBlock[];
   /** Labels für die Kennzeichnungszeile je Gericht (aus dem Wörterbuch). */
   labels: Pick<Dictionary["speisekarteHinweise"], "allergene" | "zusatzstoffe">;
   /** Gruppenname für den exklusiven Auf-/Zuklapp-Verbund (je Seite eindeutig). */
@@ -33,7 +33,8 @@ export default function SpeisekartenAkkordeon({
           <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 transition-colors hover:bg-creme-dark/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-akzent [&::-webkit-details-marker]:hidden">
             <span className="flex items-baseline gap-3">
               <h3 className="font-display text-xl text-wald-dark sm:text-2xl">
-                {block.kategorie}
+                {/* Beschriftung in der Sprache des Gastes, Schlüssel bleibt deutsch. */}
+                {block.label}
               </h3>
               <span className="text-sm text-tinte/50">{block.gerichte.length}</span>
             </span>

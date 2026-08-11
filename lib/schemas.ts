@@ -92,6 +92,23 @@ export function gerichtKennzeichnung(g: { allergene: string[]; zusatzstoffe: str
 // entwickelt sich, und der Betreiber soll Kategorien selbst anlegen und
 // umbenennen können. Das Formular schlägt die bereits vorhandenen Kategorien
 // per Datalist vor — pflegt aber keine Zwangsauswahl.
+/**
+ * Übersetzbare Felder eines Gerichts, je Zielsprache (siehe `zielLocales`).
+ * Durchgehend optional — was fehlt oder leer ist, zeigt die Website auf Deutsch.
+ * Kommt eine vierte Sprache dazu, hier eine Zeile ergänzen.
+ */
+const gerichtUebersetzungSchema = z.object({
+  name: z.string().trim().max(120).optional(),
+  beschreibung: z.string().trim().max(500).optional(),
+});
+
+export const gerichtUebersetzungenSchema = z
+  .object({
+    en: gerichtUebersetzungSchema.optional(),
+    nl: gerichtUebersetzungSchema.optional(),
+  })
+  .optional();
+
 export const gerichtSchema = z.object({
   name: z.string().trim().min(1, "Name ist erforderlich.").max(120),
   beschreibung: z.string().trim().max(500).optional().default(""),
@@ -106,6 +123,9 @@ export const gerichtSchema = z.object({
   reihenfolge: z.number().int("Ganze Zahl erwartet.").min(0).max(9999).default(0),
   allergene: z.array(z.enum(ALLERGEN_CODES)).default([]),
   zusatzstoffe: z.array(z.enum(ZUSATZSTOFF_CODES)).default([]),
+  // Übersetzungen sind durchgehend optional: Was leer bleibt, zeigt die Website
+  // auf Deutsch (Rückfall in lib/i18n/uebersetzungen.ts).
+  uebersetzungen: gerichtUebersetzungenSchema,
 });
 export type GerichtFormular = z.input<typeof gerichtSchema>;
 

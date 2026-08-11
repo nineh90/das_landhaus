@@ -18,6 +18,16 @@ export type Locale = (typeof locales)[number];
  */
 export const defaultLocale = "de" satisfies Locale;
 
+/**
+ * Zielsprachen für Übersetzungen redaktioneller Inhalte: alle außer Deutsch.
+ * Deutsch ist die Pflegesprache und steht am Datensatz selbst (siehe
+ * lib/i18n/uebersetzungen.ts). Bewusst hier und nicht dort definiert, damit auch
+ * Client-Komponenten (Admin-Formulare) die Liste ohne Datenbank-Import kennen.
+ */
+export type ZielLocale = Exclude<Locale, typeof defaultLocale>;
+
+export const zielLocales = locales.filter((l): l is ZielLocale => l !== defaultLocale);
+
 /** Menschlich lesbare Namen der Sprachen (für den Umschalter). */
 export const localeNames: Record<Locale, string> = {
   de: "Deutsch",

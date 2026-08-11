@@ -23,7 +23,7 @@ export default async function RestaurantSeite({ params }: { params: Promise<{ lo
   const { locale: raw } = await params;
   const locale = raw as Locale;
   const [karte, dict] = await Promise.all([
-    getGerichteNachKategorie("restaurant"),
+    getGerichteNachKategorie("restaurant", locale),
     getDictionary(locale),
   ]);
   const t = dict.restaurant;

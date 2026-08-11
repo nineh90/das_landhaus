@@ -3,6 +3,7 @@ import { AdminSeitenkopf, Karte } from "@/components/admin/ui";
 import GerichtFormular from "@/components/admin/GerichtFormular";
 import { alleKategorien, gerichtById } from "@/lib/admin-data";
 import { GERICHT_BEREICHE } from "@/lib/schemas";
+import { ladeUebersetzungenFuerDatensatz } from "@/lib/i18n/uebersetzungen";
 import { aktualisiereGericht } from "../actions";
 
 export const metadata = { title: "Gericht bearbeiten" };
@@ -13,7 +14,11 @@ export default async function GerichtBearbeitenSeite({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const [gericht, kategorien] = await Promise.all([gerichtById(id), alleKategorien()]);
+  const [gericht, kategorien, uebersetzungen] = await Promise.all([
+    gerichtById(id),
+    alleKategorien(),
+    ladeUebersetzungenFuerDatensatz("gericht", id),
+  ]);
   if (!gericht) notFound();
 
   const aktion = aktualisiereGericht.bind(null, gericht.id);
@@ -37,6 +42,10 @@ export default async function GerichtBearbeitenSeite({
             reihenfolge: gericht.reihenfolge,
             allergene: gericht.allergene as never,
             zusatzstoffe: gericht.zusatzstoffe as never,
+            uebersetzungen: {
+              en: { name: uebersetzungen.en.name ?? "", beschreibung: uebersetzungen.en.beschreibung ?? "" },
+              nl: { name: uebersetzungen.nl.name ?? "", beschreibung: uebersetzungen.nl.beschreibung ?? "" },
+            },
           }}
         />
       </Karte>

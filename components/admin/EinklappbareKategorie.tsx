@@ -19,6 +19,7 @@ export default function EinklappbareKategorie({
   kategorie,
   anzahl,
   umbenennen,
+  uebersetzen,
   children,
   standardOffen = false,
 }: {
@@ -26,6 +27,8 @@ export default function EinklappbareKategorie({
   anzahl: number;
   /** Slot für die Umbenennen-Aktion (bleibt außerhalb des Aufklapp-Buttons). */
   umbenennen: React.ReactNode;
+  /** Slot für die Übersetzungen der Überschrift (EN/NL), ebenfalls außerhalb. */
+  uebersetzen?: React.ReactNode;
   children: React.ReactNode;
   standardOffen?: boolean;
 }) {
@@ -62,6 +65,7 @@ export default function EinklappbareKategorie({
           </span>
         </button>
         {umbenennen}
+        {uebersetzen}
       </div>
       {offen && children}
     </div>

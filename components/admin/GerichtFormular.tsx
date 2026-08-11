@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { gerichtSchema, GERICHT_BEREICHE, ALLERGENE, ZUSATZSTOFFE } from "@/lib/schemas";
+import { zielLocales, localeNames } from "@/lib/i18n/config";
 import {
   Feld,
   Schalter,
@@ -61,6 +62,9 @@ export default function GerichtFormular({
       reihenfolge: 0,
       allergene: [],
       zusatzstoffe: [],
+      uebersetzungen: Object.fromEntries(
+        zielLocales.map((l) => [l, { name: "", beschreibung: "" }]),
+      ) as Eingabe["uebersetzungen"],
       ...standard,
     },
   });
@@ -76,6 +80,13 @@ export default function GerichtFormular({
       : [...aktuell, code];
     setValue(feld, neu as never, { shouldDirty: true });
   };
+
+  // Kurzer Hinweis im zugeklappten Zustand, welche Sprachen schon gepflegt sind.
+  const uebersetzungen = watch("uebersetzungen");
+  const gepflegt = zielLocales.filter((l) => uebersetzungen?.[l]?.name?.trim());
+  const uebersetzungsStand = gepflegt.length
+    ? `gepflegt: ${gepflegt.map((l) => l.toUpperCase()).join(" · ")}`
+    : "";
 
   const onSubmit = handleSubmit(async (werte) => {
     setServerFehler(undefined);
@@ -101,6 +112,44 @@ export default function GerichtFormular({
       <Feld label="Beschreibung" htmlFor="beschreibung" error={errors.beschreibung?.message}>
         <textarea id="beschreibung" className={textareaKlasse} {...register("beschreibung")} />
       </Feld>
+
+      {/* Übersetzungen — eingeklappt, weil optional: Was hier leer bleibt,
+          zeigt die Website in der jeweiligen Sprache auf Deutsch. */}
+      <details className="rounded-xl border border-tinte/10 bg-tinte/[0.02] px-4 py-3">
+        <summary className="cursor-pointer list-none text-sm font-semibold text-tinte">
+          Übersetzungen
+          <span className="ml-2 font-normal text-tinte/50">
+            {uebersetzungsStand || "optional — leer = deutscher Text"}
+          </span>
+        </summary>
+
+        <div className="mt-4 space-y-5">
+          {zielLocales.map((locale) => (
+            <div key={locale} className="space-y-3 border-t border-tinte/10 pt-4 first:border-t-0 first:pt-0">
+              <p className="text-xs font-semibold uppercase tracking-wide text-akzent">
+                {localeNames[locale]}
+              </p>
+
+              <Feld label="Name" htmlFor={`name-${locale}`}>
+                <input
+                  id={`name-${locale}`}
+                  className={inputKlasse}
+                  placeholder={watch("name") || "wie auf Deutsch"}
+                  {...register(`uebersetzungen.${locale}.name` as const)}
+                />
+              </Feld>
+
+              <Feld label="Beschreibung" htmlFor={`beschreibung-${locale}`}>
+                <textarea
+                  id={`beschreibung-${locale}`}
+                  className={textareaKlasse}
+                  {...register(`uebersetzungen.${locale}.beschreibung` as const)}
+                />
+              </Feld>
+            </div>
+          ))}
+        </div>
+      </details>
 
       <div className="grid gap-5 sm:grid-cols-2">
         <Feld label="Preis (€)" htmlFor="preis" pflicht error={errors.preis?.message}>

@@ -18,14 +18,24 @@ import type {
   Event as PrismaEvent,
   Gericht as PrismaGericht,
 } from "@prisma/client";
+import { defaultLocale, type Locale } from "@/lib/i18n/config";
+import {
+  ladeUebersetzungen,
+  uebersetze,
+  type UebersetzungsMap,
+} from "@/lib/i18n/uebersetzungen";
 
 /* ------------------------------- Mapper ----------------------------- */
 
-function zuGericht(g: PrismaGericht): Gericht {
+const OHNE_UEBERSETZUNG: UebersetzungsMap = new Map();
+
+function zuGericht(g: PrismaGericht, ueb: UebersetzungsMap = OHNE_UEBERSETZUNG): Gericht {
   return {
     id: g.id,
-    name: g.name,
-    beschreibung: g.beschreibung,
+    // Deutsch steht am Datensatz, EN/NL kommen aus der Übersetzungstabelle
+    // (fehlt dort ein Wert, bleibt es beim deutschen Original).
+    name: uebersetze(ueb, g.id, "name", g.name),
+    beschreibung: uebersetze(ueb, g.id, "beschreibung", g.beschreibung),
     preis: g.preis,
     kategorie: g.kategorie,
     bereich: g.bereich as Bereich,
@@ -63,13 +73,23 @@ function zuBild(b: PrismaBild): Bild {
 
 /* ----------------------------- Gerichte ----------------------------- */
 
-/** Verfügbare Gerichte eines Bereichs, nach Reihenfolge sortiert. */
-export async function getGerichte(bereich: Bereich): Promise<Gericht[]> {
-  const rows = await prisma.gericht.findMany({
-    where: { bereich, verfuegbar: true },
-    orderBy: { reihenfolge: "asc" },
-  });
-  return rows.map(zuGericht);
+/**
+ * Verfügbare Gerichte eines Bereichs, nach Reihenfolge sortiert.
+ * Ohne `locale` (bzw. auf Deutsch) ohne Zusatz-Query — die Übersetzungstabelle
+ * wird nur für EN/NL angefasst.
+ */
+export async function getGerichte(
+  bereich: Bereich,
+  locale: Locale = defaultLocale,
+): Promise<Gericht[]> {
+  const [rows, ueb] = await Promise.all([
+    prisma.gericht.findMany({
+      where: { bereich, verfuegbar: true },
+      orderBy: { reihenfolge: "asc" },
+    }),
+    ladeUebersetzungen("gericht", locale),
+  ]);
+  return rows.map((g) => zuGericht(g, ueb));
 }
 
 /**
@@ -133,11 +153,27 @@ export async function getKategorieReihenfolge(bereich: Bereich): Promise<string[
   return KATEGORIE_REIHENFOLGE;
 }
 
+/**
+ * Ein Kategorie-Block der Speisekarte.
+ * `kategorie` ist der deutsche Name — Gruppier- und Sortierschlüssel, überall
+ * stabil. `label` ist die Beschriftung in der aktuellen Sprache (auf Deutsch
+ * identisch).
+ */
+export interface KategorieBlock {
+  kategorie: string;
+  label: string;
+  gerichte: Gericht[];
+}
+
 export async function getGerichteNachKategorie(
   bereich: Bereich,
-): Promise<{ kategorie: string; gerichte: Gericht[] }[]> {
-  const liste = await getGerichte(bereich);
-  const reihenfolge = await getKategorieReihenfolge(bereich);
+  locale: Locale = defaultLocale,
+): Promise<KategorieBlock[]> {
+  const [liste, reihenfolge, kategorieUeb] = await Promise.all([
+    getGerichte(bereich, locale),
+    getKategorieReihenfolge(bereich),
+    ladeUebersetzungen("kategorie", locale),
+  ]);
   const kategorien = sortiereKategorien(
     Array.from(new Set(liste.map((g) => g.kategorie))),
     reihenfolge,
@@ -145,6 +181,8 @@ export async function getGerichteNachKategorie(
 
   return kategorien.map((kategorie) => ({
     kategorie,
+    // Kategorien haben keine eigene Tabelle — Schlüssel ist der deutsche Name.
+    label: uebersetze(kategorieUeb, kategorie, "name", kategorie),
     gerichte: liste.filter((g) => g.kategorie === kategorie),
   }));
 }
