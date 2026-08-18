@@ -57,3 +57,26 @@ export const SOCIAL_CHANNELS: SocialChannel[] = [
 export const activeSocialChannels: SocialChannel[] = SOCIAL_CHANNELS.filter(
   (c) => c.url.trim() !== "",
 );
+
+/**
+ * Kurzform eines Kanals für **gedruckte** Ausgaben (Speisekarte): dort taugt eine
+ * volle URL nichts, gesucht ist das Handle, nach dem man in der App sucht.
+ *
+ * Abgeleitet wird nur, was tatsächlich in der URL steht — steckt dort kein
+ * Handle (z. B. bei Facebooks `share/…`-Links), gibt es `null` zurück und der
+ * Aufrufer zeigt nur den Plattformnamen. Bewusst nichts erfinden: eine falsche
+ * Adresse auf einer gedruckten Karte lässt sich nicht mehr korrigieren.
+ */
+export function socialHandle(channel: SocialChannel): string | null {
+  try {
+    const pfad = new URL(channel.url).pathname.replace(/^\/+|\/+$/g, "");
+    // Sammel-/Weiterleitungspfade tragen keinen Profilnamen.
+    if (!pfad || /^(share|profile\.php|p|reel)\b/.test(pfad)) return null;
+    // Nur das erste Segment ist der Profilname (`/@name/video/123` → `@name`).
+    const name = pfad.split("/")[0];
+    if (!name) return null;
+    return name.startsWith("@") ? name : `@${name}`;
+  } catch {
+    return null;
+  }
+}

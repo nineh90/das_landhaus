@@ -1,7 +1,14 @@
 import Link from "next/link";
 import { alleGerichte } from "@/lib/admin-data";
 import { getKategorieReihenfolge, sortiereKategorien } from "@/lib/content";
-import { AdminSeitenkopf, Karte, LeerZustand, primaerBtn, gefahrBtn } from "@/components/admin/ui";
+import {
+  AdminSeitenkopf,
+  Karte,
+  LeerZustand,
+  primaerBtn,
+  sekundaerBtn,
+  gefahrBtn,
+} from "@/components/admin/ui";
 import { AdminIcon } from "@/components/admin/icons";
 import ServerAktionButton from "@/components/admin/ServerAktionButton";
 import SortierbareListe from "@/components/admin/SortierbareListe";
@@ -88,6 +95,9 @@ export default async function SpeisekarteSeite() {
         titel="Speisekarte"
         beschreibung="Gerichte anlegen, bearbeiten, ein-/ausblenden. Kategorie anklicken zum Auf-/Zuklappen. Gerichte innerhalb einer Kategorie und ganze Kategorien per Ziehgriff (⠿) sortieren."
       >
+        <Link href="/admin/speisekarte/druck" className={sekundaerBtn}>
+          Karte drucken
+        </Link>
         <Link href="/admin/speisekarte/neu" className={primaerBtn}>
           + Neues Gericht
         </Link>

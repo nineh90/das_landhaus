@@ -19,7 +19,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     <div className="relative isolate min-h-full w-full">
       {/* Landhaus als seitenweiter, ruhiger Hintergrund — fixiert, mit hellem
           Creme-Schleier, damit Karten & Text voll lesbar bleiben. */}
-      <div className="fixed inset-0 -z-10">
+      <div className="fixed inset-0 -z-10 print:hidden">
         <Image
           src="/images/hero/landhaus-hero.jpeg"
           alt=""
@@ -31,7 +31,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         <div className="absolute inset-0 bg-creme/85" />
       </div>
 
-      <header className="bg-wald-dark/85 text-creme shadow-md backdrop-blur-sm">
+      <header className="bg-wald-dark/85 text-creme shadow-md backdrop-blur-sm print:hidden">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 pt-4">
           <Link href="/admin" className="font-display text-lg text-creme">
             Das Landhaus <span className="text-creme/50">· Admin</span>
@@ -48,7 +48,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         </div>
       </header>
 
-      <main className="mx-auto max-w-6xl px-4 py-8">
+      <main className="mx-auto max-w-6xl px-4 py-8 print:max-w-none print:p-0">
         <Suspense fallback={null}>
           <AdminToastProvider>{children}</AdminToastProvider>
         </Suspense>
