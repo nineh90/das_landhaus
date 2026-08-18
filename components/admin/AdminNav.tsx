@@ -8,6 +8,7 @@ const LINKS: { href: string; label: string; icon: IconName; exakt?: boolean }[] 
   { href: "/admin", label: "Übersicht", icon: "uebersicht", exakt: true },
   { href: "/admin/speisekarte", label: "Speisekarte", icon: "speisekarte" },
   { href: "/admin/events", label: "Events", icon: "events" },
+  { href: "/admin/flyer", label: "Flyer", icon: "flyer" },
   { href: "/admin/galerie", label: "Galerie", icon: "galerie" },
   { href: "/admin/einstellungen", label: "Einstellungen", icon: "einstellungen" },
   { href: "/admin/passwort", label: "Passwort", icon: "passwort" },

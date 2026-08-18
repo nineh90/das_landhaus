@@ -42,6 +42,27 @@ export function eventById(id: string) {
   return prisma.event.findUnique({ where: { id } });
 }
 
+/* ------------------------------ Flyer ------------------------------- */
+
+/**
+ * Alle Flyer, zuletzt bearbeitete zuerst — so liegt der Flyer, an dem gerade
+ * gearbeitet wird, immer oben. `aktionen` wird nur gezählt; die Liste braucht
+ * die Texte nicht.
+ */
+export function alleFlyer() {
+  return prisma.flyer.findMany({
+    orderBy: { aktualisiertAm: "desc" },
+    include: { _count: { select: { aktionen: true } } },
+  });
+}
+
+export function flyerById(id: string) {
+  return prisma.flyer.findUnique({
+    where: { id },
+    include: { aktionen: { orderBy: { reihenfolge: "asc" } } },
+  });
+}
+
 /* ------------------------------ Bilder ------------------------------ */
 
 export function alleBilder() {

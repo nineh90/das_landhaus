@@ -7,6 +7,7 @@ export type IconName =
   | "uebersicht"
   | "speisekarte"
   | "events"
+  | "flyer"
   | "galerie"
   | "einstellungen"
   | "passwort";
@@ -28,6 +29,14 @@ const PFADE: Record<IconName, React.ReactNode> = {
       <path d="M8 2v4M16 2v4" />
       <rect width="18" height="18" x="3" y="4" rx="2" />
       <path d="M3 10h18" />
+    </>
+  ),
+  // Blatt mit Eselsohr und Textzeilen — das A4-Druckstück.
+  flyer: (
+    <>
+      <path d="M15 2H6a1 1 0 0 0-1 1v18a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6Z" />
+      <path d="M14 2v5h5" />
+      <path d="M9 13h6M9 17h4" />
     </>
   ),
   galerie: (

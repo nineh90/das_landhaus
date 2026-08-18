@@ -17,13 +17,13 @@ const ERLAUBTE_TYPEN: Record<string, string> = {
 };
 
 /** Erlaubte Zielordner im Bucket — verhindert beliebige Pfade aus dem Formular. */
-const ERLAUBTE_ORDNER = new Set(["galerie", "events"]);
+const ERLAUBTE_ORDNER = new Set(["galerie", "events", "flyer"]);
 
 /**
  * Nimmt eine Bilddatei (multipart/form-data) entgegen, prüft Login/Typ/Größe und
  * speichert sie in R2. Felder:
  *   datei   – die Bilddatei (Pflicht)
- *   ordner  – "galerie" | "events" (optional, Standard "galerie")
+ *   ordner  – "galerie" | "events" | "flyer" (optional, Standard "galerie")
  *   name    – Wunsch-Dateiname (optional; sonst Originalname)
  * Antwort: `{ url }` mit der öffentlichen Bild-URL fürs Formular.
  */

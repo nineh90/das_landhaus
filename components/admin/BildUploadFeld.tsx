@@ -11,15 +11,26 @@ import { Feld, inputKlasse } from "./ui";
  *
  * Entkoppelt vom konkreten Formular: kennt weder Galerie noch Event direkt,
  * nur den Zielordner (`ordner`) und den Rückgabe-Callback.
+ *
+ * `id` macht die Feld-IDs eindeutig — nötig, sobald ein Formular mehrere
+ * Upload-Felder trägt (Flyer: ein Hauptbild plus ein Bild je Aktionsblock).
+ * `kompakt` lässt das Dateiname-Feld und den Rahmen weg, damit ein Zusatzbild
+ * innerhalb eines bereits umrahmten Blocks nicht wie ein eigener Abschnitt wirkt.
  */
 export default function BildUploadFeld({
   initialeUrl = "",
   ordner,
   onHochgeladen,
+  id = "bild",
+  kompakt = false,
+  label = "Bild hochladen",
 }: {
   initialeUrl?: string;
-  ordner: "galerie" | "events";
+  ordner: "galerie" | "events" | "flyer";
   onHochgeladen: (url: string) => void;
+  id?: string;
+  kompakt?: boolean;
+  label?: string;
 }) {
   const [vorschauUrl, setVorschauUrl] = useState(initialeUrl);
   const [wunschname, setWunschname] = useState("");
@@ -55,30 +66,40 @@ export default function BildUploadFeld({
   }
 
   return (
-    <div className="space-y-4 rounded-xl border border-black/5 bg-black/[0.015] p-4">
-      <Feld
-        label="Dateiname (optional)"
-        htmlFor="wunschname"
-        hint="Sprechender Name für die Bild-URL, z. B. schlager-nacht. Nützlich bei WhatsApp-/Handy-Bildern ohne eindeutigen Namen. Leer = Originalname."
-      >
-        <input
-          id="wunschname"
-          className={inputKlasse}
-          value={wunschname}
-          onChange={(e) => setWunschname(e.target.value)}
-          placeholder="z. B. schlager-nacht"
-        />
-      </Feld>
+    <div
+      className={
+        kompakt ? "space-y-2" : "space-y-4 rounded-xl border border-black/5 bg-black/[0.015] p-4"
+      }
+    >
+      {!kompakt && (
+        <Feld
+          label="Dateiname (optional)"
+          htmlFor={`${id}-wunschname`}
+          hint="Sprechender Name für die Bild-URL, z. B. schlager-nacht. Nützlich bei WhatsApp-/Handy-Bildern ohne eindeutigen Namen. Leer = Originalname."
+        >
+          <input
+            id={`${id}-wunschname`}
+            className={inputKlasse}
+            value={wunschname}
+            onChange={(e) => setWunschname(e.target.value)}
+            placeholder="z. B. schlager-nacht"
+          />
+        </Feld>
+      )}
 
       <Feld
-        label="Bild hochladen"
-        htmlFor="datei"
+        label={label}
+        htmlFor={`${id}-datei`}
         error={fehler}
-        hint="JPG, PNG, WebP oder AVIF · max. 8 MB. Nach dem Hochladen wird das Pfad-Feld unten automatisch gefüllt."
+        hint={
+          kompakt
+            ? "JPG, PNG, WebP oder AVIF · max. 8 MB."
+            : "JPG, PNG, WebP oder AVIF · max. 8 MB. Nach dem Hochladen wird das Pfad-Feld unten automatisch gefüllt."
+        }
       >
         <div className="flex flex-wrap items-center gap-4">
           <input
-            id="datei"
+            id={`${id}-datei`}
             type="file"
             accept="image/jpeg,image/png,image/webp,image/avif"
             onChange={handleDatei}

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import type { Gericht } from "@/types";
 import {
   getGerichteNachKategorie,
@@ -12,8 +11,7 @@ import { getDictionary, type Dictionary } from "@/lib/i18n/dictionary";
 import { isLocale, type Locale } from "@/lib/i18n/config";
 import { ALLERGENE, ZUSATZSTOFFE, gerichtKennzeichnung } from "@/lib/schemas";
 import { formatPreis } from "@/lib/utils";
-import { activeSocialChannels, socialHandle } from "@/lib/social";
-import { SITE_URL } from "@/lib/site";
+import { DruckFuss, DruckKopf, druckRahmenCss } from "@/components/admin/druck";
 import DruckOptionen from "@/components/admin/DruckOptionen";
 
 /**
@@ -134,80 +132,6 @@ function DruckLegende({
 }
 
 /**
- * Kontakt- und Social-Zeile am Fuß der Karte.
- *
- * Auf Papier führt kein Klick weiter — darum stehen hier Domain und Handles im
- * Klartext, nicht die verlinkten URLs. Gezeigt wird nur, was auch wirklich
- * gepflegt ist (Kontaktdaten aus den Einstellungen, Kanäle aus lib/social.ts);
- * fehlt etwas, fällt die Angabe ersatzlos weg.
- */
-function DruckFuss({ kontakt }: { kontakt: Kontakt }) {
-  const domain = SITE_URL.replace(/^https?:\/\/(www\.)?/, "");
-
-  // WhatsApp gehört zu den Kontaktdaten, nicht zu den Profilen: die Einstellung
-  // `whatsapp` ist die gepflegte Quelle (siehe unten). Der gleichnamige Kanal in
-  // lib/social.ts ist ein wa.me-Aktionslink — auf Papier wertlos, und sein
-  // "Handle" wäre die nackte Ziffernfolge.
-  const kanaele = activeSocialChannels
-    .filter((c) => c.platform !== "whatsapp")
-    .map((c) => {
-      const handle = socialHandle(c);
-      return handle ? `${c.label} ${handle}` : c.label;
-    });
-
-  const zeile = [
-    kontakt.adresse,
-    ...telefonZeilen(kontakt),
-    kontakt.email,
-  ].filter(Boolean) as string[];
-
-  return (
-    <div className="druck-fuss">
-      <p className="druck-fuss-web">{domain}</p>
-      {zeile.map((eintrag) => (
-        <p key={eintrag} className="druck-fuss-zeile">
-          {eintrag}
-        </p>
-      ))}
-      {kanaele.length > 0 && <p className="druck-fuss-social">{kanaele.join("   ·   ")}</p>}
-    </div>
-  );
-}
-
-/**
- * Telefon und WhatsApp für die gedruckte Karte aufbereiten.
- *
- * Beide sind heute leer und sollen erscheinen, sobald sie in den Einstellungen
- * gepflegt sind — ohne Code-Änderung. `telefon` ist bereits lesbar erfasst,
- * `whatsapp` dagegen als reine Ziffernfolge für den wa.me-Link (z. B.
- * "4954820000000"); auf Papier führt kein Link irgendwohin, also braucht es dort
- * eine lesbare Nummer.
- *
- * Ist es dieselbe Nummer — der Normalfall in der Gastronomie —, steht sie einmal
- * mit beiden Labels statt zweimal untereinander.
- */
-function telefonZeilen({ telefon, whatsapp }: Kontakt): string[] {
-  const ziffern = (wert: string) => wert.replace(/\D/g, "");
-  // Landesvorwahl und führende Null lassen dieselbe Nummer unterschiedlich
-  // aussehen ("05482 …" vs. "495482 …") — der Vergleich der letzten Stellen
-  // erkennt sie trotzdem als eine.
-  const gleich =
-    !!telefon &&
-    !!whatsapp &&
-    ziffern(telefon).slice(-8) === ziffern(whatsapp).slice(-8) &&
-    ziffern(whatsapp).length >= 8;
-
-  if (gleich) return [`Tel. / WhatsApp ${telefon}`];
-
-  return [
-    telefon ? `Tel. ${telefon}` : "",
-    // Ohne bekannte Vorwahlgrenzen ist "+" plus Ziffernfolge die einzige
-    // Darstellung, die garantiert richtig bleibt.
-    whatsapp ? `WhatsApp +${ziffern(whatsapp)}` : "",
-  ].filter(Boolean);
-}
-
-/**
  * Eine komplette Karte (ein Bereich) — beginnt beim Druck auf einer neuen Seite.
  *
  * Die äußere Tabelle ist kein Layout-Selbstzweck: nur so lässt sich die Legende
@@ -234,7 +158,7 @@ function DruckKarte({
 }) {
   return (
     <table
-      className="druck-karte"
+      className="druck-flaeche druck-karte"
       /* Eine Satzbreite für Kopf, Inhalt, Legende und Abbinder — so rahmen alle
          vier denselben Satzspiegel. Einspaltig schmaler als die Seite (sonst
          stünden Name und Preis unlesbar weit auseinander), zweispaltig volle
@@ -250,21 +174,7 @@ function DruckKarte({
       <thead>
         <tr>
           <th scope="col">
-            <div className="druck-kopf">
-              {/* Bewusst das runde Emblem statt des Voll-Logos: dieses trägt den
-                  Schriftzug „Restaurant" fest im Bild und wäre auf der
-                  Imbiss-Karte schlicht falsch. Das Emblem passt zu jedem Bereich. */}
-              <Image
-                src="/images/logo/emblem.png"
-                alt=""
-                width={320}
-                height={320}
-                className="druck-emblem"
-                priority
-              />
-              <p className="druck-marke">Das Landhaus</p>
-              <h1 className="druck-titel">{titel}</h1>
-            </div>
+            <DruckKopf titel={titel} />
           </th>
         </tr>
       </thead>
@@ -363,7 +273,12 @@ export default async function SpeisekarteDruckSeite({
               <Link href="/admin/speisekarte" className="font-semibold underline">
                 Admin → Speisekarte
               </Link>
-              ; diese Seite zieht automatisch nach.
+              ; diese Seite zieht automatisch nach. Ein einseitiges Beiblatt zur gedruckten Karte
+              — Vorwort, Aktionen, Ankündigungen — entsteht unter{" "}
+              <Link href="/admin/flyer" className="font-semibold underline">
+                Admin → Flyer
+              </Link>
+              .
             </p>
           </div>
           <Link
@@ -398,7 +313,7 @@ export default async function SpeisekarteDruckSeite({
         ))}
       </div>
 
-      <style dangerouslySetInnerHTML={{ __html: druckCss }} />
+      <style dangerouslySetInnerHTML={{ __html: druckRahmenCss + karteCss }} />
     </>
   );
 }
@@ -406,65 +321,22 @@ export default async function SpeisekarteDruckSeite({
 /* --------------------------------- CSS --------------------------------- */
 
 /**
- * Bewusst als lokales <style> statt in globals.css: Die Regeln (allen voran
- * `@page`) gelten ausschließlich für diese Seite und können nirgends sonst
- * hineinwirken. `@page` lässt sich zudem nicht über Tailwind-Klassen ausdrücken.
+ * Nur das Innenleben der Karte — Bühne, Papierfläche, Kopf, Abbinder und
+ * `@page` kommen aus `druckRahmenCss` (components/admin/druck.tsx) und gelten
+ * dadurch für Karte und Flyer gleichermaßen.
+ *
+ * Bewusst als lokales <style> statt in globals.css: Die Regeln gelten
+ * ausschließlich für diese Seite und können nirgends sonst hineinwirken.
  */
-const druckCss = `
-.druck-buehne { display: flex; flex-direction: column; gap: 2rem; }
-
-.druck-karte {
-  background: #fff;
-  color: #2b2620;
-  border-radius: 1rem;
-  box-shadow: 0 1px 3px rgb(0 0 0 / 0.08);
-  max-width: 210mm;
-  margin-inline: auto;
-  width: 100%;
-  border-collapse: collapse;
-  table-layout: fixed;
-}
+const karteCss = `
+/* Die äußere Tabelle ist kein Layout-Selbstzweck: nur so wiederholt der Browser
+   Kopf (<thead>) und Legende (<tfoot>) auf jeder gedruckten Seite. */
+.druck-karte { border-collapse: collapse; table-layout: fixed; }
 .druck-karte > thead { display: table-header-group; }
 .druck-karte > thead > tr > th { padding: 14mm 16mm 0; font-weight: 400; }
 .druck-karte > tbody > tr > td { padding: 0 16mm; }
 .druck-karte > tfoot { display: table-footer-group; }
 .druck-karte > tfoot > tr > td { padding: 0 16mm 14mm; }
-
-/* Laufkopf — erscheint auf jeder Seite: Emblem, Schriftzug und Bereich
-   gestapelt und zentriert, abgeschlossen von einer feinen Linie zum Inhalt.
-   Die Maße sind bewusst knapp: was sich auf jeder Seite wiederholt, geht dem
-   Inhalt jedes Mal aufs Neue verloren. */
-.druck-kopf {
-  text-align: center;
-  padding-bottom: 0.6rem;
-  margin-bottom: 1.2rem;
-  border-bottom: 1px solid #e6dac8;
-}
-/* Das Emblem bringt seinen cremefarbenen Grund im Bild mit — der runde
-   Beschnitt lässt ihn auf weißem Papier nicht als Kasten auffallen. */
-.druck-emblem {
-  width: 16mm;
-  height: 16mm;
-  border-radius: 9999px;
-  object-fit: cover;
-  display: inline-block;
-}
-.druck-marke {
-  font-family: var(--font-script);
-  font-size: 2.3rem;
-  line-height: 1;
-  color: #2f4a3c;
-  margin-top: 0.15rem;
-}
-.druck-titel {
-  font-family: var(--font-display);
-  font-size: 0.9rem;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #1f3328;
-  margin-top: 0.2rem;
-}
 
 /* Zweispaltig über CSS-Spalten: Kategorien fließen weiter, brechen aber nie
    mitten in einem Gericht um. */
@@ -522,11 +394,9 @@ const druckCss = `
 /* Die Legende soll nicht direkt an der letzten Kategorie kleben. */
 .druck-spalten { margin-bottom: 0.5rem; }
 
-/* Gemeinsamer Satzspiegel (siehe --satzbreite an der Karte). */
-.druck-kopf,
+/* Inhalt und Legende in denselben Satzspiegel wie Kopf und Abbinder. */
 .druck-spalten,
-.druck-legende,
-.druck-fuss {
+.druck-legende {
   max-width: var(--satzbreite, 100%);
   margin-inline: auto;
 }
@@ -543,67 +413,21 @@ const druckCss = `
 .druck-legende-titel { font-weight: 700; color: #1f3328; margin-bottom: 0.15rem; }
 .druck-legende-hinweis { margin-top: 0.4rem; font-style: italic; }
 
-/* Abschlussblock am Ende der letzten Seite. Bewusst als abgesetzte Fläche und
-   nicht als weitere Kleinzeile: hier ist Platz, und die Karte soll mit Kontakt
-   und Kanälen enden statt mit Leerraum. Enthält ausschließlich gepflegte Daten
-   (keine festen Texte) — damit bleibt der Block auch auf der englischen und
-   niederländischen Karte richtig. */
-.druck-fuss {
-  margin-top: 1.6rem;
-  padding: 1rem 1.25rem 1.1rem;
-  border: 1px solid #e6dac8;
-  border-radius: 0.75rem;
-  background: #faf6ef;
-  text-align: center;
-  font-size: 0.78rem;
-  line-height: 1.55;
-  color: #2b2620cc;
-  break-inside: avoid;
-}
-.druck-fuss-web {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  letter-spacing: 0.06em;
-  color: #2f4a3c;
-  margin-bottom: 0.35rem;
-}
-.druck-fuss-zeile { margin-top: 0.1rem; }
-/* Kanäle vom Kontakt abgesetzt — zwei Informationsarten, eine Fläche. */
-.druck-fuss-social {
-  margin-top: 0.6rem;
-  padding-top: 0.55rem;
-  border-top: 1px solid #e6dac8;
-  color: #2b262099;
-}
-
 @media print {
-  @page { size: A4; margin: 14mm 12mm; }
-
-  .druck-buehne { display: block; gap: 0; }
-  .druck-karte {
-    max-width: none;
-    width: 100%;
-    border-radius: 0;
-    box-shadow: none;
-  }
   /* Im Druck übernimmt der @page-Rand — die Bildschirm-Innenabstände entfallen. */
   .druck-karte > thead > tr > th { padding: 0; }
   .druck-karte > tbody > tr > td { padding: 0; }
   .druck-karte > tfoot > tr > td { padding: 0; }
-  /* Der Laufkopf wiederholt sich — im Druck darf er knapper ausfallen. */
-  .druck-kopf { margin-bottom: 0.8rem; }
   /* Jeder Bereich (Restaurant / Imbiss) startet auf einer eigenen Seite. */
   .druck-karte + .druck-karte { break-before: page; }
 
   /* Der Tabellenfuß wiederholt sich beim Seitenumbruch von selbst — im Druck
      darf er darum knapper ausfallen als am Bildschirm. */
   .druck-legende { font-size: 0.6rem; line-height: 1.35; }
-
-  /* Farben der Überschriften auch im Druck erhalten. */
   .druck-legende-titel { display: inline; margin-right: 0.5em; }
 
-  .druck-marke, .druck-titel, .druck-kategorie, .druck-legende-titel,
-  .druck-fuss, .druck-fuss-web, .druck-emblem {
+  /* Farben der Überschriften auch im Druck erhalten. */
+  .druck-kategorie, .druck-legende-titel {
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }

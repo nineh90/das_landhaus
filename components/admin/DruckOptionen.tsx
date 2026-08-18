@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTransition } from "react";
+import DruckLeiste from "@/components/admin/DruckLeiste";
 
 /**
  * Bedienleiste über der druckbaren Speisekarte.
@@ -11,7 +12,8 @@ import { useTransition } from "react";
  * gedruckt wird, ist exakt das, was live auf der Website steht. Ein Lesezeichen
  * auf z. B. `?bereich=restaurant&spalten=2` reproduziert dieselbe Karte jederzeit.
  *
- * Beim Drucken blendet sich die Leiste selbst aus (`print:hidden`).
+ * Leiste, Druck-Knopf und der Hinweis zum Druckdialog kommen aus DruckLeiste —
+ * dieselbe Leiste trägt die Flyer-Ansicht.
  */
 
 const inputKlasse =
@@ -75,11 +77,7 @@ export default function DruckOptionen({
   }
 
   return (
-    <div
-      className={`mb-6 flex flex-wrap items-end gap-4 rounded-2xl border border-tinte/10 bg-white/80 p-4 shadow-sm print:hidden ${
-        laedt ? "opacity-60" : ""
-      }`}
-    >
+    <DruckLeiste gedimmt={laedt}>
       <Auswahl
         label="Bereich"
         name="bereich"
@@ -135,26 +133,6 @@ export default function DruckOptionen({
         Preise
       </label>
 
-      <button
-        type="button"
-        onClick={() => window.print()}
-        className="ml-auto inline-flex items-center justify-center gap-2 rounded-full bg-akzent px-5 py-2.5 font-semibold text-creme transition-colors hover:bg-akzent-dark"
-      >
-        Drucken / als PDF speichern
-      </button>
-
-      {/* Der Browser setzt von sich aus URL, Datum und Seitenzahl an den
-          Seitenrand — das lässt sich nur im Druckdialog abschalten, nicht per
-          CSS. Der Hinweis steht hier, damit die gedruckte Karte auch dann sauber
-          aussieht, wenn jemand anderes als der Entwickler sie ausdruckt. */}
-      <p className="w-full text-xs leading-relaxed text-tinte/55">
-        Im Druckdialog unter <strong className="font-semibold">Weitere Einstellungen</strong> den
-        Haken bei <strong className="font-semibold">Kopf- und Fußzeilen</strong> entfernen — sonst
-        druckt der Browser die Adresse dieser Seite und das Datum mit.{" "}
-        <strong className="font-semibold">Hintergrundgrafiken</strong> dagegen aktivieren, damit
-        Logo und Überschriften ihre Farbe behalten. Der Browser merkt sich beides für das nächste
-        Mal.
-      </p>
-    </div>
+    </DruckLeiste>
   );
 }

@@ -4,12 +4,13 @@ import { AdminSeitenkopf, Karte } from "@/components/admin/ui";
 import { AdminIcon, type IconName } from "@/components/admin/icons";
 
 export default async function AdminDashboard() {
-  const [gerichte, gerichteAktiv, events, eventsPubliziert, bilder] = await Promise.all([
+  const [gerichte, gerichteAktiv, events, eventsPubliziert, bilder, flyer] = await Promise.all([
     prisma.gericht.count(),
     prisma.gericht.count({ where: { verfuegbar: true } }),
     prisma.event.count(),
     prisma.event.count({ where: { veroeffentlicht: true } }),
     prisma.bild.count(),
+    prisma.flyer.count(),
   ]);
 
   const kacheln: { href: string; titel: string; wert: string; detail: string; icon: IconName }[] = [
@@ -26,6 +27,13 @@ export default async function AdminDashboard() {
       wert: `${events} Events`,
       detail: `${eventsPubliziert} veröffentlicht`,
       icon: "events",
+    },
+    {
+      href: "/admin/flyer",
+      titel: "Flyer",
+      wert: flyer === 1 ? "1 Flyer" : `${flyer} Flyer`,
+      detail: "A4 zum Ausdrucken",
+      icon: "flyer",
     },
     {
       href: "/admin/galerie",
@@ -50,7 +58,7 @@ export default async function AdminDashboard() {
         beschreibung="Willkommen im Admin-Bereich. Hier pflegst du die Inhalte der Website."
       />
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
         {kacheln.map((k) => (
           <Link key={k.href} href={k.href} className="group">
             <Karte className="h-full transition duration-200 group-hover:-translate-y-0.5 group-hover:shadow-md">

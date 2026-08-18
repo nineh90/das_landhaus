@@ -152,6 +152,56 @@ export const eventSchema = z.object({
 });
 export type EventFormular = z.input<typeof eventSchema>;
 
+/* ------------------------------ Flyer ------------------------------- */
+
+/**
+ * Ein Aktions-/Hinweisblock auf dem Flyer. `hinweis` trägt Zeitraum oder Preis
+ * in einer Zeile ("Di–Fr 11:30–14:00 · 9,90 €") — bewusst als freier Text: was
+ * eine Aktion ausmacht, ist von Fall zu Fall anders und soll nicht in Felder
+ * gezwungen werden.
+ */
+export const flyerAktionSchema = z.object({
+  titel: z.string().trim().min(1, "Bitte einen Titel für die Aktion angeben.").max(120),
+  hinweis: z.string().trim().max(140).optional().default(""),
+  text: z.string().trim().max(600).optional().default(""),
+  bild: z.string().trim().max(500).optional().default(""),
+});
+export type FlyerAktionFormular = z.input<typeof flyerAktionSchema>;
+
+/**
+ * Optionales Datum aus einem <input type="date">: leer erlaubt (= kein Datum),
+ * sonst yyyy-mm-dd. Ein leeres Datumsfeld liefert "" — deshalb reicht `optional`
+ * allein nicht aus.
+ */
+const optionalesDatum = z
+  .string()
+  .trim()
+  .regex(/^(\d{4}-\d{2}-\d{2})?$/, "Bitte ein gültiges Datum wählen.")
+  .optional()
+  .default("");
+
+export const flyerSchema = z
+  .object({
+    // Nur für die Verwaltungsliste, steht nicht auf dem Blatt.
+    titel: z.string().trim().min(1, "Bitte eine interne Bezeichnung angeben.").max(160),
+    ueberschrift: z.string().trim().min(1, "Überschrift ist erforderlich.").max(120),
+    unterzeile: z.string().trim().max(160).optional().default(""),
+    // Großzügig bemessen, aber begrenzt: mehr als das passt nicht auf eine A4-Seite.
+    vorwort: z.string().trim().max(3000).optional().default(""),
+    grussformel: z.string().trim().max(120).optional().default(""),
+    bild: z.string().trim().max(500).optional().default(""),
+    aktionen: z.array(flyerAktionSchema).max(8).default([]),
+    mitEvents: z.boolean().default(false),
+    mitOeffnungszeiten: z.boolean().default(false),
+    gueltigVon: optionalesDatum,
+    gueltigBis: optionalesDatum,
+  })
+  .refine((d) => !d.gueltigVon || !d.gueltigBis || d.gueltigVon <= d.gueltigBis, {
+    message: "Das Ende darf nicht vor dem Beginn liegen.",
+    path: ["gueltigBis"],
+  });
+export type FlyerFormular = z.input<typeof flyerSchema>;
+
 /* ------------------------------ Bilder ------------------------------ */
 
 export const BILD_BEREICHE = [

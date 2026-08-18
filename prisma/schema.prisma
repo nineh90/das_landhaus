@@ -103,3 +103,61 @@ model Benutzer {
   rolle        String   @default("admin")
   erstelltAm   DateTime @default(now())
 }
+
+// Flyer — einseitige A4-Blätter zum Ausdrucken: das Vorwort als Einlage in die
+// gedruckte Speisekarte, aktuelle Aktionen, Neuigkeiten, Event-Ankündigungen.
+//
+// Warum eine eigene Tabelle und nicht Einstellungen: ein Flyer ist kein
+// Dauertext, sondern entsteht mehrfach (Saison, Aktion, Feiertag). Gespeichert
+// bleibt er als Vorlage — beim nächsten Mal wird er dupliziert und angepasst,
+// statt neu getippt.
+//
+// Bewusst OHNE Layout-/Stilfelder: Kopf (Emblem + Schriftzug) und Abschlussblock
+// (Kontakt + Kanäle) sind unveränderlich und kommen aus derselben Druck-Mechanik
+// wie die Speisekarte (components/admin/druck.tsx). Der Flyer hält nur Inhalt —
+// dadurch bleiben Karte und Beiblatt automatisch im selben Stil.
+model Flyer {
+  id           String  @id @default(cuid())
+  // Interne Bezeichnung für die Verwaltungsliste ("Vorwort Karte 2026").
+  // Steht NICHT auf dem gedruckten Blatt.
+  titel        String
+  ueberschrift String // gedruckte Überschrift, z. B. "Herzlich willkommen"
+  unterzeile   String? // kleine Zeile unter der Überschrift
+  vorwort      String? // Fließtext; Absätze durch Leerzeile getrennt
+  grussformel  String? // z. B. "Ihre Familie Çalışkan"
+  bild         String? // ein großes Bild unter dem Vorwort (z. B. Event-Foto)
+
+  // Bausteine, die sich aus bereits gepflegten Daten füllen — nichts davon wird
+  // im Flyer doppelt erfasst.
+  mitEvents          Boolean @default(false) // kommende Events aus der DB
+  mitOeffnungszeiten Boolean @default(false) // aus den Einstellungen
+
+  // Zeitraum der Aktionen — dient der Übersicht in der Verwaltung und wird,
+  // wenn gesetzt, als Gültigkeitshinweis mitgedruckt.
+  gueltigVon DateTime?
+  gueltigBis DateTime?
+
+  // Heute rein informativ (der Flyer ist Druck-Erzeugnis). Vorbereitet für eine
+  // spätere News-Sektion auf der Website — dann ohne weitere Migration.
+  veroeffentlicht Boolean @default(false)
+
+  aktionen       FlyerAktion[]
+  erstelltAm     DateTime      @default(now())
+  aktualisiertAm DateTime      @updatedAt
+}
+
+// Ein Aktions-/Hinweisblock auf einem Flyer ("Mittagstisch", "Schlager-Nacht").
+// Eigene Zeilen statt eines JSON-Felds: sortierbar, einzeln übersetzbar über die
+// generische Uebersetzung-Tabelle und in der Verwaltung wie gewohnt editierbar.
+model FlyerAktion {
+  id          String  @id @default(cuid())
+  flyerId     String
+  flyer       Flyer   @relation(fields: [flyerId], references: [id], onDelete: Cascade)
+  titel       String
+  text        String?
+  hinweis     String? // Zeitraum/Preis, z. B. "Di–Fr 11:30–14:00 · 9,90 €"
+  bild        String? // kleines Foto neben dem Text
+  reihenfolge Int     @default(0)
+
+  @@index([flyerId, reihenfolge])
+}
